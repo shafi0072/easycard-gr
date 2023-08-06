@@ -1,17 +1,24 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
-const Profile = () => {
+const Profile = ({id}) => {
+  const [datas, setData] = useState({})
+  useEffect(() => {
+    fetch(`https://business-card-backend-2.vercel.app/cards/visit/${id}`)
+    .then(res => res.json())
+    .then(data => setData(data)) 
+    .catch(err => console.log(err))
+  },[datas, id])
     return (
         <div>
            <>
-           hi
-          {/* <div
+         
+          <div
             className=" w-[381px] h-[300px]  relative rounded"
-            style={{ background: userData?.display?.color }}
+            style={{ background: datas?.display?.color }}
           >
             <img
               className="h-full w-full object-cover rounded"
-              src={userData?.display?.ProfileImage}
+              src={datas?.display?.ProfileImage}
               alt=""
             />
             <div className="">
@@ -26,7 +33,7 @@ const Profile = () => {
                     id="wave"
                     d="M0,25.9V55.406c70.325,43.351,128.033,45.974,213.535-5.027S340.019,6.009,381,17.739v-7.65C286.9-26.122,210.5,45.427,151.305,63.278S52.111,68.378,0,25.9Z"
                     transform="translate(0 0)"
-                    fill={userData?.display?.color}
+                    fill={datas?.display?.color}
                   />
                 </svg>
               </div>
@@ -62,11 +69,11 @@ const Profile = () => {
               </div>
               <img
                 className="absolute bottom-3 right-0 z-50 w-[100px]"
-                src={userData?.display?.Logo}
+                src={datas?.display?.Logo}
                 alt=""
               />
             </div>
-          </div> */}
+          </div>
         </>
         </div>
     );
