@@ -11,10 +11,11 @@ import DottedQRCode from "./DottedQr";
 import Content from "./Content";
 import Image from "./Image";
 import GalleryImage from "./GalleryImage";
-import YouTube from "./Youtube";
+import YouTube from "./Video";
 import Pdf from "./Pdf";
 import DateView from "./DateView";
 import QrView from "./QrView";
+import Video from "./Video";
 const Profile = ({ id }) => {
   const [datas, setData] = useState(null);
   console.log(datas);
@@ -336,9 +337,9 @@ const Profile = ({ id }) => {
                   {item?.type === "Galary" && <GalleryImage item={item} />}
 
                   {/* videos */}
-                  {item?.type === "Youtube" && <YouTube item={item} />}
-                  {item?.type === "Vimeo" && <YouTube item={item} />}
-                  {item?.type === "Wistia" && <YouTube item={item} />}
+                  {item?.type === "Youtube" && <Video item={item} />}
+                  {item?.type === "Vimeo" && <Video item={item} />}
+                  {item?.type === "Wistia" && <Video item={item} />}
                   {/* more details  */}
                   {item?.type === "Pdf" && (
                     <Pdf

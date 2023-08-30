@@ -3,6 +3,7 @@ import { QRCode } from "react-qrcode-logo";
 // import DottedQRCode from "../../app/Root/QrCodes/QrMain";
 
 const QrView = ({ item, logo, value }) => {
+  console.log(value);
   return (
     <div>
       <div
