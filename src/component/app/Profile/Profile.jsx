@@ -16,6 +16,7 @@ import Pdf from "./Pdf";
 import DateView from "./DateView";
 import QrView from "./QrView";
 import Video from "./Video";
+import PermContactCalendarIcon from '@mui/icons-material/PermContactCalendar';
 const Profile = ({ id }) => {
   const [datas, setData] = useState(null);
   console.log(datas);
@@ -97,6 +98,102 @@ const Profile = ({ id }) => {
   }, []);
   console.log(datas);
 
+
+  const handleAddContactClick = () => {
+    const { profileInfo, fields } = datas;
+    const firstName = profileInfo.first_name;
+    const lastName = profileInfo.last_name;
+    let phoneNumber = '';
+    let email = '';
+    
+    for (const field of fields) {
+      if (field.type === 'Phone') {
+        phoneNumber = field.number;
+        break; // Stop after finding the first phone number
+      }
+    }
+
+    for (const field of fields) {
+      if (field.type === 'Email') {
+        email = field.url;
+        break; // Stop after finding the first email
+      }
+    }
+    const contactData = {
+      name: firstName + " " + lastName,
+      phoneNumber: phoneNumber,
+      email: email,
+    };
+
+    const contactString = `BEGIN:VCARD
+VERSION:3.0
+FN:${contactData.name}
+TEL:${contactData.phoneNumber}
+EMAIL:${contactData.email}
+END:VCARD`;
+
+    const uri = `data:text/vcard;charset=utf-8,${encodeURIComponent(contactString)}`;
+
+    // Check if it's a mobile device
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+      // Open a new window with the URI, this may trigger the contact save on some devices
+      window.open(uri, '_blank');
+    } else {
+      // Provide a message to users on non-mobile devices
+      alert('This feature is available on mobile devices only.');
+    }
+  };
+  
+  
+
+  function addToContacts() {
+    if (!('contacts' in navigator)) {
+      alert('Contacts API not supported in this browser');
+      return;
+    }
+  
+    // Request permission to access contacts
+    navigator.contacts.requestPermission().then(() => {
+      // Create a new contact
+      const contact = navigator.contacts.create();
+  
+      // Set contact name based on profile info
+      contact.name = new ContactName({
+        formatted: `${datas.profileInfo.first_name} ${datas.profileInfo.last_name}`,
+      });
+  
+      // Extract and add phone numbers from fields of type "Phone"
+      const phoneNumbers = datas.fields
+        .filter((field) => field.type === 'Phone')
+        .map((field) => {
+          return new ContactField('mobile', field.number, false);
+        });
+  
+      if (phoneNumbers.length > 0) {
+        contact.phoneNumbers = phoneNumbers;
+      }
+  
+      // Extract and add email addresses from fields of type "Email"
+      const emails = datas.fields
+        .filter((field) => field.type === 'Email')
+        .map((field) => {
+          return new ContactField('work', field.url, false);
+        });
+  
+      if (emails.length > 0) {
+        contact.emails = emails;
+      }
+  
+      // Save the contact
+      contact.save().then(() => {
+        alert('Contact saved successfully!');
+      }).catch((error) => {
+        alert('Failed to save contact: ' + error);
+      });
+    }).catch((error) => {
+      alert('Permission denied: ' + error);
+    });
+  }
   return (
     <>
       {!datas && <MobileLoading />}
@@ -110,7 +207,7 @@ const Profile = ({ id }) => {
                   style={{ background: datas?.display?.primaryColor }}
                 >
                   <img
-                    className="h-[95%] w-full object-cover"
+                    className="h-[100%] w-full object-cover"
                     src={datas?.display?.ProfileImage}
                     alt=""
                   />
@@ -460,7 +557,9 @@ const Profile = ({ id }) => {
                 ))}
               </div>
             </div>
+            <button onClick={handleAddContactClick} className=" text-white w-[200px]  h-[50px] md:w-[270px] md:h-[70px] md:px-5 fixed left-[50%] bottom-5 -translate-x-1/2 text-lg md:text-2xl rounded-full transition-all duration-300 hover:scale-125 font-bold" style={{background: datas?.display?.secondaryColor,color: datas?.display?.secondaryAccent}}> <PermContactCalendarIcon/> SAVE CONTACT</button>
           </div>
+          {/* <AddContactButton/> */}
         </div>
       )}
     </>
