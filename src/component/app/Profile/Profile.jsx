@@ -196,7 +196,7 @@ END:VCARD`;
   }
   return (
     <>
-      {!datas && <MobileLoading />}
+      {!datas?._id && <MobileLoading />}
       {datas && (
         <div className="">
           <div className="max-w-[500px] w-full mx-auto px-3">
