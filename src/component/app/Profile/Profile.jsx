@@ -203,18 +203,18 @@ END:VCARD`;
             {datas?.display?.design === "flat" && (
               <>
                 <div
-                  className="h-[400px] "
+                  className="h-[400px] w-full md:w-[381px] "
                   style={{ background: datas?.display?.primaryColor }}
                 >
                   <img
-                    className="h-[100%] w-full object-cover"
+                    className="h-[97%] w-full object-cover"
                     src={datas?.display?.ProfileImage}
                     alt=""
                   />
                 </div>
                 <div className="mt-5">
                   <img
-                    className="md:w-3/4 mx-auto"
+                    className="w-2/4 "
                     src={datas?.display?.Logo}
                     alt="logo"
                   />
@@ -291,12 +291,12 @@ END:VCARD`;
 
             <div className="px-3">
               <div
-                className="mt-10  p-3 w-full md:w-[383px]"
+                className="mt-10   w-full md:w-[383px]"
                 style={{
                   borderLeft:
                     datas?.display?.design === "classic"
-                      ? `3px dotted ${datas?.display?.primaryColor}`
-                      : "none",
+                      ? `3px dotted ${datas?.display?.primaryColor} `
+                      : "none", padding:datas?.display?.design === "classic"?"12px":"0px"
                 }}
               >
                 <h2 className="text-3xl font-bold">
