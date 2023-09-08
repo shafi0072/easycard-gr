@@ -295,11 +295,11 @@ END:VCARD`;
                 style={{
                   borderLeft:
                     datas?.display?.design === "classic"
-                      ? `3px dotted ${datas?.display?.primaryColor} `
+                      ? `3px solid ${datas?.display?.primaryColor}`
                       : "none", padding:datas?.display?.design === "classic"?"12px":"0px"
                 }}
               >
-                <h2 className="text-3xl font-bold">
+                {datas?.profileInfo?.first_name && <h2 className="text-3xl font-bold">
                   {datas?.profileInfo?.prefix &&
                     datas?.profileInfo?.prefix + "."}{" "}
                   {datas?.profileInfo?.first_name +
@@ -310,7 +310,7 @@ END:VCARD`;
                   <span className="font-semibold">
                     {datas?.profileInfo?.accreditations}
                   </span>
-                </h2>
+                </h2>}
                 <h4 className="font-medium italic text-[#585858]">
                   {datas?.profileInfo?.job_title}
                 </h4>
