@@ -33,3 +33,46 @@ END:VCARD`;
 }
 
 export default AddContactButton;
+
+
+const datas =  {
+  profileInfo:{
+    first_name: "Md Abdullah",
+    last_name:"Al safi"
+  },
+
+  fields:[
+    {
+      id:1,
+      number:'+8801727768266',
+      ext:'123456',
+      internationalNumber: false,
+      chooseLabel: "Mobile",
+      type: "Phone"
+    },
+    {
+      id:2,
+      number:'+8801727768267',
+      ext:'123456',
+      internationalNumber: false,
+      chooseLabel: "work",
+      type: "Phone"
+    },
+    {
+      id: 3,
+      label: "My Portfolio",
+      labelPleaceholder: "Display URL",
+      pleaceholder: "www.yourwebsite.gr",
+      type: "Website",
+      url: "www.abdullahalsafi.me"
+    },
+    {
+      id: 4,
+      label: "sa",
+      llabelPleaceholder: "Label",
+      pleaceholder: "example@email.com",
+      type: "Email",
+      url: "safi29317@gmaul.com"
+    }
+  ]
+}

@@ -16,7 +16,7 @@ import Pdf from "./Pdf";
 import DateView from "./DateView";
 import QrView from "./QrView";
 import Video from "./Video";
-import AddContactButton from "./AddtoContact";
+import PermContactCalendarIcon from '@mui/icons-material/PermContactCalendar';
 const Profile = ({ id }) => {
   const [datas, setData] = useState(null);
   console.log(datas);
@@ -96,18 +96,115 @@ const Profile = ({ id }) => {
       setDevice(osName);
     }
   }, []);
+  console.log(datas);
 
+
+  const handleAddContactClick = () => {
+    const { profileInfo, fields } = datas;
+    const firstName = profileInfo.first_name;
+    const lastName = profileInfo.last_name;
+    let phoneNumber = '';
+    let email = '';
+    
+    for (const field of fields) {
+      if (field.type === 'Phone') {
+        phoneNumber = field.number;
+        break; // Stop after finding the first phone number
+      }
+    }
+
+    for (const field of fields) {
+      if (field.type === 'Email') {
+        email = field.url;
+        break; // Stop after finding the first email
+      }
+    }
+    const contactData = {
+      name: firstName + " " + lastName,
+      phoneNumber: phoneNumber,
+      email: email,
+    };
+
+    const contactString = `BEGIN:VCARD
+VERSION:3.0
+FN:${contactData.name}
+TEL:${contactData.phoneNumber}
+EMAIL:${contactData.email}
+END:VCARD`;
+
+    const uri = `data:text/vcard;charset=utf-8,${encodeURIComponent(contactString)}`;
+
+    // Check if it's a mobile device
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+      // Open a new window with the URI, this may trigger the contact save on some devices
+      window.open(uri, '_blank');
+    } else {
+      // Provide a message to users on non-mobile devices
+      alert('This feature is available on mobile devices only.');
+    }
+  };
+  
+  
+
+  function addToContacts() {
+    if (!('contacts' in navigator)) {
+      alert('Contacts API not supported in this browser');
+      return;
+    }
+  
+    // Request permission to access contacts
+    navigator.contacts.requestPermission().then(() => {
+      // Create a new contact
+      const contact = navigator.contacts.create();
+  
+      // Set contact name based on profile info
+      contact.name = new ContactName({
+        formatted: `${datas.profileInfo.first_name} ${datas.profileInfo.last_name}`,
+      });
+  
+      // Extract and add phone numbers from fields of type "Phone"
+      const phoneNumbers = datas.fields
+        .filter((field) => field.type === 'Phone')
+        .map((field) => {
+          return new ContactField('mobile', field.number, false);
+        });
+  
+      if (phoneNumbers.length > 0) {
+        contact.phoneNumbers = phoneNumbers;
+      }
+  
+      // Extract and add email addresses from fields of type "Email"
+      const emails = datas.fields
+        .filter((field) => field.type === 'Email')
+        .map((field) => {
+          return new ContactField('work', field.url, false);
+        });
+  
+      if (emails.length > 0) {
+        contact.emails = emails;
+      }
+  
+      // Save the contact
+      contact.save().then(() => {
+        alert('Contact saved successfully!');
+      }).catch((error) => {
+        alert('Failed to save contact: ' + error);
+      });
+    }).catch((error) => {
+      alert('Permission denied: ' + error);
+    });
+  }
   return (
     <>
       {!datas && <MobileLoading />}
       {datas && (
         <div className="">
           <div className="max-w-[500px] w-full mx-auto px-3">
-            {datas?.display?.desgin === "flat" && (
+            {datas?.display?.design === "flat" && (
               <>
                 <div
-                  className="h-[500px] "
-                  style={{ background: datas?.display?.color }}
+                  className="h-[400px] "
+                  style={{ background: datas?.display?.primaryColor }}
                 >
                   <img
                     className="h-[100%] w-full object-cover"
@@ -127,8 +224,8 @@ const Profile = ({ id }) => {
             {datas?.display?.design === "classic" && (
               <>
                 <div
-                  className=" w-[381px] h-[300px]  relative rounded"
-                  style={{ background: datas?.display?.color }}
+                  className=" w-full md:w-[381px] h-[300px]  relative rounded"
+                  style={{ background: datas?.display?.primaryColor }}
                 >
                   <img
                     className="h-full w-full object-cover rounded"
@@ -147,7 +244,7 @@ const Profile = ({ id }) => {
                           id="wave"
                           d="M0,25.9V55.406c70.325,43.351,128.033,45.974,213.535-5.027S340.019,6.009,381,17.739v-7.65C286.9-26.122,210.5,45.427,151.305,63.278S52.111,68.378,0,25.9Z"
                           transform="translate(0 0)"
-                          fill={datas?.display?.color}
+                          fill={datas?.display?.primaryColor}
                         />
                       </svg>
                     </div>
@@ -192,29 +289,34 @@ const Profile = ({ id }) => {
             )}
 
             <div
-              className="mt-10 border-4 border-dotted p-3 w-full md:w-[383px]"
-              style={{ borderColor: datas?.display?.color }}
+              className="mt-10  p-3 w-full md:w-[383px]"
+              style={{
+                borderLeft:
+                  datas?.display?.design === "classic"
+                    ? `3px solid ${datas?.display?.primaryColor}`
+                    : "none",
+              }}
             >
-              <h2 className="text-xl font-extrabold">
+              <h2 className="text-3xl font-bold">
                 {datas?.profileInfo?.prefix && datas?.profileInfo?.prefix + "."}{" "}
                 {datas?.profileInfo?.first_name +
                   " " +
                   datas?.profileInfo?.last_name}
+                <br />
+                {datas?.profileInfo?.suffix + " "}
+                <span className="font-semibold">
+                  {datas?.profileInfo?.accreditations}
+                </span>
               </h2>
-              <h3 className="font-bold my-2">
-                {datas?.profileInfo?.department}
-              </h3>
-              <h3
-                className="font-bold mb-2"
-                style={{ color: datas?.display?.color }}
-              >
-                {datas?.profileInfo?.company}
-              </h3>
               <h4 className="font-medium italic text-[#585858]">
                 {datas?.profileInfo?.job_title}
               </h4>
+              <h3 style={{ color: datas?.display?.primaryColor }}>
+                {datas?.profileInfo?.department}
+              </h3>
+              <h3 className=" mb-2">{datas?.profileInfo?.company}</h3>
             </div>
-            <div className="mt-2 w-full md:w-[383px]">
+            <div className="mt-12 w-full md:w-[383px]">
               <p className="italic text-[#69727d]">
                 {datas?.profileInfo?.introduction}
               </p>
@@ -238,43 +340,95 @@ const Profile = ({ id }) => {
                   {/* content */}
 
                   {item?.type === "Phone" && (
-                    <Content color={datas?.display?.color} item={item} />
+                    <Content
+                      bgColor={datas?.display?.primaryColor}
+                      color={datas?.display?.primaryAccent}
+                      item={item}
+                    />
                   )}
                   {item?.type === "Website" && (
-                    <Content color={datas?.display?.color} item={item} />
+                    <Content
+                      bgColor={datas?.display?.primaryColor}
+                      color={datas?.display?.primaryAccent}
+                      item={item}
+                    />
                   )}
                   {item?.type === "Email" && (
-                    <Content color={datas?.display?.color} item={item} />
+                    <Content
+                      bgColor={datas?.display?.primaryColor}
+                      color={datas?.display?.primaryAccent}
+                      item={item}
+                    />
                   )}
                   {item?.type === "Address" && (
-                    <Content color={datas?.display?.color} item={item} />
+                    <Content
+                      bgColor={datas?.display?.primaryColor}
+                      color={datas?.display?.primaryAccent}
+                      item={item}
+                    />
                   )}
                   {item?.type === "Link" && (
-                    <Content color={datas?.display?.color} item={item} />
+                    <Content
+                      bgColor={datas?.display?.primaryColor}
+                      color={datas?.display?.primaryAccent}
+                      item={item}
+                    />
                   )}
                   {item?.type === "WhatsApp" && (
-                    <Content color={datas?.display?.color} item={item} />
+                    <Content
+                      bgColor={datas?.display?.primaryColor}
+                      color={datas?.display?.primaryAccent}
+                      item={item}
+                    />
                   )}
                   {item?.type === "Viber" && (
-                    <Content color={datas?.display?.color} item={item} />
+                    <Content
+                      bgColor={datas?.display?.primaryColor}
+                      color={datas?.display?.primaryAccent}
+                      item={item}
+                    />
                   )}
                   {item?.type === "Skype" && (
-                    <Content color={datas?.display?.color} item={item} />
+                    <Content
+                      bgColor={datas?.display?.primaryColor}
+                      color={datas?.display?.primaryAccent}
+                      item={item}
+                    />
                   )}
                   {item?.type === "Snapchat" && (
-                    <Content color={datas?.display?.color} item={item} />
+                    <Content
+                      bgColor={datas?.display?.primaryColor}
+                      color={datas?.display?.primaryAccent}
+                      item={item}
+                    />
                   )}
                   {item?.type === "Signal" && (
-                    <Content color={datas?.display?.color} item={item} />
+                    <Content
+                      bgColor={datas?.display?.primaryColor}
+                      color={datas?.display?.primaryAccent}
+                      item={item}
+                    />
                   )}
                   {item?.type === "Telegram" && (
-                    <Content color={datas?.display?.color} item={item} />
+                    <Content
+                      bgColor={datas?.display?.primaryColor}
+                      color={datas?.display?.primaryAccent}
+                      item={item}
+                    />
                   )}
                   {item?.type === "Discord" && (
-                    <Content color={datas?.display?.color} item={item} />
+                    <Content
+                      bgColor={datas?.display?.primaryColor}
+                      color={datas?.display?.primaryAccent}
+                      item={item}
+                    />
                   )}
                   {item?.type === "Slack" && (
-                    <Content color={datas?.display?.color} item={item} />
+                    <Content
+                      bgColor={datas?.display?.primaryColor}
+                      color={datas?.display?.primaryAccent}
+                      item={item}
+                    />
                   )}
 
                   {/* social media  */}
@@ -282,55 +436,68 @@ const Profile = ({ id }) => {
                   {item?.type === "Facebook" && (
                     <a
                       href={item?.url}
-                      style={{ backgroundColor: datas?.display?.color }}
+                      style={{ backgroundColor: datas?.display?.primaryColor }}
                       className=" w-12 h-12  items-center justify-center inline-flex rounded-full mr-2  "
                     >
-                      <FacebookIcon style={{ color: "#fff" }} />{" "}
+                      <FacebookIcon
+                        style={{ color: datas?.display?.primaryAccent }}
+                      />{" "}
                     </a>
                   )}
                   {item?.type === "Instagram" && (
                     <a
-                      style={{ backgroundColor: datas?.display?.color }}
+                      style={{ backgroundColor: datas?.display?.primaryColor }}
                       href={item?.url}
                       className="bg-[#EB531C] w-12 h-12  items-center justify-center inline-flex rounded-full mr-2  "
                     >
-                      <InstagramIcon style={{ color: "#fff" }} />
+                      <InstagramIcon
+                        style={{ color: datas?.display?.primaryAccent }}
+                      />
                     </a>
                   )}
                   {item?.type === "Twitter" && (
                     <a
-                      style={{ backgroundColor: datas?.display?.color }}
+                      style={{ backgroundColor: datas?.display?.primaryColor }}
                       href={item?.url}
                       className="bg-[#EB531C] w-12 h-12  items-center justify-center inline-flex rounded-full mr-2  "
                     >
-                      <TwitterIcon style={{ color: "#fff" }} />
+                      <TwitterIcon
+                        style={{ color: datas?.display?.primaryAccent }}
+                      />
                     </a>
                   )}
                   {item?.type === "LinkedIn" && (
                     <a
-                      style={{ backgroundColor: datas?.display?.color }}
+                      style={{ backgroundColor: datas?.display?.primaryColor }}
                       href={item?.url}
                       className="bg-[#EB531C] w-12 h-12  items-center justify-center inline-flex rounded-full mr-2  "
                     >
-                      <LinkedInIcon style={{ color: "#fff" }} />{" "}
+                      <LinkedInIcon
+                        style={{ color: datas?.display?.primaryAccent }}
+                      />{" "}
                     </a>
                   )}
                   {item?.type === "Pinterest" && (
                     <a
-                      style={{ backgroundColor: datas?.display?.color }}
+                      style={{ backgroundColor: datas?.display?.primaryColor }}
                       href={item?.url}
                       className="bg-[#EB531C] w-12 h-12  items-center justify-center inline-flex rounded-full mr-2  "
                     >
-                      <PinterestIcon style={{ color: "#fff" }} />
+                      <PinterestIcon
+                        style={{ color: datas?.display?.primaryAccent }}
+                      />
                     </a>
                   )}
                   {item?.type === "Tiktok" && (
                     <a
-                      style={{ backgroundColor: datas?.display?.color }}
+                      style={{ backgroundColor: datas?.display?.primaryColor }}
                       href={item?.url}
                       className="bg-[#EB531C] w-12 h-12  items-center justify-center inline-flex rounded-full mr-2 "
                     >
-                      <FaTiktok className="inline text-white text-xl" />
+                      <FaTiktok
+                        className="inline  text-xl"
+                        style={{ color: datas?.display?.primaryAccent }}
+                      />
                     </a>
                   )}
                   {/* images */}
@@ -346,7 +513,8 @@ const Profile = ({ id }) => {
                     <Pdf
                       item={item}
                       email={datas?.email}
-                      color={datas?.display?.color}
+                      bgColor={datas?.display?.primaryColor}
+                      color={datas?.display?.primaryAccent}
                     />
                   )}
                   {item?.type === "Notes" && (
@@ -355,7 +523,11 @@ const Profile = ({ id }) => {
                     </div>
                   )}
                   {item?.type === "Date" && (
-                    <DateView item={item} color={datas?.display?.color} />
+                    <DateView
+                      item={item}
+                      bgColor={datas?.display?.primaryColor}
+                      color={datas?.display?.primaryAccent}
+                    />
                   )}
                   {item?.type === "QR" && (
                     <QrView
@@ -367,6 +539,7 @@ const Profile = ({ id }) => {
                 </>
               ))}
             </div>
+            <button onClick={handleAddContactClick} className=" text-white w-[200px]  h-[50px] md:w-[270px] md:h-[70px] md:px-5 fixed left-[50%] bottom-5 -translate-x-1/2 text-lg md:text-2xl rounded-full transition-all duration-300 hover:scale-125 font-bold" style={{background: datas?.display?.secondaryColor,color: datas?.display?.secondaryAccent}}> <PermContactCalendarIcon/> SAVE CONTACT</button>
           </div>
           {/* <AddContactButton/> */}
         </div>

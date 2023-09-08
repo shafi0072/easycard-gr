@@ -1,6 +1,6 @@
 import React from "react";
 
-const Content = ({ item, color }) => {
+const Content = ({ item, bgColor,color }) => {
   const phoneIcon = (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -12,7 +12,7 @@ const Content = ({ item, color }) => {
         id="phone-svgrepo-com"
         d="M11.012,5.671S10.726,5,10.288,5a1.09,1.09,0,0,0-.8.336c-.149.137-2.648,2.191-2.648,2.191a2.361,2.361,0,0,0-.671,1.829,12.117,12.117,0,0,0,1.493,5.26,24.358,24.358,0,0,0,6.119,7.239,14.192,14.192,0,0,0,3.4,1.9,9.868,9.868,0,0,0,1.652.346,1.678,1.678,0,0,0,1.082-.334c.465-.338,3.076-2.437,3.076-2.437a.8.8,0,0,0-.1-1.249c-.746-.671-3.01-2.164-3.495-2.556a1.2,1.2,0,0,0-1.475.047c-.3.272-.83.719-.9.775-.1.075-.364.317-.662.2a9.137,9.137,0,0,1-3.385-2.975,9.245,9.245,0,0,1-1.809-3.32.486.486,0,0,1,.2-.57c.215-.149,1.008-.81,1.008-.81a1.144,1.144,0,0,0,.3-1.1c-.214-.6-1.655-4.095-1.655-4.095Z"
         transform="translate(-6.162 -5)"
-        fill="#fff"
+        fill={color}
       />
     </svg>
   );
@@ -302,7 +302,7 @@ const Content = ({ item, color }) => {
     <div className="flex gap-3 my-5 items-center">
       <div
         className="w-[50px] h-[50px] rounded-full flex justify-center items-center "
-        style={{ backgroundColor: color }}
+        style={{ backgroundColor: bgColor }}
       >
         {item?.type === "Phone" && phoneIcon}
 
