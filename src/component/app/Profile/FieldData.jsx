@@ -144,14 +144,14 @@ const FieldData = ({ userData }) => {
   return (
     <div>
       {userData?.fields?.Phone?.map((items, index) => <Data1
-        color={userData?.display?.color}
+        color={userData?.display?.primaryColor}
         icon={phoneIcon}
         title={items?.Number}
         extra={items?.Code}
         label="office"
       />)}
       {userData?.fields?.website?.map((items, index) => <Data1
-        color={userData?.display?.color}
+        color={userData?.display?.primaryColor}
         icon={websiteIcon}
         title={items?.address}
         extra=""
@@ -159,7 +159,7 @@ const FieldData = ({ userData }) => {
       />)}
     {
       userData?.fields?.email?.map((items,index)=>  <Data1
-      color={userData?.display?.color}
+      color={userData?.display?.primaryColor}
       icon={emailIcon}
       title={items.address}
       extra=""
@@ -168,7 +168,7 @@ const FieldData = ({ userData }) => {
     }
       {
         userData?.fields?.address?.map((items,index)=><Data1
-        color={userData?.display?.color}
+        color={userData?.display?.primaryColor}
         icon={locationIcon}
         title={items.location}
         extra=""
@@ -177,7 +177,7 @@ const FieldData = ({ userData }) => {
       }
       {
         userData?.fields?.link?.map((items,index)=><Data1
-        color={userData?.display?.color}
+        color={userData?.display?.primaryColor}
         icon={linkIcon}
         title={items.url}
         label={items.label}
@@ -185,7 +185,7 @@ const FieldData = ({ userData }) => {
       }
      {
       userData?.fields?.whatsApp?.map((items,index)=> <Data1
-      color={userData?.display?.color}
+      color={userData?.display?.primaryColor}
       icon={whatsapppIcon}
       title={items.number}
       label={items.label}
@@ -193,7 +193,7 @@ const FieldData = ({ userData }) => {
      }
     {
       userData?.fields?.viber?.map((items,index)=>  <Data1
-      color={userData?.display?.color}
+      color={userData?.display?.primaryColor}
       icon={viberIcon}
       title={items.number}
       extra=""
@@ -205,3 +205,5 @@ const FieldData = ({ userData }) => {
 };
 
 export default FieldData;
+
+

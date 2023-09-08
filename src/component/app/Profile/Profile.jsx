@@ -16,6 +16,7 @@ import Pdf from "./Pdf";
 import DateView from "./DateView";
 import QrView from "./QrView";
 import Video from "./Video";
+import AddContactButton from "./AddtoContact";
 const Profile = ({ id }) => {
   const [datas, setData] = useState(null);
   console.log(datas);
@@ -102,14 +103,14 @@ const Profile = ({ id }) => {
       {datas && (
         <div className="">
           <div className="max-w-[500px] w-full mx-auto px-3">
-            {datas?.display?.desgine === "flat" && (
+            {datas?.display?.desgin === "flat" && (
               <>
                 <div
-                  className="h-[400px] "
+                  className="h-[500px] "
                   style={{ background: datas?.display?.color }}
                 >
                   <img
-                    className="h-[95%] w-full object-cover"
+                    className="h-[100%] w-full object-cover"
                     src={datas?.display?.ProfileImage}
                     alt=""
                   />
@@ -367,6 +368,7 @@ const Profile = ({ id }) => {
               ))}
             </div>
           </div>
+          {/* <AddContactButton/> */}
         </div>
       )}
     </>
