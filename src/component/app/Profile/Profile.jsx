@@ -95,6 +95,7 @@ const Profile = ({ id }) => {
       setDevice(osName);
     }
   }, []);
+  console.log(datas);
 
   return (
     <>
@@ -102,11 +103,11 @@ const Profile = ({ id }) => {
       {datas && (
         <div className="">
           <div className="max-w-[500px] w-full mx-auto px-3">
-            {datas?.display?.desgine === "flat" && (
+            {datas?.display?.design === "flat" && (
               <>
                 <div
                   className="h-[400px] "
-                  style={{ background: datas?.display?.color }}
+                  style={{ background: datas?.display?.primaryColor }}
                 >
                   <img
                     className="h-[95%] w-full object-cover"
@@ -126,8 +127,8 @@ const Profile = ({ id }) => {
             {datas?.display?.design === "classic" && (
               <>
                 <div
-                  className=" w-[381px] h-[300px]  relative rounded"
-                  style={{ background: datas?.display?.color }}
+                  className=" w-full md:w-[381px] h-[300px]  relative rounded"
+                  style={{ background: datas?.display?.primaryColor }}
                 >
                   <img
                     className="h-full w-full object-cover rounded"
@@ -146,7 +147,7 @@ const Profile = ({ id }) => {
                           id="wave"
                           d="M0,25.9V55.406c70.325,43.351,128.033,45.974,213.535-5.027S340.019,6.009,381,17.739v-7.65C286.9-26.122,210.5,45.427,151.305,63.278S52.111,68.378,0,25.9Z"
                           transform="translate(0 0)"
-                          fill={datas?.display?.color}
+                          fill={datas?.display?.primaryColor}
                         />
                       </svg>
                     </div>
@@ -191,29 +192,34 @@ const Profile = ({ id }) => {
             )}
 
             <div
-              className="mt-10 border-4 border-dotted p-3 w-full md:w-[383px]"
-              style={{ borderColor: datas?.display?.color }}
+              className="mt-10  p-3 w-full md:w-[383px]"
+              style={{
+                borderLeft:
+                  datas?.display?.design === "classic"
+                    ? `3px solid ${datas?.display?.primaryColor}`
+                    : "none",
+              }}
             >
-              <h2 className="text-xl font-extrabold">
+              <h2 className="text-3xl font-bold">
                 {datas?.profileInfo?.prefix && datas?.profileInfo?.prefix + "."}{" "}
                 {datas?.profileInfo?.first_name +
                   " " +
                   datas?.profileInfo?.last_name}
+                <br />
+                {datas?.profileInfo?.suffix + " "}
+                <span className="font-semibold">
+                  {datas?.profileInfo?.accreditations}
+                </span>
               </h2>
-              <h3 className="font-bold my-2">
-                {datas?.profileInfo?.department}
-              </h3>
-              <h3
-                className="font-bold mb-2"
-                style={{ color: datas?.display?.color }}
-              >
-                {datas?.profileInfo?.company}
-              </h3>
               <h4 className="font-medium italic text-[#585858]">
                 {datas?.profileInfo?.job_title}
               </h4>
+              <h3 style={{ color: datas?.display?.primaryColor }}>
+                {datas?.profileInfo?.department}
+              </h3>
+              <h3 className=" mb-2">{datas?.profileInfo?.company}</h3>
             </div>
-            <div className="mt-2 w-full md:w-[383px]">
+            <div className="mt-12 w-full md:w-[383px]">
               <p className="italic text-[#69727d]">
                 {datas?.profileInfo?.introduction}
               </p>
@@ -237,43 +243,95 @@ const Profile = ({ id }) => {
                   {/* content */}
 
                   {item?.type === "Phone" && (
-                    <Content color={datas?.display?.color} item={item} />
+                    <Content
+                      bgColor={datas?.display?.primaryColor}
+                      color={datas?.display?.primaryAccent}
+                      item={item}
+                    />
                   )}
                   {item?.type === "Website" && (
-                    <Content color={datas?.display?.color} item={item} />
+                    <Content
+                      bgColor={datas?.display?.primaryColor}
+                      color={datas?.display?.primaryAccent}
+                      item={item}
+                    />
                   )}
                   {item?.type === "Email" && (
-                    <Content color={datas?.display?.color} item={item} />
+                    <Content
+                      bgColor={datas?.display?.primaryColor}
+                      color={datas?.display?.primaryAccent}
+                      item={item}
+                    />
                   )}
                   {item?.type === "Address" && (
-                    <Content color={datas?.display?.color} item={item} />
+                    <Content
+                      bgColor={datas?.display?.primaryColor}
+                      color={datas?.display?.primaryAccent}
+                      item={item}
+                    />
                   )}
                   {item?.type === "Link" && (
-                    <Content color={datas?.display?.color} item={item} />
+                    <Content
+                      bgColor={datas?.display?.primaryColor}
+                      color={datas?.display?.primaryAccent}
+                      item={item}
+                    />
                   )}
                   {item?.type === "WhatsApp" && (
-                    <Content color={datas?.display?.color} item={item} />
+                    <Content
+                      bgColor={datas?.display?.primaryColor}
+                      color={datas?.display?.primaryAccent}
+                      item={item}
+                    />
                   )}
                   {item?.type === "Viber" && (
-                    <Content color={datas?.display?.color} item={item} />
+                    <Content
+                      bgColor={datas?.display?.primaryColor}
+                      color={datas?.display?.primaryAccent}
+                      item={item}
+                    />
                   )}
                   {item?.type === "Skype" && (
-                    <Content color={datas?.display?.color} item={item} />
+                    <Content
+                      bgColor={datas?.display?.primaryColor}
+                      color={datas?.display?.primaryAccent}
+                      item={item}
+                    />
                   )}
                   {item?.type === "Snapchat" && (
-                    <Content color={datas?.display?.color} item={item} />
+                    <Content
+                      bgColor={datas?.display?.primaryColor}
+                      color={datas?.display?.primaryAccent}
+                      item={item}
+                    />
                   )}
                   {item?.type === "Signal" && (
-                    <Content color={datas?.display?.color} item={item} />
+                    <Content
+                      bgColor={datas?.display?.primaryColor}
+                      color={datas?.display?.primaryAccent}
+                      item={item}
+                    />
                   )}
                   {item?.type === "Telegram" && (
-                    <Content color={datas?.display?.color} item={item} />
+                    <Content
+                      bgColor={datas?.display?.primaryColor}
+                      color={datas?.display?.primaryAccent}
+                      item={item}
+                    />
                   )}
                   {item?.type === "Discord" && (
-                    <Content color={datas?.display?.color} item={item} />
+                    <Content
+                      bgColor={datas?.display?.primaryColor}
+                      color={datas?.display?.primaryAccent}
+                      item={item}
+                    />
                   )}
                   {item?.type === "Slack" && (
-                    <Content color={datas?.display?.color} item={item} />
+                    <Content
+                      bgColor={datas?.display?.primaryColor}
+                      color={datas?.display?.primaryAccent}
+                      item={item}
+                    />
                   )}
 
                   {/* social media  */}
@@ -281,55 +339,68 @@ const Profile = ({ id }) => {
                   {item?.type === "Facebook" && (
                     <a
                       href={item?.url}
-                      style={{ backgroundColor: datas?.display?.color }}
+                      style={{ backgroundColor: datas?.display?.primaryColor }}
                       className=" w-12 h-12  items-center justify-center inline-flex rounded-full mr-2  "
                     >
-                      <FacebookIcon style={{ color: "#fff" }} />{" "}
+                      <FacebookIcon
+                        style={{ color: datas?.display?.primaryAccent }}
+                      />{" "}
                     </a>
                   )}
                   {item?.type === "Instagram" && (
                     <a
-                      style={{ backgroundColor: datas?.display?.color }}
+                      style={{ backgroundColor: datas?.display?.primaryColor }}
                       href={item?.url}
                       className="bg-[#EB531C] w-12 h-12  items-center justify-center inline-flex rounded-full mr-2  "
                     >
-                      <InstagramIcon style={{ color: "#fff" }} />
+                      <InstagramIcon
+                        style={{ color: datas?.display?.primaryAccent }}
+                      />
                     </a>
                   )}
                   {item?.type === "Twitter" && (
                     <a
-                      style={{ backgroundColor: datas?.display?.color }}
+                      style={{ backgroundColor: datas?.display?.primaryColor }}
                       href={item?.url}
                       className="bg-[#EB531C] w-12 h-12  items-center justify-center inline-flex rounded-full mr-2  "
                     >
-                      <TwitterIcon style={{ color: "#fff" }} />
+                      <TwitterIcon
+                        style={{ color: datas?.display?.primaryAccent }}
+                      />
                     </a>
                   )}
                   {item?.type === "LinkedIn" && (
                     <a
-                      style={{ backgroundColor: datas?.display?.color }}
+                      style={{ backgroundColor: datas?.display?.primaryColor }}
                       href={item?.url}
                       className="bg-[#EB531C] w-12 h-12  items-center justify-center inline-flex rounded-full mr-2  "
                     >
-                      <LinkedInIcon style={{ color: "#fff" }} />{" "}
+                      <LinkedInIcon
+                        style={{ color: datas?.display?.primaryAccent }}
+                      />{" "}
                     </a>
                   )}
                   {item?.type === "Pinterest" && (
                     <a
-                      style={{ backgroundColor: datas?.display?.color }}
+                      style={{ backgroundColor: datas?.display?.primaryColor }}
                       href={item?.url}
                       className="bg-[#EB531C] w-12 h-12  items-center justify-center inline-flex rounded-full mr-2  "
                     >
-                      <PinterestIcon style={{ color: "#fff" }} />
+                      <PinterestIcon
+                        style={{ color: datas?.display?.primaryAccent }}
+                      />
                     </a>
                   )}
                   {item?.type === "Tiktok" && (
                     <a
-                      style={{ backgroundColor: datas?.display?.color }}
+                      style={{ backgroundColor: datas?.display?.primaryColor }}
                       href={item?.url}
                       className="bg-[#EB531C] w-12 h-12  items-center justify-center inline-flex rounded-full mr-2 "
                     >
-                      <FaTiktok className="inline text-white text-xl" />
+                      <FaTiktok
+                        className="inline  text-xl"
+                        style={{ color: datas?.display?.primaryAccent }}
+                      />
                     </a>
                   )}
                   {/* images */}
@@ -345,7 +416,8 @@ const Profile = ({ id }) => {
                     <Pdf
                       item={item}
                       email={datas?.email}
-                      color={datas?.display?.color}
+                      bgColor={datas?.display?.primaryColor}
+                      color={datas?.display?.primaryAccent}
                     />
                   )}
                   {item?.type === "Notes" && (
@@ -354,7 +426,11 @@ const Profile = ({ id }) => {
                     </div>
                   )}
                   {item?.type === "Date" && (
-                    <DateView item={item} color={datas?.display?.color} />
+                    <DateView
+                      item={item}
+                      bgColor={datas?.display?.primaryColor}
+                      color={datas?.display?.primaryAccent}
+                    />
                   )}
                   {item?.type === "QR" && (
                     <QrView

@@ -1,7 +1,7 @@
 import React from "react";
 import PictureAsPdfOutlinedIcon from "@mui/icons-material/PictureAsPdfOutlined";
 
-const Pdf = ({item,email,color}) => {
+const Pdf = ({item,email,bgColor,color}) => {
   const filename = `${email?.slice(0, 6)}-document.pdf`;
 
   const downloadPdf = () => {
@@ -20,8 +20,8 @@ const Pdf = ({item,email,color}) => {
         <div className="mt-5">
          
           <div className="flex gap-3 items-center">
-            <div    style={{ backgroundColor: color }} className=" p-2 rounded-full">
-              <PictureAsPdfOutlinedIcon sx={{ color: "#fff" }} />
+            <div    style={{ backgroundColor: bgColor }} className=" p-2 rounded-full">
+              <PictureAsPdfOutlinedIcon sx={{ color: color }} />
             </div>
             <button onClick={downloadPdf} title="click to download pdf">
               {" "}
