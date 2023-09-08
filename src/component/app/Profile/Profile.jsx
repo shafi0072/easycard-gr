@@ -443,7 +443,7 @@ const Profile = ({ id }) => {
                 </>
               ))}
             </div>
-            <button className="bg-gray-500 text-white w-[200px]  h-[50px] md:w-[270px] md:h-[70px] md:px-5 fixed left-[50%] bottom-5 -translate-x-1/2 text-lg md:text-2xl rounded-full transition-all duration-300 hover:scale-125 font-bold"> <PermContactCalendarIcon/> SAVE CONTACT</button>
+            <button className=" text-white w-[200px]  h-[50px] md:w-[270px] md:h-[70px] md:px-5 fixed left-[50%] bottom-5 -translate-x-1/2 text-lg md:text-2xl rounded-full transition-all duration-300 hover:scale-125 font-bold" style={{background: datas?.display?.secondaryColor,color: datas?.display?.secondaryAccent}}> <PermContactCalendarIcon/> SAVE CONTACT</button>
           </div>
         </div>
       )}
