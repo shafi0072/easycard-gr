@@ -103,7 +103,7 @@ const Profile = ({ id }) => {
       {!datas && <MobileLoading />}
       {datas && (
         <div className="">
-          <div className="max-w-[500px] w-full mx-auto px-3">
+          <div className="max-w-[500px] w-full mx-auto ">
             {datas?.display?.design === "flat" && (
               <>
                 <div
@@ -191,6 +191,7 @@ const Profile = ({ id }) => {
                 </div>
               </>
             )}
+           
 
             <div
               className="mt-10  p-3 w-full md:w-[383px]"
@@ -443,7 +444,7 @@ const Profile = ({ id }) => {
                 </>
               ))}
             </div>
-            <button className=" text-white w-[200px]  h-[50px] md:w-[270px] md:h-[70px] md:px-5 fixed left-[50%] bottom-5 -translate-x-1/2 text-lg md:text-2xl rounded-full transition-all duration-300 hover:scale-125 font-bold" style={{background: datas?.display?.secondaryColor,color: datas?.display?.secondaryAccent}}> <PermContactCalendarIcon/> SAVE CONTACT</button>
+            <button className=" text-white w-[200px]  h-[50px] md:w-[270px] md:h-[70px] md:px-5 fixed left-[50%] bottom-5 -translate-x-1/2 text-lg md:text-2xl rounded-full transition-all duration-300 hover:scale-125 font-bold" style={{ background: datas?.display?.secondaryColor, color: datas?.display?.secondaryAccent }}> <PermContactCalendarIcon /> SAVE CONTACT</button>
           </div>
         </div>
       )}
