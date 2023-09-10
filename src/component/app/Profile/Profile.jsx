@@ -19,10 +19,9 @@ import Video from "./Video";
 import PermContactCalendarIcon from '@mui/icons-material/PermContactCalendar';
 const Profile = ({ id }) => {
   const [datas, setData] = useState(null);
-  console.log(datas);
+ 
   const [ip, setIp] = useState({});
   const [device, setDevice] = useState({});
-  console.log("ip:", ip, "divice:", device);
   useEffect(() => {
     fetch(`https://business-card-backend-2.vercel.app/cards/visit/${id}`)
       .then((res) => res.json())
@@ -89,111 +88,94 @@ const Profile = ({ id }) => {
       const osName = navigator.platform;
 
       // Display the gathered information
-      console.log("User Agent:", userAgent);
-      console.log("Browser Name:", browserName);
-      console.log("Browser Version:", browserVersion);
-      console.log("Operating System:", osName);
+      
       setDevice(osName);
     }
   }, []);
   console.log(datas);
 
 
-  const handleAddContactClick = () => {
-    const { profileInfo, fields } = datas;
-    const firstName = profileInfo.first_name;
-    const lastName = profileInfo.last_name;
-    let phoneNumber = '';
-    let email = '';
-    
-    for (const field of fields) {
-      if (field.type === 'Phone') {
-        phoneNumber = field.number;
-        break; // Stop after finding the first phone number
-      }
-    }
+const handleAddContactClick = () => {
+  const { profileInfo, fields, display } = datas;
+  const firstName = profileInfo.first_name;
+  const lastName = profileInfo.last_name;
+  const prefix = profileInfo.prefix;
+  
+  let mobile = '';
+  let officeNumber = '';
+  let faxNumber = '';
+  let address = '';
+  let email = '';
+  let website = ''
 
-    for (const field of fields) {
-      if (field.type === 'Email') {
-        email = field.url;
-        break; // Stop after finding the first email
-      }
+  for (const field of fields) {
+    if (field.type === 'Phone' && field?.chooseLabel === 'Mobile') {
+      mobile = field.number;
     }
-    const contactData = {
-      name: firstName + " " + lastName,
-      phoneNumber: phoneNumber,
-      email: email,
-    };
+    if (field.type === "Address") {
+      address = field.address;
+    }
+    if (field.type === "Website") {
+      website = field.url;
+    }
+    if (field.type === 'Phone' && field?.chooseLabel === 'Office') {
+      officeNumber = field.number;
+    }
+    if (field.type === 'Phone' && field?.chooseLabel === 'Fax') {
+      faxNumber = field.number;
+    }
+    if (field.type === 'Email') {
+      email = field.url;
+    }
+  }
 
-    const contactString = `BEGIN:VCARD
+  const contactData = {
+    name: firstName + " " + lastName,
+  };
+
+  // Decode the base64 image
+
+console.log({profileInfo})
+debugger
+
+  const contactString = `BEGIN:VCARD
 VERSION:3.0
 FN:${contactData.name}
-TEL:${contactData.phoneNumber}
-EMAIL:${contactData.email}
-END:VCARD`;
 
-    const uri = `data:text/vcard;charset=utf-8,${encodeURIComponent(contactString)}`;
+N:${lastName};${firstName};${prefix};${profileInfo?.suffix}
+NICKNAME:${lastName}
+EMAIL;type=HOME,INTERNET:${email}
+EMAIL;type=WORK,INTERNET:${email}
+TEL;TYPE=CELL:${mobile}
+TEL;TYPE=Mobile,VOICE:${mobile}
+TEL;TYPE=Fax:${faxNumber}
+TEL;TYPE=WORK:${officeNumber}
+LABEL:Home address
+ADR:;;${address}
+TITLE:${profileInfo?.department}
+ROLE:${profileInfo?.job_title}
+ORG:${profileInfo?.company}
+URL;type=WORK:${profileInfo?.website}
+END:VCARD
+`;
 
-    // Check if it's a mobile device
-    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-      // Open a new window with the URI, this may trigger the contact save on some devices
-      window.open(uri, '_blank');
-    } else {
-      // Provide a message to users on non-mobile devices
-      alert('This feature is available on mobile devices only.');
-    }
-  };
-  
-  
+  const uri = `data:text/vcard;charset=utf-8,${encodeURIComponent(contactString)}`;
 
-  function addToContacts() {
-    if (!('contacts' in navigator)) {
-      alert('Contacts API not supported in this browser');
-      return;
-    }
-  
-    // Request permission to access contacts
-    navigator.contacts.requestPermission().then(() => {
-      // Create a new contact
-      const contact = navigator.contacts.create();
-  
-      // Set contact name based on profile info
-      contact.name = new ContactName({
-        formatted: `${datas.profileInfo.first_name} ${datas.profileInfo.last_name}`,
-      });
-  
-      // Extract and add phone numbers from fields of type "Phone"
-      const phoneNumbers = datas.fields
-        .filter((field) => field.type === 'Phone')
-        .map((field) => {
-          return new ContactField('mobile', field.number, false);
-        });
-  
-      if (phoneNumbers.length > 0) {
-        contact.phoneNumbers = phoneNumbers;
-      }
-  
-      // Extract and add email addresses from fields of type "Email"
-      const emails = datas.fields
-        .filter((field) => field.type === 'Email')
-        .map((field) => {
-          return new ContactField('work', field.url, false);
-        });
-  
-      if (emails.length > 0) {
-        contact.emails = emails;
-      }
-  
-      // Save the contact
-      contact.save().then(() => {
-        alert('Contact saved successfully!');
-      }).catch((error) => {
-        alert('Failed to save contact: ' + error);
-      });
-    }).catch((error) => {
-      alert('Permission denied: ' + error);
-    });
+  // Check if it's a mobile device
+  if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+    // Open a new window with the URI, this may trigger the contact save on some devices
+    window.open(uri, '_blank');
+  } else {
+    // Provide a message to users on non-mobile devices
+    alert('This feature is available on mobile devices only.');
   }
+};
+
+
+  
+  
+
+ 
   return (
     <>
       {!datas?._id && <MobileLoading />}
