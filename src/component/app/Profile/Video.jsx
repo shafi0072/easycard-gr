@@ -8,7 +8,7 @@ const Video = ({ item }) => {
   );
   const opts = {
     height: "315",
-    width: "383",
+    width: "100%",
     playerVars: {
       autoplay: 0,
     },
@@ -20,13 +20,13 @@ const Video = ({ item }) => {
     <>
       <div
         className={`${
-          !item?.url ? "hidden" : "block mt-5 h-[315px] w-[383px]"
+          !item?.url ? "hidden" : "block mt-5 h-[315px] w-full md:w-[383px]"
         } `}
       >
         {item?.type === "Youtube" && (
           <>
             {item?.url && (
-              <div className="mt-5 h-[315px] w-[383px]">
+              <div className="mt-5 h-[315px] w-full md:w-[383px]">
                 {/* <iframe
             width="460"
             height="315"
@@ -36,7 +36,7 @@ const Video = ({ item }) => {
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen
           ></iframe> */}
-                <YouTube width={383} videoId={youtubeVideoId} opts={opts} />
+                <YouTube  videoId={youtubeVideoId} opts={opts} />
               </div>
             )}
           </>
@@ -44,7 +44,7 @@ const Video = ({ item }) => {
         {item?.type === "Vimeo" && (
           <>
             {item?.url && (
-              <div className="mt-5 h-[315px] w-[383px]">
+              <div className="mt-5 h-[315px] w-full  md:w-[383px]">
                 {/* <iframe
                   src={item?.url}
                   title="Vimeo Video"

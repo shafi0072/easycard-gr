@@ -1,7 +1,7 @@
 import React from "react";
 
 const GalleryImage = ({ item }) => {
-  console.log(item);
+ 
   // const saveImage =
   //   newFeilds?.fields?.galary?.length > 0
   //     ? newFeilds?.fields?.galary
