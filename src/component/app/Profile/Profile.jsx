@@ -394,11 +394,13 @@ END:VCARD
                       />
                     )}
                     {item?.type === "WhatsApp" && (
+                      <Link href={`whatsapp://send?phone=${item.number}`}>
                       <Content
                         bgColor={datas?.display?.primaryColor}
                         color={datas?.display?.primaryAccent}
                         item={item}
                       />
+                      </Link>
                     )}
                     {item?.type === "Viber" && (
                       <Content
