@@ -20,6 +20,7 @@ import PermContactCalendarIcon from "@mui/icons-material/PermContactCalendar";
 import Link from "next/link";
 const Profile = ({ id }) => {
   const [datas, setData] = useState(null);
+  
 
   const [ip, setIp] = useState({});
   const [device, setDevice] = useState({});
@@ -52,6 +53,8 @@ const Profile = ({ id }) => {
       }
     });
   }, []);
+  
+  console.log(datas)
 
   useEffect(() => {
     if (id) {
@@ -364,11 +367,13 @@ END:VCARD
                       </Link>
                     )}
                     {item?.type === "Website" && (
+                      <Link href={item.url.slice(0,4) !== "http" && item.url.slice(0,5) !== "https"?`https://${item.url}`:item.url} >
                       <Content
                         bgColor={datas?.display?.primaryColor}
                         color={datas?.display?.primaryAccent}
                         item={item}
                       />
+                      </Link>
                     )}
                     {item?.type === "Email" && (
                       <Link href={`mailto:${item.url}`}>
