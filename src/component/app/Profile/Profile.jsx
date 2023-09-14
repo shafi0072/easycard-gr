@@ -403,11 +403,13 @@ END:VCARD
                       </Link>
                     )}
                     {item?.type === "Viber" && (
+                     <Link href={`viber://chat?number=${item.number}`}>
                       <Content
                         bgColor={datas?.display?.primaryColor}
                         color={datas?.display?.primaryAccent}
                         item={item}
                       />
+                     </Link>
                     )}
                     {item?.type === "Skype" && (
                       <Content
