@@ -371,11 +371,13 @@ END:VCARD
                       />
                     )}
                     {item?.type === "Email" && (
+                      <Link href={`mailto:${item.url}`}>
                       <Content
                         bgColor={datas?.display?.primaryColor}
                         color={datas?.display?.primaryAccent}
                         item={item}
                       />
+                      </Link>
                     )}
                     {item?.type === "Address" && (
                       <Content
