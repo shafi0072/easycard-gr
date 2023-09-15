@@ -16,9 +16,11 @@ import Pdf from "./Pdf";
 import DateView from "./DateView";
 import QrView from "./QrView";
 import Video from "./Video";
-import PermContactCalendarIcon from '@mui/icons-material/PermContactCalendar';
+import PermContactCalendarIcon from "@mui/icons-material/PermContactCalendar";
+import Link from "next/link";
 const Profile = ({ id }) => {
   const [datas, setData] = useState(null);
+  
 
   const [ip, setIp] = useState({});
   const [device, setDevice] = useState({});
@@ -51,6 +53,8 @@ const Profile = ({ id }) => {
       }
     });
   }, []);
+  
+  console.log(datas)
 
   useEffect(() => {
     if (id) {
@@ -93,22 +97,21 @@ const Profile = ({ id }) => {
     }
   }, []);
 
-
   const handleAddContactClick = () => {
     const { profileInfo, fields, display } = datas;
     const firstName = profileInfo.first_name;
     const lastName = profileInfo.last_name;
     const prefix = profileInfo.prefix;
 
-    let mobile = '';
-    let officeNumber = '';
-    let faxNumber = '';
-    let address = '';
-    let email = '';
-    let website = ''
+    let mobile = "";
+    let officeNumber = "";
+    let faxNumber = "";
+    let address = "";
+    let email = "";
+    let website = "";
 
     for (const field of fields) {
-      if (field.type === 'Phone' && field?.chooseLabel === 'Mobile') {
+      if (field.type === "Phone" && field?.chooseLabel === "Mobile") {
         mobile = field.number;
       }
       if (field.type === "Address") {
@@ -117,13 +120,13 @@ const Profile = ({ id }) => {
       if (field.type === "Website") {
         website = field.url;
       }
-      if (field.type === 'Phone' && field?.chooseLabel === 'Office') {
+      if (field.type === "Phone" && field?.chooseLabel === "Office") {
         officeNumber = field.number;
       }
-      if (field.type === 'Phone' && field?.chooseLabel === 'Fax') {
+      if (field.type === "Phone" && field?.chooseLabel === "Fax") {
         faxNumber = field.number;
       }
-      if (field.type === 'Email') {
+      if (field.type === "Email") {
         email = field.url;
       }
     }
@@ -134,8 +137,8 @@ const Profile = ({ id }) => {
 
     // Decode the base64 image
 
-    console.log({ profileInfo })
-    debugger
+    console.log({ profileInfo });
+    debugger;
 
     const contactString = `BEGIN:VCARD
 VERSION:3.0
@@ -158,22 +161,23 @@ URL;type=WORK:${profileInfo?.website}
 END:VCARD
 `;
 
-    const uri = `data:text/vcard;charset=utf-8,${encodeURIComponent(contactString)}`;
+    const uri = `data:text/vcard;charset=utf-8,${encodeURIComponent(
+      contactString
+    )}`;
 
     // Check if it's a mobile device
-    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+    if (
+      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        navigator.userAgent
+      )
+    ) {
       // Open a new window with the URI, this may trigger the contact save on some devices
-      window.open(uri, '_blank');
+      window.open(uri, "_blank");
     } else {
       // Provide a message to users on non-mobile devices
-      alert('This feature is available on mobile devices only.');
+      alert("This feature is available on mobile devices only.");
     }
   };
-
-
-
-  console.log({ datas });
-
 
   return (
     <>
@@ -228,7 +232,31 @@ END:VCARD
                           fill={datas?.display?.primaryColor}
                         />
                       </svg> */}
-                      <svg class="card-wavestyled__Wave-card__sc-4t6hon-0 daNA-Du WaveHeaderstyled__Divider-card__sc-1ootntz-2 BRgwB" preserveAspectRatio="xMinYMax meet" viewBox="0 0 246 57" xmlns="http://www.w3.org/2000/svg"><path d="M 214.7168,6.1113281 C 195.65271,5.9023124 172.37742,11.948182 137.87305,32.529297 110.16613,49.05604 86.980345,56.862784 65.015625,57 H 65 v 1 H 246 V 11.453125 C 236.0775,8.6129313 226.15525,6.2367376 214.7168,6.1113281 Z" fill="#ffffff" clip-rule="evenodd" fill-rule="evenodd"></path><path d="M 0,35.773438 V 58 H 65 L 64.97852,57 C 43.192081,57.127508 22.605139,49.707997 0,35.773438 Z " fill="#ffffff" clip-rule="evenodd" fill-rule="evenodd"></path><path fill={datas?.display?.primaryColor} clip-rule="evenodd" fill-rule="evenodd" d="m 0,16.7221 v 19.052 C 45.4067,63.7643 82.6667,65.4583 137.873,32.5286 193.08,-0.401184 219.54,3.87965 246,11.4535 V 6.51403 C 185.24,-16.8661 135.913,29.331 97.6933,40.8564 59.4733,52.3818 33.6467,44.1494 0,16.7221 Z "></path></svg>
+                      <svg
+                        class="card-wavestyled__Wave-card__sc-4t6hon-0 daNA-Du WaveHeaderstyled__Divider-card__sc-1ootntz-2 BRgwB"
+                        preserveAspectRatio="xMinYMax meet"
+                        viewBox="0 0 246 57"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M 214.7168,6.1113281 C 195.65271,5.9023124 172.37742,11.948182 137.87305,32.529297 110.16613,49.05604 86.980345,56.862784 65.015625,57 H 65 v 1 H 246 V 11.453125 C 236.0775,8.6129313 226.15525,6.2367376 214.7168,6.1113281 Z"
+                          fill="#ffffff"
+                          clip-rule="evenodd"
+                          fill-rule="evenodd"
+                        ></path>
+                        <path
+                          d="M 0,35.773438 V 58 H 65 L 64.97852,57 C 43.192081,57.127508 22.605139,49.707997 0,35.773438 Z "
+                          fill="#ffffff"
+                          clip-rule="evenodd"
+                          fill-rule="evenodd"
+                        ></path>
+                        <path
+                          fill={datas?.display?.primaryColor}
+                          clip-rule="evenodd"
+                          fill-rule="evenodd"
+                          d="m 0,16.7221 v 19.052 C 45.4067,63.7643 82.6667,65.4583 137.873,32.5286 193.08,-0.401184 219.54,3.87965 246,11.4535 V 6.51403 C 185.24,-16.8661 135.913,29.331 97.6933,40.8564 59.4733,52.3818 33.6467,44.1494 0,16.7221 Z "
+                        ></path>
+                      </svg>
                     </div>
                     <div className="absolute bottom-0 left-0 ">
                       <svg
@@ -261,7 +289,7 @@ END:VCARD
                       </svg>
                     </div>
                     <img
-                      className="absolute bottom-3 right-2 z-50 w-[100px]"
+                      className="absolute bottom-3 object-center right-2 z-50 w-[100px] h-[50px] top-2]"
                       src={datas?.display?.Logo}
                       alt=""
                     />
@@ -318,18 +346,20 @@ END:VCARD
                       : "none", padding: datas?.display?.design === "classic" ? "12px" : "0px"
                 }}
               >
-                {datas?.profileInfo?.first_name && <h2 className="text-3xl font-bold">
-                  {datas?.profileInfo?.prefix &&
-                    datas?.profileInfo?.prefix + "."}{" "}
-                  {datas?.profileInfo?.first_name +
-                    " " +
-                    datas?.profileInfo?.last_name}
-                  <br />
-                  {datas?.profileInfo?.suffix + " "}
-                  <span className="font-semibold">
-                    {datas?.profileInfo?.accreditations}
-                  </span>
-                </h2>}
+                {datas?.profileInfo?.first_name && (
+                  <h2 className="text-3xl font-bold">
+                    {datas?.profileInfo?.prefix &&
+                      datas?.profileInfo?.prefix + "."}{" "}
+                    {datas?.profileInfo?.first_name +
+                      " " +
+                      datas?.profileInfo?.last_name}
+                    <br />
+                    {datas?.profileInfo?.suffix + " "}
+                    <span className="font-semibold">
+                      {datas?.profileInfo?.accreditations}
+                    </span>
+                  </h2>
+                )}
                 <h4 className="font-medium italic text-[#585858]">
                   {datas?.profileInfo?.job_title}
                 </h4>
@@ -364,25 +394,31 @@ END:VCARD
                     {/* content */}
 
                     {item?.type === "Phone" && (
-                      <Content
-                        bgColor={datas?.display?.primaryColor}
-                        color={datas?.display?.primaryAccent}
-                        item={item}
-                      />
+                      <Link href={`tel:${item.number}`}>
+                        <Content
+                          bgColor={datas?.display?.primaryColor}
+                          color={datas?.display?.primaryAccent}
+                          item={item}
+                        />
+                      </Link>
                     )}
                     {item?.type === "Website" && (
+                      <Link href={item.url.slice(0,4) !== "http" && item.url.slice(0,5) !== "https"?`https://${item.url}`:item.url} >
                       <Content
                         bgColor={datas?.display?.primaryColor}
                         color={datas?.display?.primaryAccent}
                         item={item}
                       />
+                      </Link>
                     )}
                     {item?.type === "Email" && (
+                      <Link href={`mailto:${item.url}`}>
                       <Content
                         bgColor={datas?.display?.primaryColor}
                         color={datas?.display?.primaryAccent}
                         item={item}
                       />
+                      </Link>
                     )}
                     {item?.type === "Address" && (
                       <Content
@@ -399,18 +435,22 @@ END:VCARD
                       />
                     )}
                     {item?.type === "WhatsApp" && (
+                      <Link href={`whatsapp://send?phone=${item.number}`}>
                       <Content
                         bgColor={datas?.display?.primaryColor}
                         color={datas?.display?.primaryAccent}
                         item={item}
                       />
+                      </Link>
                     )}
                     {item?.type === "Viber" && (
+                     <Link href={`viber://chat?number=${item.number}`}>
                       <Content
                         bgColor={datas?.display?.primaryColor}
                         color={datas?.display?.primaryAccent}
                         item={item}
                       />
+                     </Link>
                     )}
                     {item?.type === "Skype" && (
                       <Content
@@ -576,7 +616,17 @@ END:VCARD
                 ))}
               </div>
             </div>
-            <button onClick={handleAddContactClick} className=" text-white w-[200px]  h-[50px] md:w-[270px] md:h-[70px] md:px-5 fixed left-[50%] bottom-5 -translate-x-1/2 text-lg md:text-2xl rounded-full transition-all duration-300 hover:scale-125 font-bold" style={{ background: datas?.display?.secondaryColor, color: datas?.display?.secondaryAccent }}> <PermContactCalendarIcon /> SAVE CONTACT</button>
+            <button
+              onClick={handleAddContactClick}
+              className=" text-white w-[200px]  h-[50px] md:w-[270px] md:h-[70px] md:px-5 fixed left-[50%] bottom-5 -translate-x-1/2 text-lg md:text-2xl rounded-full transition-all duration-300 hover:scale-125 font-bold"
+              style={{
+                background: datas?.display?.secondaryColor,
+                color: datas?.display?.secondaryAccent,
+              }}
+            >
+              {" "}
+              <PermContactCalendarIcon /> SAVE CONTACT
+            </button>
           </div>
           {/* <AddContactButton/> */}
         </div>
