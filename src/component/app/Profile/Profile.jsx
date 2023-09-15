@@ -19,7 +19,7 @@ import Video from "./Video";
 import PermContactCalendarIcon from '@mui/icons-material/PermContactCalendar';
 const Profile = ({ id }) => {
   const [datas, setData] = useState(null);
- 
+
   const [ip, setIp] = useState({});
   const [device, setDevice] = useState({});
   useEffect(() => {
@@ -88,56 +88,56 @@ const Profile = ({ id }) => {
       const osName = navigator.platform;
 
       // Display the gathered information
-      
+
       setDevice(osName);
     }
   }, []);
 
 
-const handleAddContactClick = () => {
-  const { profileInfo, fields, display } = datas;
-  const firstName = profileInfo.first_name;
-  const lastName = profileInfo.last_name;
-  const prefix = profileInfo.prefix;
-  
-  let mobile = '';
-  let officeNumber = '';
-  let faxNumber = '';
-  let address = '';
-  let email = '';
-  let website = ''
+  const handleAddContactClick = () => {
+    const { profileInfo, fields, display } = datas;
+    const firstName = profileInfo.first_name;
+    const lastName = profileInfo.last_name;
+    const prefix = profileInfo.prefix;
 
-  for (const field of fields) {
-    if (field.type === 'Phone' && field?.chooseLabel === 'Mobile') {
-      mobile = field.number;
-    }
-    if (field.type === "Address") {
-      address = field.address;
-    }
-    if (field.type === "Website") {
-      website = field.url;
-    }
-    if (field.type === 'Phone' && field?.chooseLabel === 'Office') {
-      officeNumber = field.number;
-    }
-    if (field.type === 'Phone' && field?.chooseLabel === 'Fax') {
-      faxNumber = field.number;
-    }
-    if (field.type === 'Email') {
-      email = field.url;
-    }
-  }
+    let mobile = '';
+    let officeNumber = '';
+    let faxNumber = '';
+    let address = '';
+    let email = '';
+    let website = ''
 
-  const contactData = {
-    name: firstName + " " + lastName,
-  };
+    for (const field of fields) {
+      if (field.type === 'Phone' && field?.chooseLabel === 'Mobile') {
+        mobile = field.number;
+      }
+      if (field.type === "Address") {
+        address = field.address;
+      }
+      if (field.type === "Website") {
+        website = field.url;
+      }
+      if (field.type === 'Phone' && field?.chooseLabel === 'Office') {
+        officeNumber = field.number;
+      }
+      if (field.type === 'Phone' && field?.chooseLabel === 'Fax') {
+        faxNumber = field.number;
+      }
+      if (field.type === 'Email') {
+        email = field.url;
+      }
+    }
 
-  // Decode the base64 image
+    const contactData = {
+      name: firstName + " " + lastName,
+    };
 
-console.log({profileInfo})
-debugger
+    // Decode the base64 image
 
-  const contactString = `BEGIN:VCARD
+    console.log({ profileInfo })
+    debugger
+
+    const contactString = `BEGIN:VCARD
 VERSION:3.0
 FN:${contactData.name}
 
@@ -158,23 +158,23 @@ URL;type=WORK:${profileInfo?.website}
 END:VCARD
 `;
 
-  const uri = `data:text/vcard;charset=utf-8,${encodeURIComponent(contactString)}`;
+    const uri = `data:text/vcard;charset=utf-8,${encodeURIComponent(contactString)}`;
 
-  // Check if it's a mobile device
-  if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-    // Open a new window with the URI, this may trigger the contact save on some devices
-    window.open(uri, '_blank');
-  } else {
-    // Provide a message to users on non-mobile devices
-    alert('This feature is available on mobile devices only.');
-  }
-};
+    // Check if it's a mobile device
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+      // Open a new window with the URI, this may trigger the contact save on some devices
+      window.open(uri, '_blank');
+    } else {
+      // Provide a message to users on non-mobile devices
+      alert('This feature is available on mobile devices only.');
+    }
+  };
 
 
-  
-  
 
- 
+  console.log({ datas });
+
+
   return (
     <>
       {!datas?._id && <MobileLoading />}
@@ -193,9 +193,9 @@ END:VCARD
                     alt=""
                   />
                 </div>
-                <div className="mt-5 px-1 w-full md:w-[80%]" >
+                <div className="mt-5 px-1 w-full md:w-[80%] flex justify-center" >
                   <img
-                    className="w-full h-[60px]"
+                    className=""
                     src={datas?.display?.Logo}
                     alt="logo"
                   />
@@ -269,15 +269,53 @@ END:VCARD
                 </div>
               </>
             )}
-
-            <div className="px-3">
+            {
+              datas?.display?.design === 'pro' && (
+                <div className=" w-full md:w-[381px]   pb-3 rounded-b-md">
+                  <img
+                    className=" object-cover"
+                    src={datas?.display?.ProfileImage}
+                    alt=""
+                  />
+                  <div className="w-full md:w-[75%] text-white mx-auto text-center flex flex-col gap-y-2 pb-2 md:rounded-b-2xl" style={{ background: datas?.display?.primaryColor }}>
+                    <h2 className="text-3xl text-white font-bold">
+                      {datas?.profileInfo?.prefix &&
+                        datas?.profileInfo?.prefix + "."}{" "}
+                      {datas?.profileInfo?.first_name +
+                        " " +
+                        datas?.profileInfo?.last_name}
+                      <br />
+                      {datas?.profileInfo?.suffix + " "}
+                      <span className="font-semibold">
+                        {datas?.profileInfo?.accreditations}
+                      </span>
+                    </h2>
+                    <h4 className="font-medium ">
+                      {datas?.profileInfo?.job_title}
+                    </h4>
+                    <h3 >
+                      {datas?.profileInfo?.department}
+                    </h3>
+                    <h3 className=" ">{datas?.profileInfo?.company}</h3>
+                  </div>
+                </div>
+              )
+            }
+            {datas?.display?.Logo && <div className="mt-5 px-1 w-full md:w-[80%] flex justify-center" >
+              <img
+                className=""
+                src={datas?.display?.Logo}
+                alt="logo"
+              />
+            </div>}
+            {datas?.display?.design !== 'pro' && <div className="px-3">
               <div
                 className="mt-10   w-full md:w-[383px]"
                 style={{
                   borderLeft:
                     datas?.display?.design === "classic"
                       ? `3px solid ${datas?.display?.primaryColor}`
-                      : "none", padding:datas?.display?.design === "classic"?"12px":"0px"
+                      : "none", padding: datas?.display?.design === "classic" ? "12px" : "0px"
                 }}
               >
                 {datas?.profileInfo?.first_name && <h2 className="text-3xl font-bold">
@@ -300,7 +338,7 @@ END:VCARD
                 </h3>
                 <h3 className=" mb-2">{datas?.profileInfo?.company}</h3>
               </div>
-            </div>
+            </div>}
             <div className="px-3">
               <div className="mt-12 w-full md:w-[383px]">
                 <p className="italic text-[#69727d]">
