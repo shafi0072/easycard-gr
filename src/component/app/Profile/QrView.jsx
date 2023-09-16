@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { QRCode } from "react-qrcode-logo";
 // import DottedQRCode from "../../app/Root/QrCodes/QrMain";
 
-const QrView = ({ item, logo, value }) => {
+const QrView = ({ item, logo, value, data }) => {
+  console.log({ data });
   const [qrCodeWidth, setQRCodeWidth] = useState(383);
   console.log(item)
 
@@ -23,24 +24,62 @@ const QrView = ({ item, logo, value }) => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-  console.log(value);
+  console.log({value});
   return (
     <div>
       <div
         // style={{
         //   width: `${item?.width}%`,
         // }}
-        className={`mt-5 flex  ${
-          item?.align === "left"
-            ? "justify-start"
-            : item?.align === "center"
+        className={`mt-5 flex  ${item?.align === "left"
+          ? "justify-start"
+          : item?.align === "center"
             ? "justify-center"
             : "justify-end"
-        }`}
+          }`}
       >
+        <QRCode {...{
+          qrStyle: data?.qrStyle,
+          fgColor: data?.fgColor,
+          ecLevel: 'M',
+          value:value,
+          size: data?.QrSize,
+          bgColor: data?.bgColor,
+          logoImage: data?.logo,
+          logoPadding: 5,
+          logoWidth: data?.logoSize,
+          eyeRadius: [
+            {
+              outer: data?.outesEyeShape === 'square' && 0 || data?.outesEyeShape === 'dots' && 50 || data?.outesEyeShape === 'round' && 6 || data?.outesEyeShape === 'flower' && [12, 12, 0, 16] || data?.outesEyeShape === 'leaf' && [50, 0, 50, 0],
+              inner: data?.innerEyeShape === 'square' && 0 || data?.innerEyeShape === 'dots' && 50 || data?.innerEyeShape === 'round' && 6 || data?.innerEyeShape === 'flower' && [12, 12, 0, 16] || data?.innerEyeShape === 'leaf' && [50, 0, 50, 0],
+            },
+            {
+              outer: data?.outesEyeShape === 'square' && 0 || data?.outesEyeShape === 'dots' && 50 || data?.outesEyeShape === 'round' && 6 || data?.outesEyeShape === 'flower' && [12, 12, 0, 16] || data?.outesEyeShape === 'leaf' && [50, 0, 50, 0],
+              inner: data?.innerEyeShape === 'square' && 0 || data?.innerEyeShape === 'dots' && 50 || data?.innerEyeShape === 'round' && 6 || data?.innerEyeShape === 'flower' && [12, 12, 0, 16] || data?.innerEyeShape === 'leaf' && [50, 0, 50, 0],
+            },
+            {
+              outer: data?.outesEyeShape === 'square' && 0 || data?.outesEyeShape === 'dots' && 50 || data?.outesEyeShape === 'round' && 6 || data?.outesEyeShape === 'flower' && [12, 12, 0, 16] || data?.outesEyeShape === 'leaf' && [50, 0, 50, 0],
+              inner: data?.innerEyeShape === 'square' && 0 || data?.innerEyeShape === 'dots' && 50 || data?.innerEyeShape === 'round' && 6 || data?.innerEyeShape === 'flower' && [12, 12, 0, 16] || data?.innerEyeShape === 'leaf' && [50, 0, 50, 0],
+            }
+          ],
+          eyeColor: [ // build eyeColor manually
+            {
+              outer: data?.outerEyeColor,
+              inner: data?.innerEyeColor
+            },
+            {
+              outer: data?.outerEyeColor,
+              inner: data?.innerEyeColor
+            },
+            {
+              outer: data?.outerEyeColor,
+              inner: data?.innerEyeColor
+            },
+          ]
+        }} />
         {/* <DottedQRCode value={item?.url} /> */}
 
-        <QRCode
+        {/* <QRCode
           fgColor="#0053A2"
           eyeRadius={3}
           qrStyle="dots"
@@ -48,7 +87,8 @@ const QrView = ({ item, logo, value }) => {
           logoWidth={60}
           size={item.width}
           value={value}
-        />
+        /> */}
+
       </div>
     </div>
   );

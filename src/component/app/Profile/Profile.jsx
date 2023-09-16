@@ -178,6 +178,7 @@ END:VCARD
       alert("This feature is available on mobile devices only.");
     }
   };
+  console.log({datas});
 
   return (
     <>
@@ -369,7 +370,7 @@ END:VCARD
                 <h3 className=" mb-2">{datas?.profileInfo?.company}</h3>
               </div>
             </div>}
-            <div className="px-3">
+            <div className="px-3 mb-24">
               <div className="mt-12 w-full md:w-[383px]">
                 <p className="italic text-[#69727d]">
                   {datas?.profileInfo?.introduction}
@@ -608,8 +609,9 @@ END:VCARD
                     {item?.type === "QR" && (
                       <QrView
                         item={item}
-                        logo={datas?.display?.Logo}
+                        logo={'hyhy'}
                         value={item?.qr}
+                        data={datas?.QrCode}
                       />
                     )}
                   </>
