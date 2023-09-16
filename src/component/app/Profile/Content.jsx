@@ -1,6 +1,6 @@
 import React from "react";
 
-const Content = ({ item, bgColor,color }) => {
+const Content = ({ item, bgColor, color }) => {
   const phoneIcon = (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -329,10 +329,12 @@ const Content = ({ item, bgColor,color }) => {
               3,
               6
             )}-${item?.number.substring(6)}`}
-          {item?.url && item?.url} {item?.address && item?.address}{" "}
+          {item?.type === "Link" && (
+            <div>{item?.displayUrl && item?.displayUrl}</div>
+          )}
+          {item?.label && item?.label} {item?.address && item?.address}{" "}
           <span className="ms-5"> {item?.ext && `ext: ${item?.ext}`} </span>{" "}
           <br /> {item?.chooseLabel && item?.chooseLabel}{" "}
-          {item?.type === "Link" && item?.label ? item?.label : ""}
         </p>
       </div>
     </div>
