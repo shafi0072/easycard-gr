@@ -2,7 +2,6 @@ import React from "react";
 import YouTube from "react-youtube";
 var Vimeo = require("react-vimeo");
 const Video = ({ item }) => {
-  console.log(item);
   const youtubeVideoId = extractVideoId(
     item?.type === "Youtube" ? item?.url : ""
   );

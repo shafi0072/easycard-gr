@@ -30,7 +30,6 @@ const Profile = ({ id }) => {
       .then((data) => setData(data))
       .catch((err) => console.log(err));
   }, [id, datas]);
-  // console.log(datas);
   const color = "#000";
 
   useEffect(() => {
@@ -54,7 +53,6 @@ const Profile = ({ id }) => {
     });
   }, []);
   
-  console.log(datas)
 
   useEffect(() => {
     if (id) {
@@ -137,7 +135,6 @@ const Profile = ({ id }) => {
 
     // Decode the base64 image
 
-    console.log({ profileInfo });
     debugger;
 
     const contactString = `BEGIN:VCARD
@@ -178,12 +175,16 @@ END:VCARD
       alert("This feature is available on mobile devices only.");
     }
   };
-  console.log({datas});
 
   return (
     <>
       {!datas?._id && <MobileLoading />}
-      {datas && (
+      {
+        datas && !datas?.setting?.cardStatus && <>
+        <div > <h2 className="text-3xl font-bold text-center">Card is currently deactivated</h2></div>
+        </>
+      }
+      {datas && datas?.setting?.cardStatus &&  (
         <div className="">
           <div className="max-w-[500px] w-full mx-auto ">
             {datas?.display?.design === "flat" && (
@@ -330,7 +331,7 @@ END:VCARD
                 </div>
               )
             }
-            {datas?.display?.Logo && <div className="mt-5 px-1 w-full md:w-[80%] flex justify-center" >
+            { datas?.display?.design === 'pro' &&datas?.display?.Logo && <div className="mt-5 px-1 w-full md:w-[80%] flex justify-center" >
               <img
                 className=""
                 src={datas?.display?.Logo}

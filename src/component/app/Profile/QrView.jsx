@@ -3,7 +3,6 @@ import { QRCode } from "react-qrcode-logo";
 // import DottedQRCode from "../../app/Root/QrCodes/QrMain";
 
 const QrView = ({ item, logo, value, data }) => {
-  console.log({ data });
   const [qrCodeWidth, setQRCodeWidth] = useState(383);
 
   useEffect(() => {
@@ -23,7 +22,6 @@ const QrView = ({ item, logo, value, data }) => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-  console.log({value});
   return (
     <div>
       <div
