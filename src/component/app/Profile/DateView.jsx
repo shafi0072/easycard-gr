@@ -1,12 +1,12 @@
 import React from "react";
 import Moment from "react-moment";
 
-const DateView = ({ item,bgColor,color }) => {
+const DateView = ({ item,bgColor,color,design }) => {
   return (
     <div>
       {item?.date && (
         <div className="my-5 flex gap-4 items-center">
-          <div    style={{ backgroundColor: bgColor }} className=" w-[40px] h-[40px] flex items-center justify-center rounded-full">
+          <div    style={{ backgroundColor: bgColor }} className={` ${design === "pro"?"w-[42px] h-[42px]":"w-[50px] h-[50px]"} flex items-center justify-center rounded-full`}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="20.911"
@@ -26,12 +26,12 @@ const DateView = ({ item,bgColor,color }) => {
             </svg>
           </div>
           <div>
-            <p>
+            <p className={`${design === "pro" && "text-[18px] roboto"}`}>
               <Moment format="DD/MM/YYYY">
                 {item?.date}
               </Moment>
             </p>
-            <p>{item?.label}</p>
+            <p className={`${design === "pro" && "text-[14px] roboto"}`}>{item?.label}</p>
           </div>
         </div>
       )}

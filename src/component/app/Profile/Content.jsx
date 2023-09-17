@@ -1,6 +1,6 @@
 import React from "react";
 
-const Content = ({ item, bgColor,color }) => {
+const Content = ({ item, bgColor, color, design }) => {
   const phoneIcon = (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -301,7 +301,9 @@ const Content = ({ item, bgColor,color }) => {
   return (
     <div className="flex gap-3 my-5 items-center">
       <div
-        className="w-[50px] h-[50px] rounded-full flex justify-center items-center "
+        className={`${
+          design === "pro" ? "w-[42px] h-[42px]" : "w-[50px] h-[50px]"
+        } rounded-full flex justify-center items-center`}
         style={{ backgroundColor: bgColor }}
       >
         {item?.type === "Phone" && phoneIcon}
@@ -320,7 +322,41 @@ const Content = ({ item, bgColor,color }) => {
         {item?.type === "Slack" && slackIcon}
       </div>
       <div>
-        <p className="w-[230px]">
+        {/* <p className="w-[230px] roboto">
+          {item?.number && !item?.internationalNumber && item?.number}
+          {item?.number &&
+            item?.internationalNumber &&
+            `+(${item?.number.substring(0, 3)}) ${item?.number.substring(
+              3,
+              6
+            )}-${item?.number.substring(6)}`}
+          {  item?.url && item?.url}
+          {item?.address && item?.address}{" "}
+          <span className="ms-5"> {item?.ext && `ext: ${item?.ext}`} </span>{" "}
+          <br />{" "}
+          {item?.chooseLabel && !item?.hideLabelCopy && (
+            <span className={`${design === "pro" && "text-[14px]"}`}>
+              {item?.chooseLabel}
+            </span>
+          )}{" "}
+          {item?.displayUrl && <div>{item?.displayUrl}</div>}
+          {item?.label && (
+            <span
+              className={`${
+                item?.type !== "Website" &&
+                design === "pro" &&
+                "text-[14px] roboto"
+              }`}
+            >
+              {item?.label}
+            </span>
+          )}
+        </p> */}
+        <p
+          className={`${
+            design === "pro" ? "text-[18px] roboto" : "text-[16px]"
+          } w-[230px]  `}
+        >
           {/* {item?.type !== "Phone" && item?.number && item?.number}{" "} */}
           {item?.number && !item?.internationalNumber && item?.number}
           {item?.number &&
@@ -331,8 +367,20 @@ const Content = ({ item, bgColor,color }) => {
             )}-${item?.number.substring(6)}`}
           {item?.url && item?.url} {item?.address && item?.address}{" "}
           <span className="ms-5"> {item?.ext && `ext: ${item?.ext}`} </span>{" "}
-          <br /> {item?.chooseLabel && item?.chooseLabel}{" "}
-          {item?.type === "Link" && item?.label ? item?.label : ""}
+          <br />{" "}
+          {item?.chooseLabel && !item?.hideLabelCopy && (
+            <span className={`${design === "pro" && "text-[14px]"}`}>
+              {item?.chooseLabel}
+            </span>
+          )}{" "}
+          {item?.displayUrl && (
+            <span className="block">{item?.displayUrl}</span>
+          )}
+          {item?.label && (
+            <span className={`${design === "pro" ? "text-[14px] roboto":"text-[16px]"}`}>
+              {item?.label}
+            </span>
+          )}
         </p>
       </div>
     </div>

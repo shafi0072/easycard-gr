@@ -4,6 +4,7 @@ import { QRCode } from "react-qrcode-logo";
 
 const QrView = ({ item, logo, value, data }) => {
   const [qrCodeWidth, setQRCodeWidth] = useState(383);
+  console.log(item)
 
   useEffect(() => {
     const breakpoint = 768;
@@ -24,6 +25,7 @@ const QrView = ({ item, logo, value, data }) => {
   }, []);
   return (
     <div>
+      <h1 className="border-b-2 pb-3 border-gray-400 mt-3 font-semibold text-2xl text-black">Get My Details</h1>
       <div
         // style={{
         //   width: `${item?.width}%`,
@@ -82,7 +84,7 @@ const QrView = ({ item, logo, value, data }) => {
           qrStyle="dots"
           logoImage={logo}
           logoWidth={60}
-          size={qrCodeWidth}
+          size={item.width}
           value={value}
         /> */}
 

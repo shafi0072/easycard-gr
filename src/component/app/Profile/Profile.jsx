@@ -18,9 +18,10 @@ import QrView from "./QrView";
 import Video from "./Video";
 import PermContactCalendarIcon from "@mui/icons-material/PermContactCalendar";
 import Link from "next/link";
+import Website from "./Website";
+import LinkComponent from "./LinkComponent";
 const Profile = ({ id }) => {
   const [datas, setData] = useState(null);
-  
 
   const [ip, setIp] = useState({});
   const [device, setDevice] = useState({});
@@ -186,7 +187,7 @@ END:VCARD
       }
       {datas && datas?.setting?.cardStatus &&  (
         <div className="">
-          <div className="max-w-[500px] w-full mx-auto ">
+          <div className="max-w-full md:max-w-[383px] w-full mx-auto ">
             {datas?.display?.design === "flat" && (
               <>
                 <div
@@ -199,12 +200,8 @@ END:VCARD
                     alt=""
                   />
                 </div>
-                <div className="mt-5 px-1 w-full md:w-[80%] flex justify-center" >
-                  <img
-                    className=""
-                    src={datas?.display?.Logo}
-                    alt="logo"
-                  />
+                <div className="mt-5 px-1 w-full md:w-[80%] flex justify-center">
+                  <img className="" src={datas?.display?.Logo} alt="logo" />
                 </div>
               </>
             )}
@@ -299,16 +296,58 @@ END:VCARD
                 </div>
               </>
             )}
-            {
-              datas?.display?.design === 'pro' && (
-                <div className=" w-full md:w-[381px]   pb-3 rounded-b-md">
-                  <img
-                    className=" object-cover"
-                    src={datas?.display?.ProfileImage}
-                    alt=""
-                  />
-                  <div className="w-full md:w-[75%] text-white mx-auto text-center flex flex-col gap-y-2 pb-2 md:rounded-b-2xl" style={{ background: datas?.display?.primaryColor }}>
-                    <h2 className="text-3xl text-white font-bold">
+            {datas?.display?.design === "pro" && (
+              <div className=" w-full md:w-[381px]  pb-3 rounded-b-md">
+                <img
+                  className="w-full object-cover h-[400px]"
+                  src={datas?.display?.ProfileImage}
+                  alt=""
+                />
+                <div
+                  className="w-full md:w-[75%] text-white mx-auto text-center flex flex-col gap-y-2  md:rounded-b-2xl py-[20px]"
+                  style={{ background: datas?.display?.primaryColor }}
+                >
+                  <h2 className="text-[27px] text-white font-semibold roboto">
+                    {datas?.profileInfo?.prefix &&
+                      datas?.profileInfo?.prefix + "."}{" "}
+                    {datas?.profileInfo?.first_name +
+                      " " +
+                      datas?.profileInfo?.last_name}
+                    <br />
+                    {datas?.profileInfo?.suffix + " "}
+                    <span className="text-[20px] roboto" style={{fontWeight:"300"}}>
+                      {datas?.profileInfo?.accreditations}
+                    </span>
+                  </h2>
+                  <h4 className="font-medium text-[18px] mt-[10px] roboto">
+                    {datas?.profileInfo?.job_title}
+                  </h4>
+                  <h3>{datas?.profileInfo?.department}</h3>
+                  <h3 className="italic  roboto">{datas?.profileInfo?.company}</h3>
+                </div>
+                {datas?.display?.Logo && (
+              <div className="my-6 mx-8">
+                <img className="w-full" src={datas?.display?.Logo} alt="logo" />
+              </div>
+            )}
+              </div>
+            )}
+            
+            {datas?.display?.design !== "pro" && (
+              <div className="px-3">
+                <div
+                  className="mt-10   w-full md:w-[383px]"
+                  style={{
+                    borderLeft:
+                      datas?.display?.design === "classic"
+                        ? `3px solid ${datas?.display?.primaryColor}`
+                        : "none",
+                    padding:
+                      datas?.display?.design === "classic" ? "12px" : "0px",
+                  }}
+                >
+                  {datas?.profileInfo?.first_name && (
+                    <h2 className="text-3xl font-bold">
                       {datas?.profileInfo?.prefix &&
                         datas?.profileInfo?.prefix + "."}{" "}
                       {datas?.profileInfo?.first_name +
@@ -320,58 +359,18 @@ END:VCARD
                         {datas?.profileInfo?.accreditations}
                       </span>
                     </h2>
-                    <h4 className="font-medium ">
-                      {datas?.profileInfo?.job_title}
-                    </h4>
-                    <h3 >
-                      {datas?.profileInfo?.department}
-                    </h3>
-                    <h3 className=" ">{datas?.profileInfo?.company}</h3>
-                  </div>
+                  )}
+                  <h4 className="font-medium italic text-[#585858]">
+                    {datas?.profileInfo?.job_title}
+                  </h4>
+                  <h3 style={{ color: datas?.display?.primaryColor }}>
+                    {datas?.profileInfo?.department}
+                  </h3>
+                  <h3 className=" mb-2">{datas?.profileInfo?.company}</h3>
                 </div>
-              )
-            }
-            { datas?.display?.design === 'pro' &&datas?.display?.Logo && <div className="mt-5 px-1 w-full md:w-[80%] flex justify-center" >
-              <img
-                className=""
-                src={datas?.display?.Logo}
-                alt="logo"
-              />
-            </div>}
-            {datas?.display?.design !== 'pro' && <div className="px-3">
-              <div
-                className="mt-10   w-full md:w-[383px]"
-                style={{
-                  borderLeft:
-                    datas?.display?.design === "classic"
-                      ? `3px solid ${datas?.display?.primaryColor}`
-                      : "none", padding: datas?.display?.design === "classic" ? "12px" : "0px"
-                }}
-              >
-                {datas?.profileInfo?.first_name && (
-                  <h2 className="text-3xl font-bold">
-                    {datas?.profileInfo?.prefix &&
-                      datas?.profileInfo?.prefix + "."}{" "}
-                    {datas?.profileInfo?.first_name +
-                      " " +
-                      datas?.profileInfo?.last_name}
-                    <br />
-                    {datas?.profileInfo?.suffix + " "}
-                    <span className="font-semibold">
-                      {datas?.profileInfo?.accreditations}
-                    </span>
-                  </h2>
-                )}
-                <h4 className="font-medium italic text-[#585858]">
-                  {datas?.profileInfo?.job_title}
-                </h4>
-                <h3 style={{ color: datas?.display?.primaryColor }}>
-                  {datas?.profileInfo?.department}
-                </h3>
-                <h3 className=" mb-2">{datas?.profileInfo?.company}</h3>
               </div>
-            </div>}
-            <div className="px-3 mb-24">
+            )}
+            <div className="mx-6 mb-24">
               <div className="mt-12 w-full md:w-[383px]">
                 <p className="italic text-[#69727d]">
                   {datas?.profileInfo?.introduction}
@@ -385,10 +384,10 @@ END:VCARD
                 {datas?.fields?.map((item, index) => (
                   <>
                     {item?.type === "Divider" && (
-                      <div className="w-full h-[2px] bg-gray-400 mt-3 mb-6"></div>
+                      <div className="w-full h-[2px] bg-gray-400 mt-1 mb-6"></div>
                     )}
                     {item?.type === "Header" && (
-                      <h2 className="text-xl font-semibold mt-6">
+                      <h2 className="text-[22px] mb-2 font-semibold mt-6 roboto">
                         {item?.title}
                       </h2>
                     )}
@@ -400,64 +399,88 @@ END:VCARD
                         <Content
                           bgColor={datas?.display?.primaryColor}
                           color={datas?.display?.primaryAccent}
+                          design={datas?.display?.design}
                           item={item}
                         />
                       </Link>
                     )}
                     {item?.type === "Website" && (
-                      <Link href={item.url.slice(0,4) !== "http" && item.url.slice(0,5) !== "https"?`https://${item.url}`:item.url} >
-                      <Content
-                        bgColor={datas?.display?.primaryColor}
-                        color={datas?.display?.primaryAccent}
-                        item={item}
-                      />
+                      <Link
+                        href={
+                          item.url.slice(0, 4) !== "http" &&
+                          item.url.slice(0, 5) !== "https"
+                            ? `https://${item.url}`
+                            : item.url
+                        }
+                      >
+                        {/* <Content
+                          bgColor={datas?.display?.primaryColor}
+                          color={datas?.display?.primaryAccent}
+                          design={datas?.display?.design}
+                          item={item}
+                        /> */}
+                        <Website  bgColor={datas?.display?.primaryColor}
+                          color={datas?.display?.primaryAccent}
+                          design={datas?.display?.design}
+                          item={item} />
                       </Link>
                     )}
                     {item?.type === "Email" && (
                       <Link href={`mailto:${item.url}`}>
-                      <Content
-                        bgColor={datas?.display?.primaryColor}
-                        color={datas?.display?.primaryAccent}
-                        item={item}
-                      />
+                        <Content
+                          bgColor={datas?.display?.primaryColor}
+                          color={datas?.display?.primaryAccent}
+                          design={datas?.display?.design}
+                          item={item}
+                        />
                       </Link>
                     )}
                     {item?.type === "Address" && (
                       <Content
                         bgColor={datas?.display?.primaryColor}
                         color={datas?.display?.primaryAccent}
+                        design={datas?.display?.design}
                         item={item}
                       />
                     )}
                     {item?.type === "Link" && (
-                      <Content
-                        bgColor={datas?.display?.primaryColor}
-                        color={datas?.display?.primaryAccent}
-                        item={item}
-                      />
+                      // <Content
+                      //   bgColor={datas?.display?.primaryColor}
+                      //   design={datas?.display?.design}
+                      //   color={datas?.display?.primaryAccent}
+                      //   item={item}
+                      // />
+                      <LinkComponent 
+                      bgColor={datas?.display?.primaryColor}
+                      color={datas?.display?.primaryAccent}
+                      design={datas?.display?.design}
+                      item={item}/>
                     )}
                     {item?.type === "WhatsApp" && (
                       <Link href={`whatsapp://send?phone=${item.number}`}>
-                      <Content
-                        bgColor={datas?.display?.primaryColor}
-                        color={datas?.display?.primaryAccent}
-                        item={item}
-                      />
+                        <Content
+                          bgColor={datas?.display?.primaryColor}
+                          color={datas?.display?.primaryAccent}
+                          design={datas?.display?.design}
+                          item={item}
+                        />
                       </Link>
                     )}
                     {item?.type === "Viber" && (
-                     <Link href={`viber://chat?number=${item.number}`}>
-                      <Content
-                        bgColor={datas?.display?.primaryColor}
-                        color={datas?.display?.primaryAccent}
-                        item={item}
-                      />
-                     </Link>
+                      <Link href={`viber://chat?number=${item.number}`}>
+                        <Content
+                          bgColor={datas?.display?.primaryColor}
+                          color={datas?.display?.primaryAccent}
+                          design={datas?.display?.design}
+                          item={item}
+                        />
+                      </Link>
                     )}
                     {item?.type === "Skype" && (
                       <Content
                         bgColor={datas?.display?.primaryColor}
                         color={datas?.display?.primaryAccent}
+                        design={datas?.display?.design}
                         item={item}
                       />
                     )}
@@ -465,6 +488,7 @@ END:VCARD
                       <Content
                         bgColor={datas?.display?.primaryColor}
                         color={datas?.display?.primaryAccent}
+                        design={datas?.display?.design}
                         item={item}
                       />
                     )}
@@ -472,6 +496,7 @@ END:VCARD
                       <Content
                         bgColor={datas?.display?.primaryColor}
                         color={datas?.display?.primaryAccent}
+                        design={datas?.display?.design}
                         item={item}
                       />
                     )}
@@ -479,6 +504,7 @@ END:VCARD
                       <Content
                         bgColor={datas?.display?.primaryColor}
                         color={datas?.display?.primaryAccent}
+                        design={datas?.display?.design}
                         item={item}
                       />
                     )}
@@ -486,6 +512,7 @@ END:VCARD
                       <Content
                         bgColor={datas?.display?.primaryColor}
                         color={datas?.display?.primaryAccent}
+                        design={datas?.display?.design}
                         item={item}
                       />
                     )}
@@ -493,6 +520,7 @@ END:VCARD
                       <Content
                         bgColor={datas?.display?.primaryColor}
                         color={datas?.display?.primaryAccent}
+                        design={datas?.display?.design}
                         item={item}
                       />
                     )}
@@ -505,7 +533,7 @@ END:VCARD
                         style={{
                           backgroundColor: datas?.display?.primaryColor,
                         }}
-                        className=" w-12 h-12  items-center justify-center inline-flex rounded-full mr-2  "
+                        className=" w-[52px] h-[52px]  items-center justify-center inline-flex rounded-full mr-2  "
                       >
                         <FacebookIcon
                           style={{ color: datas?.display?.primaryAccent }}
@@ -518,7 +546,7 @@ END:VCARD
                           backgroundColor: datas?.display?.primaryColor,
                         }}
                         href={item?.url}
-                        className="bg-[#EB531C] w-12 h-12  items-center justify-center inline-flex rounded-full mr-2  "
+                        className="bg-[#EB531C] w-[52px] h-[52px] items-center justify-center inline-flex rounded-full mr-2  "
                       >
                         <InstagramIcon
                           style={{ color: datas?.display?.primaryAccent }}
@@ -531,7 +559,7 @@ END:VCARD
                           backgroundColor: datas?.display?.primaryColor,
                         }}
                         href={item?.url}
-                        className="bg-[#EB531C] w-12 h-12  items-center justify-center inline-flex rounded-full mr-2  "
+                        className="bg-[#EB531C] w-[52px] h-[52px] items-center justify-center inline-flex rounded-full mr-2  "
                       >
                         <TwitterIcon
                           style={{ color: datas?.display?.primaryAccent }}
@@ -544,7 +572,7 @@ END:VCARD
                           backgroundColor: datas?.display?.primaryColor,
                         }}
                         href={item?.url}
-                        className="bg-[#EB531C] w-12 h-12  items-center justify-center inline-flex rounded-full mr-2  "
+                        className="bg-[#EB531C] w-[52px] h-[52px]  items-center justify-center inline-flex rounded-full mr-2  "
                       >
                         <LinkedInIcon
                           style={{ color: datas?.display?.primaryAccent }}
@@ -557,7 +585,7 @@ END:VCARD
                           backgroundColor: datas?.display?.primaryColor,
                         }}
                         href={item?.url}
-                        className="bg-[#EB531C] w-12 h-12  items-center justify-center inline-flex rounded-full mr-2  "
+                        className="bg-[#EB531C] w-[52px] h-[52px]  items-center justify-center inline-flex rounded-full mr-2  "
                       >
                         <PinterestIcon
                           style={{ color: datas?.display?.primaryAccent }}
@@ -570,7 +598,7 @@ END:VCARD
                           backgroundColor: datas?.display?.primaryColor,
                         }}
                         href={item?.url}
-                        className="bg-[#EB531C] w-12 h-12  items-center justify-center inline-flex rounded-full mr-2 "
+                        className="bg-[#EB531C] w-[52px] h-[52px]  items-center justify-center inline-flex rounded-full mr-2 "
                       >
                         <FaTiktok
                           className="inline  text-xl"
@@ -593,6 +621,7 @@ END:VCARD
                         email={datas?.email}
                         bgColor={datas?.display?.primaryColor}
                         color={datas?.display?.primaryAccent}
+                        design={datas?.display?.design}
                       />
                     )}
                     {item?.type === "Notes" && (
@@ -605,12 +634,13 @@ END:VCARD
                         item={item}
                         bgColor={datas?.display?.primaryColor}
                         color={datas?.display?.primaryAccent}
+                        design={datas?.display?.design}
                       />
                     )}
                     {item?.type === "QR" && (
                       <QrView
                         item={item}
-                        logo={'hyhy'}
+                        logo={"hyhy"}
                         value={item?.qr}
                         data={datas?.QrCode}
                       />
