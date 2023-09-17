@@ -179,7 +179,7 @@ END:VCARD
 
   return (
     <>
-      {!datas?._id && <MobileLoading />}
+      {/* {!datas?._id && <MobileLoading />} */}
       {
         datas && !datas?.setting?.cardStatus && <>
         <div > <h2 className="text-3xl font-bold text-center">Card is currently deactivated</h2></div>
@@ -201,7 +201,7 @@ END:VCARD
                   />
                 </div>
                 <div className="mt-5 px-1 w-full md:w-[80%] flex justify-center">
-                  <img className="" src={datas?.display?.Logo} alt="logo" />
+                 {datas?.display?.Logo && <img className="" src={datas?.display?.Logo} alt="logo" />}
                 </div>
               </>
             )}
@@ -287,11 +287,11 @@ END:VCARD
                         />
                       </svg>
                     </div>
-                    <img
+                    { datas?.display?.Logo &&<img
                       className="absolute bottom-3 object-center right-2 z-50 w-[100px] h-[50px] top-2]"
                       src={datas?.display?.Logo}
                       alt=""
-                    />
+                    />}
                   </div>
                 </div>
               </>
