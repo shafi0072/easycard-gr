@@ -24,9 +24,9 @@ const QrView = ({ item, logo, value, data }) => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-  console.log({value});
   return (
     <div>
+      <h1 className="border-b-2 pb-3 border-gray-400 mt-3 font-semibold text-2xl text-black">Get My Details</h1>
       <div
         // style={{
         //   width: `${item?.width}%`,
