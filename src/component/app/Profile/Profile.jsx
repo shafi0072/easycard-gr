@@ -428,7 +428,7 @@ END:VCARD
                       <div className="w-full h-[2px] bg-gray-400 mt-1 mb-6"></div>
                     )}
                     {item?.type === "Header" && (
-                      <h2 className="pb-2 border-gray-400 mt-3 font-semibold text-2xl text-black roboto">
+                      <h2 className="pb-3 border-gray-400 mt-3 font-semibold text-2xl text-black roboto">
                         {item?.title}
                       </h2>
                     )}
@@ -684,7 +684,7 @@ END:VCARD
               </div>
             </div>
             <div className="mx-6 mb-24 relative">
-              <h1 className="pb-2 border-gray-400 mt-3 font-semibold text-2xl text-black">
+              <h1 className="pb-2 border-gray-400 mt-3 font-semibold text-2xl text-black roboto">
                 Get My Details
               </h1>
               <div className="absolute -left-2">
