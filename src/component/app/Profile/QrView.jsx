@@ -24,11 +24,11 @@ const QrView = ({ item, logo, value, data }) => {
     };
   }, []);
   return (
-    <div>
+    <div className="relative">
       
       <div
         
-        className="mt-5"
+        className="mt-5  relative -left-2"
       >
         <QRCode
           {...{

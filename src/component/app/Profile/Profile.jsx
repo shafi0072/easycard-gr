@@ -354,8 +354,8 @@ END:VCARD
                   <p className="font-medium text-[18px]  roboto ">
                     {datas?.profileInfo?.job_title}
                   </p>
-                  <p className="-mt-3">{datas?.profileInfo?.department}</p>
-                  <p className="italic -mt-2.5  roboto">
+                  <p className="-my-[3px]">{datas?.profileInfo?.department}</p>
+                  <p className="italic  roboto">
                     {datas?.profileInfo?.company}
                   </p>
                 </div>
@@ -410,17 +410,18 @@ END:VCARD
                 </div>
               </div>
             )}
+
             <div className="mx-6 ">
               <div className=" w-full md:w-[383px]">
-                <p className="italic text-[#69727d]">
+                {datas?.profileInfo?.introduction && <p className="italic text-[#69727d]">
                   {datas?.profileInfo?.introduction}
-                </p>
+                </p>}
               </div>
               <div className="my-5">
                 <FieldData userData={datas} />
               </div>
 
-              <div className="my-5 w-full md:w-[383px]">
+              <div className="my-5 w-full md:w-[383px] ">
                 {datas?.fields?.map((item, index) => (
                   <>
                     {item?.type === "Divider" && (
@@ -453,12 +454,7 @@ END:VCARD
                             : item.url
                         }
                       >
-                        {/* <Content
-                          bgColor={datas?.display?.primaryColor}
-                          color={datas?.display?.primaryAccent}
-                          design={datas?.display?.design}
-                          item={item}
-                        /> */}
+
                         <Website
                           bgColor={datas?.display?.primaryColor}
                           color={datas?.display?.primaryAccent}
@@ -486,12 +482,7 @@ END:VCARD
                       />
                     )}
                     {item?.type === "Link" && (
-                      // <Content
-                      //   bgColor={datas?.display?.primaryColor}
-                      //   design={datas?.display?.design}
-                      //   color={datas?.display?.primaryAccent}
-                      //   item={item}
-                      // />
+
                       <LinkComponent
                         bgColor={datas?.display?.primaryColor}
                         color={datas?.display?.primaryAccent}
@@ -692,57 +683,57 @@ END:VCARD
                 ))}
               </div>
             </div>
-            <div className="mx-6 mb-24">
+            <div className="mx-6 mb-24 relative">
               <h1 className="pb-2 border-gray-400 mt-3 font-semibold text-2xl text-black">
                 Get My Details
               </h1>
+              <div className="absolute -left-2">
+                <QRCode
+                  {...{
+                    qrStyle: 'dots',
+                    fgColor: '#0053a2',
+                    ecLevel: "M",
+                    value: window?.location?.href,
+                    size: 160,
+                    bgColor: '#ffffff',
 
-              <QRCode
-          {...{
-            qrStyle: 'dots',
-            fgColor: '#0053a2',
-            ecLevel: "M",
-            value: window?.location?.href,
-            size: 160,
-            bgColor: '#ffffff',
-            
-            logoPadding: 5,
-            eyeRadius: [
-              {
-                outer:50,
-                  
-                inner:6
-                  
-              },
-              {
-                outer:50,
-                 
-                inner:6
-                  
-              },
-              {
-                outer: 50,
-                inner: 6
-              },
-            ],
-            eyeColor: [
-              // build eyeColor manually
-              {
-                outer: '#0053a2',
-                inner: '#D40808',
-              },
-              {
-                outer: '#0053a2',
-                inner: '#D40808',
-              },
-              {
-                outer: '#0053a2',
-                inner: '#D40808',
-              },
-            ],
-          }}
-        />
+                    logoPadding: 0,
+                    eyeRadius: [
+                      {
+                        outer: 50,
 
+                        inner: 6
+
+                      },
+                      {
+                        outer: 50,
+
+                        inner: 6
+
+                      },
+                      {
+                        outer: 50,
+                        inner: 6
+                      },
+                    ],
+                    eyeColor: [
+                      // build eyeColor manually
+                      {
+                        outer: '#0053a2',
+                        inner: '#D40808',
+                      },
+                      {
+                        outer: '#0053a2',
+                        inner: '#D40808',
+                      },
+                      {
+                        outer: '#0053a2',
+                        inner: '#D40808',
+                      },
+                    ],
+                  }}
+                />
+              </div>
             </div>
             <button
               onClick={handleAddContactClick}
