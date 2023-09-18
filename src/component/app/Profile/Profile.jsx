@@ -584,78 +584,78 @@ END:VCARD
                       <a
                         href={item?.url}
                         style={{
-                          backgroundColor: datas?.display?.primaryColor,
+                          backgroundColor: "#1877f2",
                         }}
                         className=" w-[52px] h-[52px]  items-center justify-center inline-flex rounded-full mr-2  "
                       >
                         <FacebookIcon
-                          style={{ color: datas?.display?.primaryAccent }}
+                          style={{ color: "white" }}
                         />{" "}
                       </a>
                     )}
                     {item?.type === "Instagram" && (
                       <a
                         style={{
-                          backgroundColor: datas?.display?.primaryColor,
+                          backgroundColor: "#c32aa3",
                         }}
                         href={item?.url}
                         className="bg-[#EB531C] w-[52px] h-[52px] items-center justify-center inline-flex rounded-full mr-2  "
                       >
                         <InstagramIcon
-                          style={{ color: datas?.display?.primaryAccent }}
+                          style={{ color: "white" }}
                         />
                       </a>
                     )}
                     {item?.type === "Twitter" && (
                       <a
                         style={{
-                          backgroundColor: datas?.display?.primaryColor,
+                          backgroundColor: "#1da1f2",
                         }}
                         href={item?.url}
                         className="bg-[#EB531C] w-[52px] h-[52px] items-center justify-center inline-flex rounded-full mr-2  "
                       >
                         <TwitterIcon
-                          style={{ color: datas?.display?.primaryAccent }}
+                          style={{ color: "white" }}
                         />
                       </a>
                     )}
                     {item?.type === "LinkedIn" && (
                       <a
                         style={{
-                          backgroundColor: datas?.display?.primaryColor,
+                          backgroundColor: "#0a66c2",
                         }}
                         href={item?.url}
                         className="bg-[#EB531C] w-[52px] h-[52px]  items-center justify-center inline-flex rounded-full mr-2  "
                       >
                         <LinkedInIcon
-                          style={{ color: datas?.display?.primaryAccent }}
+                          style={{ color: "white" }}
                         />{" "}
                       </a>
                     )}
                     {item?.type === "Pinterest" && (
                       <a
                         style={{
-                          backgroundColor: datas?.display?.primaryColor,
+                          backgroundColor: "#bd081c",
                         }}
                         href={item?.url}
                         className="bg-[#EB531C] w-[52px] h-[52px]  items-center justify-center inline-flex rounded-full mr-2  "
                       >
                         <PinterestIcon
-                          style={{ color: datas?.display?.primaryAccent }}
+                          style={{ color: "white" }}
                         />
                       </a>
                     )}
                     {item?.type === "Tiktok" && (
                       <a
                         style={{
-                          backgroundColor: datas?.display?.primaryColor,
+                          backgroundColor: "#010101",
                         }}
                         href={item?.url}
                         className="bg-[#EB531C] w-[52px] h-[52px]  items-center justify-center inline-flex rounded-full mr-2 "
                       >
                         <FaTiktok
                           className="inline  text-xl"
-                          style={{ color: datas?.display?.primaryAccent }}
+                          style={{ color: "white" }}
                         />
                       </a>
                     )}
