@@ -351,7 +351,7 @@ END:VCARD
                       {datas?.profileInfo?.accreditations}
                     </span>
                   </h2>
-                  <p className="font-medium text-[18px] mt-[10px] roboto ">
+                  <p className="font-medium text-[18px]  roboto ">
                     {datas?.profileInfo?.job_title}
                   </p>
                   <p className="-mt-3">{datas?.profileInfo?.department}</p>
@@ -427,7 +427,7 @@ END:VCARD
                       <div className="w-full h-[2px] bg-gray-400 mt-1 mb-6"></div>
                     )}
                     {item?.type === "Header" && (
-                      <h2 className="text-[22px] mb-2 font-semibold mt-6 roboto">
+                      <h2 className="pb-2 border-gray-400 mt-3 font-semibold text-2xl text-black roboto">
                         {item?.title}
                       </h2>
                     )}
