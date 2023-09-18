@@ -25,6 +25,7 @@ const Profile = ({ id }) => {
 
   const [ip, setIp] = useState({});
   const [device, setDevice] = useState({});
+  const [active, setActive] = useState(true)
   useEffect(() => {
     fetch(`https://business-card-backend-2.vercel.app/cards/visit/${id}`)
       .then((res) => res.json())
@@ -176,19 +177,15 @@ END:VCARD
     }
   };
 
+  useEffect(() => {
+    setTimeout(() =>{
+      setActive(datas?.setting?.cardStatus)
+    },1000)
+  },[datas])
   return (
     <>
       {/* {!datas?._id && <MobileLoading />} */}
-      {datas && !datas?.setting?.cardStatus && (
-        <>
-          <div>
-            {" "}
-            <h2 className="text-3xl font-bold text-center">
-              Card is currently deactivated
-            </h2>
-          </div>
-        </>
-      )}
+      
       {datas && datas?.setting?.cardStatus && (
         <div className="">
           <div className="max-w-full md:max-w-[383px] w-full mx-auto ">
