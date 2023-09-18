@@ -412,8 +412,8 @@ END:VCARD
             )}
 
             <div className="mx-6 ">
-              <div className="mt-12 w-full md:w-[383px]">
-                {datas?.profileInfo?.introduction && <p className="italic text-[#69727d]">
+              <div className=" w-full md:w-[383px]">
+                {datas?.profileInfo?.introduction && <p className="mt-2 italic text-[#69727d]">
                   {datas?.profileInfo?.introduction}
                 </p>}
               </div>
@@ -683,8 +683,8 @@ END:VCARD
                 ))}
               </div>
             </div>
-            <div className="mx-6 mb-24 relative">
-              <h1 className="pb-2 border-gray-400 mt-3 font-semibold text-2xl text-black">
+            <div className="mx-6 mb-24 relative ">
+              <h1 className="pb-2 border-gray-400 mt-3 font-semibold text-2xl text-black roboto">
                 Get My Details
               </h1>
               <div className="absolute -left-2">
