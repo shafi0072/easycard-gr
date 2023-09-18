@@ -351,18 +351,18 @@ END:VCARD
                       {datas?.profileInfo?.accreditations}
                     </span>
                   </h2>
-                  <p className="font-medium text-[18px]  roboto ">
+                  <p className="font-medium text-[18px]  roboto " style={{lineHeight: '24px'}}>
                     {datas?.profileInfo?.job_title}
                   </p>
                   <p className="-my-[3px]">{datas?.profileInfo?.department}</p>
-                  <p className="italic  roboto">
+                  <p className="italic  roboto" style={{lineHeight: '24px'}}>
                     {datas?.profileInfo?.company}
                   </p>
                 </div>
                 {datas?.display?.Logo !== null &&
                   datas?.display?.Logo !== "null" &&
                   datas?.display?.Logo && (
-                    <div className="my-6 mx-8">
+                    <div className="mt-3 mx-8">
                       <img
                         className="w-full"
                         src={datas?.display?.Logo}
