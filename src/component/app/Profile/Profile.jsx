@@ -53,7 +53,7 @@ const Profile = ({ id }) => {
       }
     });
   }, []);
-  
+
 
   useEffect(() => {
     if (id) {
@@ -176,16 +176,15 @@ END:VCARD
       alert("This feature is available on mobile devices only.");
     }
   };
-
   return (
     <>
       {/* {!datas?._id && <MobileLoading />} */}
       {
         datas && !datas?.setting?.cardStatus && <>
-        <div > <h2 className="text-3xl font-bold text-center">Card is currently deactivated</h2></div>
+          <div > <h2 className="text-3xl font-bold text-center">Card is currently deactivated</h2></div>
         </>
       }
-      {datas && datas?.setting?.cardStatus &&  (
+      {datas && datas?.setting?.cardStatus && (
         <div className="">
           <div className="max-w-full md:max-w-[383px] w-full mx-auto ">
             {datas?.display?.design === "flat" && (
@@ -201,7 +200,7 @@ END:VCARD
                   />
                 </div>
                 <div className="mt-5 px-1 w-full md:w-[80%] flex justify-center">
-                 {datas?.display?.Logo && <img className="" src={datas?.display?.Logo} alt="logo" />}
+                  {datas?.display?.Logo !== 'null' && datas?.display?.Logo !== null && datas?.display?.Logo && <img className="" src={datas?.display?.Logo} alt="logo" />}
                 </div>
               </>
             )}
@@ -218,19 +217,7 @@ END:VCARD
                   />
                   <div className="">
                     <div className="absolute  top-[72%]  z-10 w-full">
-                      {/* <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="100%"
-                        height="88.28"
-                        viewBox="0 0 381 88.28"
-                      >
-                        <path
-                          id="wave"
-                          d="M0,25.9V55.406c70.325,43.351,128.033,45.974,213.535-5.027S340.019,6.009,381,17.739v-7.65C286.9-26.122,210.5,45.427,151.305,63.278S52.111,68.378,0,25.9Z"
-                          transform="translate(0 0)"
-                          fill={datas?.display?.primaryColor}
-                        />
-                      </svg> */}
+                     
                       <svg
                         class="card-wavestyled__Wave-card__sc-4t6hon-0 daNA-Du WaveHeaderstyled__Divider-card__sc-1ootntz-2 BRgwB"
                         preserveAspectRatio="xMinYMax meet"
@@ -287,7 +274,7 @@ END:VCARD
                         />
                       </svg>
                     </div>
-                    { datas?.display?.Logo &&<img
+                    {datas?.display?.Logo !== 'null' && datas?.display?.Logo !== null && datas?.display?.Logo && <img
                       className="absolute bottom-3 object-center right-2 z-50 w-[100px] h-[50px] top-2]"
                       src={datas?.display?.Logo}
                       alt=""
@@ -315,7 +302,7 @@ END:VCARD
                       datas?.profileInfo?.last_name}
                     <br />
                     {datas?.profileInfo?.suffix + " "}
-                    <span className="text-[20px] roboto" style={{fontWeight:"300"}}>
+                    <span className="text-[20px] roboto" style={{ fontWeight: "300" }}>
                       {datas?.profileInfo?.accreditations}
                     </span>
                   </h2>
@@ -325,14 +312,14 @@ END:VCARD
                   <h3>{datas?.profileInfo?.department}</h3>
                   <h3 className="italic  roboto">{datas?.profileInfo?.company}</h3>
                 </div>
-                {datas?.display?.Logo && (
-              <div className="my-6 mx-8">
-                <img className="w-full" src={datas?.display?.Logo} alt="logo" />
+                <div className="my-6 mx-8">
+                  {datas?.display?.Logo !== 'null' && datas?.display?.Logo !== null && datas?.display?.Logo && (
+                    <img className="w-full" src={datas?.display?.Logo} alt="logo" />
+                  )}
+                </div>
               </div>
             )}
-              </div>
-            )}
-            
+
             {datas?.display?.design !== "pro" && (
               <div className="px-3">
                 <div
@@ -408,7 +395,7 @@ END:VCARD
                       <Link
                         href={
                           item.url.slice(0, 4) !== "http" &&
-                          item.url.slice(0, 5) !== "https"
+                            item.url.slice(0, 5) !== "https"
                             ? `https://${item.url}`
                             : item.url
                         }
@@ -419,7 +406,7 @@ END:VCARD
                           design={datas?.display?.design}
                           item={item}
                         /> */}
-                        <Website  bgColor={datas?.display?.primaryColor}
+                        <Website bgColor={datas?.display?.primaryColor}
                           color={datas?.display?.primaryAccent}
                           design={datas?.display?.design}
                           item={item} />
@@ -450,11 +437,11 @@ END:VCARD
                       //   color={datas?.display?.primaryAccent}
                       //   item={item}
                       // />
-                      <LinkComponent 
-                      bgColor={datas?.display?.primaryColor}
-                      color={datas?.display?.primaryAccent}
-                      design={datas?.display?.design}
-                      item={item}/>
+                      <LinkComponent
+                        bgColor={datas?.display?.primaryColor}
+                        color={datas?.display?.primaryAccent}
+                        design={datas?.display?.design}
+                        item={item} />
                     )}
                     {item?.type === "WhatsApp" && (
                       <Link href={`whatsapp://send?phone=${item.number}`}>
