@@ -411,7 +411,7 @@ END:VCARD
               </div>
             )}
             <div className="mx-6 ">
-              <div className="mt-12 w-full md:w-[383px]">
+              <div className=" w-full md:w-[383px]">
                 <p className="italic text-[#69727d]">
                   {datas?.profileInfo?.introduction}
                 </p>
