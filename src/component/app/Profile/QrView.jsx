@@ -25,19 +25,9 @@ const QrView = ({ item, logo, value, data }) => {
   }, []);
   return (
     <div>
-      <h1 className="pb-2 border-gray-400 mt-3 font-semibold text-2xl text-black">
-        Get My Details
-      </h1>
+      
       <div
-        // style={{
-        //   width: `${item?.width}%`,
-        // }}
-        // className={`mt-5 flex  ${item?.align === "left"
-        //   ? "justify-start"
-        //   : item?.align === "center"
-        //     ? "justify-center"
-        //     : "justify-end"
-        //   }`}
+        
         className="mt-5"
       >
         <QRCode
@@ -112,17 +102,7 @@ const QrView = ({ item, logo, value, data }) => {
             ],
           }}
         />
-        {/* <DottedQRCode value={item?.url} /> */}
-
-        {/* <QRCode
-          fgColor="#0053A2"
-          eyeRadius={3}
-          qrStyle="dots"
-          logoImage={logo}
-          logoWidth={60}
-          size={item.width}
-          value={value}
-        /> */}
+       
       </div>
     </div>
   );

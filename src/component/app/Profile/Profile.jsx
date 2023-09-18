@@ -20,11 +20,14 @@ import PermContactCalendarIcon from "@mui/icons-material/PermContactCalendar";
 import Link from "next/link";
 import Website from "./Website";
 import LinkComponent from "./LinkComponent";
+import { QRCode } from "react-qrcode-logo";
+
 const Profile = ({ id }) => {
   const [datas, setData] = useState(null);
 
   const [ip, setIp] = useState({});
   const [device, setDevice] = useState({});
+  const [active, setActive] = useState(true)
   useEffect(() => {
     fetch(`https://business-card-backend-2.vercel.app/cards/visit/${id}`)
       .then((res) => res.json())
@@ -175,19 +178,16 @@ END:VCARD
       alert("This feature is available on mobile devices only.");
     }
   };
+
+  useEffect(() => {
+    setTimeout(() => {
+      setActive(datas?.setting?.cardStatus)
+    }, 1000)
+  }, [datas])
   return (
     <>
       {/* {!datas?._id && <MobileLoading />} */}
-      {datas && !datas?.setting?.cardStatus && (
-        <>
-          <div>
-            {" "}
-            <h2 className="text-3xl font-bold text-center">
-              Card is currently deactivated
-            </h2>
-          </div>
-        </>
-      )}
+
       {datas && datas?.setting?.cardStatus && (
         <div className="">
           <div className="max-w-full md:max-w-[383px] w-full mx-auto ">
@@ -233,7 +233,7 @@ END:VCARD
                     )}
                   <div className="">
                     <div className="absolute  top-[72%]  z-10 w-full">
-                     
+
                       <svg
                         class="card-wavestyled__Wave-card__sc-4t6hon-0 daNA-Du WaveHeaderstyled__Divider-card__sc-1ootntz-2 BRgwB"
                         preserveAspectRatio="xMinYMax meet"
@@ -314,8 +314,8 @@ END:VCARD
                   style={{ borderColor: color }}
                 >
                   {datas?.display?.ProfileImage !== null &&
-                  datas?.display?.ProfileImage !== "null" &&
-                  datas?.display?.ProfileImage ? (
+                    datas?.display?.ProfileImage !== "null" &&
+                    datas?.display?.ProfileImage ? (
                     <img
                       className=" object-cover  h-full w-full"
                       src={
@@ -410,7 +410,7 @@ END:VCARD
                 </div>
               </div>
             )}
-            <div className="mx-6 mb-24">
+            <div className="mx-6 ">
               <div className="mt-12 w-full md:w-[383px]">
                 <p className="italic text-[#69727d]">
                   {datas?.profileInfo?.introduction}
@@ -574,78 +574,78 @@ END:VCARD
                       <a
                         href={item?.url}
                         style={{
-                          backgroundColor: datas?.display?.primaryColor,
+                          backgroundColor: "#1877f2",
                         }}
                         className=" w-[52px] h-[52px]  items-center justify-center inline-flex rounded-full mr-2  "
                       >
                         <FacebookIcon
-                          style={{ color: datas?.display?.primaryAccent }}
+                          style={{ color: "white" }}
                         />{" "}
                       </a>
                     )}
                     {item?.type === "Instagram" && (
                       <a
                         style={{
-                          backgroundColor: datas?.display?.primaryColor,
+                          backgroundColor: "#c32aa3",
                         }}
                         href={item?.url}
                         className="bg-[#EB531C] w-[52px] h-[52px] items-center justify-center inline-flex rounded-full mr-2  "
                       >
                         <InstagramIcon
-                          style={{ color: datas?.display?.primaryAccent }}
+                          style={{ color: "white" }}
                         />
                       </a>
                     )}
                     {item?.type === "Twitter" && (
                       <a
                         style={{
-                          backgroundColor: datas?.display?.primaryColor,
+                          backgroundColor: "#1da1f2",
                         }}
                         href={item?.url}
                         className="bg-[#EB531C] w-[52px] h-[52px] items-center justify-center inline-flex rounded-full mr-2  "
                       >
                         <TwitterIcon
-                          style={{ color: datas?.display?.primaryAccent }}
+                          style={{ color: "white" }}
                         />
                       </a>
                     )}
                     {item?.type === "LinkedIn" && (
                       <a
                         style={{
-                          backgroundColor: datas?.display?.primaryColor,
+                          backgroundColor: "#0a66c2",
                         }}
                         href={item?.url}
                         className="bg-[#EB531C] w-[52px] h-[52px]  items-center justify-center inline-flex rounded-full mr-2  "
                       >
                         <LinkedInIcon
-                          style={{ color: datas?.display?.primaryAccent }}
+                          style={{ color: "white" }}
                         />{" "}
                       </a>
                     )}
                     {item?.type === "Pinterest" && (
                       <a
                         style={{
-                          backgroundColor: datas?.display?.primaryColor,
+                          backgroundColor: "#bd081c",
                         }}
                         href={item?.url}
                         className="bg-[#EB531C] w-[52px] h-[52px]  items-center justify-center inline-flex rounded-full mr-2  "
                       >
                         <PinterestIcon
-                          style={{ color: datas?.display?.primaryAccent }}
+                          style={{ color: "white" }}
                         />
                       </a>
                     )}
                     {item?.type === "Tiktok" && (
                       <a
                         style={{
-                          backgroundColor: datas?.display?.primaryColor,
+                          backgroundColor: "#010101",
                         }}
                         href={item?.url}
                         className="bg-[#EB531C] w-[52px] h-[52px]  items-center justify-center inline-flex rounded-full mr-2 "
                       >
                         <FaTiktok
                           className="inline  text-xl"
-                          style={{ color: datas?.display?.primaryAccent }}
+                          style={{ color: "white" }}
                         />
                       </a>
                     )}
@@ -691,6 +691,58 @@ END:VCARD
                   </>
                 ))}
               </div>
+            </div>
+            <div className="mx-6 mb-24">
+              <h1 className="pb-2 border-gray-400 mt-3 font-semibold text-2xl text-black">
+                Get My Details
+              </h1>
+
+              <QRCode
+          {...{
+            qrStyle: 'dots',
+            fgColor: '#0053a2',
+            ecLevel: "M",
+            value: window?.location?.href,
+            size: 160,
+            bgColor: '#ffffff',
+            
+            logoPadding: 5,
+            eyeRadius: [
+              {
+                outer:50,
+                  
+                inner:6
+                  
+              },
+              {
+                outer:50,
+                 
+                inner:6
+                  
+              },
+              {
+                outer: 50,
+                inner: 6
+              },
+            ],
+            eyeColor: [
+              // build eyeColor manually
+              {
+                outer: '#0053a2',
+                inner: '#D40808',
+              },
+              {
+                outer: '#0053a2',
+                inner: '#D40808',
+              },
+              {
+                outer: '#0053a2',
+                inner: '#D40808',
+              },
+            ],
+          }}
+        />
+
             </div>
             <button
               onClick={handleAddContactClick}
