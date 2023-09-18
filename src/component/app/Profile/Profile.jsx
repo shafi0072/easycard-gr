@@ -53,7 +53,6 @@ const Profile = ({ id }) => {
       }
     });
   }, []);
-  
 
   useEffect(() => {
     if (id) {
@@ -180,28 +179,41 @@ END:VCARD
   return (
     <>
       {/* {!datas?._id && <MobileLoading />} */}
-      {
-        datas && !datas?.setting?.cardStatus && <>
-        <div > <h2 className="text-3xl font-bold text-center">Card is currently deactivated</h2></div>
+      {datas && !datas?.setting?.cardStatus && (
+        <>
+          <div>
+            {" "}
+            <h2 className="text-3xl font-bold text-center">
+              Card is currently deactivated
+            </h2>
+          </div>
         </>
-      }
-      {datas && datas?.setting?.cardStatus &&  (
+      )}
+      {datas && datas?.setting?.cardStatus && (
         <div className="">
           <div className="max-w-full md:max-w-[383px] w-full mx-auto ">
             {datas?.display?.design === "flat" && (
               <>
                 <div
-                  className=" w-full md:w-[381px] pb-3 rounded-b-md"
+                  className=" w-full md:w-[381px] h-[400px] pb-3 rounded-b-md"
                   style={{ background: datas?.display?.primaryColor }}
                 >
-                  <img
-                    className=" object-cover"
-                    src={datas?.display?.ProfileImage}
-                    alt=""
-                  />
+                  {datas?.display?.ProfileImage !== null &&
+                    datas?.display?.ProfileImage !== "null" &&
+                    datas?.display?.ProfileImage && (
+                      <img
+                        className=" object-cover h-full w-full"
+                        src={datas?.display?.ProfileImage}
+                        alt=""
+                      />
+                    )}
                 </div>
-                <div className="mt-5 px-1 w-full md:w-[80%] flex justify-center">
-                 {datas?.display?.Logo && <img className="" src={datas?.display?.Logo} alt="logo" />}
+                <div className="my-6 px-1 w-full md:w-[80%] flex justify-center">
+                  {datas?.display?.Logo !== null &&
+                    datas?.display?.Logo !== "null" &&
+                    datas?.display?.Logo && (
+                      <img className="" src={datas?.display?.Logo} alt="logo" />
+                    )}
                 </div>
               </>
             )}
@@ -211,11 +223,15 @@ END:VCARD
                   className=" w-full md:w-[381px] h-[300px]  relative rounded"
                   style={{ background: datas?.display?.primaryColor }}
                 >
-                  <img
-                    className="h-full w-full object-cover rounded"
-                    src={datas?.display?.ProfileImage}
-                    alt=""
-                  />
+                  {datas?.display?.ProfileImage !== null &&
+                    datas?.display?.ProfileImage !== "null" &&
+                    datas?.display?.ProfileImage && (
+                      <img
+                        className="h-full w-full object-cover rounded"
+                        src={datas?.display?.ProfileImage}
+                        alt=""
+                      />
+                    )}
                   <div className="">
                     <div className="absolute  top-[72%]  z-10 w-full">
                       {/* <svg
@@ -287,22 +303,48 @@ END:VCARD
                         />
                       </svg>
                     </div>
-                    { datas?.display?.Logo &&<img
-                      className="absolute bottom-3 object-center right-2 z-50 w-[100px] h-[50px] top-2]"
-                      src={datas?.display?.Logo}
-                      alt=""
-                    />}
+                    <div>
+                      {datas?.display?.Logo !== null &&
+                        datas?.display?.Logo !== "null" &&
+                        datas?.display?.Logo && (
+                          <img
+                            className="absolute bottom-3 object-center right-2 z-50 w-[100px] h-[50px] top-2]"
+                            src={
+                              datas?.display?.Logo ? datas?.display?.Logo : ""
+                            }
+                            alt="logo"
+                          />
+                        )}
+                    </div>
                   </div>
                 </div>
               </>
             )}
             {datas?.display?.design === "pro" && (
               <div className=" w-full md:w-[381px]  pb-3 rounded-b-md">
-                <img
-                  className="w-full object-cover h-[400px]"
-                  src={datas?.display?.ProfileImage}
-                  alt=""
-                />
+                <div
+                  className=" w-[100%] h-[400px]  rounded-md "
+                  style={{ borderColor: color }}
+                >
+                  {datas?.display?.ProfileImage !== null &&
+                  datas?.display?.ProfileImage !== "null" &&
+                  datas?.display?.ProfileImage ? (
+                    <img
+                      className=" object-cover  h-full w-full"
+                      src={
+                        datas?.display?.ProfileImage
+                          ? datas?.display?.ProfileImage
+                          : ""
+                      }
+                      alt=""
+                    />
+                  ) : (
+                    <div
+                      className="w-[100%]  h-full"
+                      style={{ background: "#fff" }}
+                    ></div>
+                  )}
+                </div>
                 <div
                   className="w-full md:w-[75%] text-white mx-auto text-center flex flex-col gap-y-2  md:rounded-b-2xl py-[20px]"
                   style={{ background: datas?.display?.primaryColor }}
@@ -315,28 +357,39 @@ END:VCARD
                       datas?.profileInfo?.last_name}
                     <br />
                     {datas?.profileInfo?.suffix + " "}
-                    <span className="text-[20px] roboto" style={{fontWeight:"300"}}>
+                    <span
+                      className="text-[20px] roboto"
+                      style={{ fontWeight: "300" }}
+                    >
                       {datas?.profileInfo?.accreditations}
                     </span>
                   </h2>
-                  <h4 className="font-medium text-[18px] mt-[10px] roboto">
+                  <p className="font-medium text-[18px] mt-[10px] roboto ">
                     {datas?.profileInfo?.job_title}
-                  </h4>
-                  <h3>{datas?.profileInfo?.department}</h3>
-                  <h3 className="italic  roboto">{datas?.profileInfo?.company}</h3>
+                  </p>
+                  <p className="-mt-3">{datas?.profileInfo?.department}</p>
+                  <p className="italic -mt-2.5  roboto">
+                    {datas?.profileInfo?.company}
+                  </p>
                 </div>
-                {datas?.display?.Logo && (
-              <div className="my-6 mx-8">
-                <img className="w-full" src={datas?.display?.Logo} alt="logo" />
+                {datas?.display?.Logo !== null &&
+                  datas?.display?.Logo !== "null" &&
+                  datas?.display?.Logo && (
+                    <div className="my-6 mx-8">
+                      <img
+                        className="w-full"
+                        src={datas?.display?.Logo}
+                        alt="logo"
+                      />
+                    </div>
+                  )}
               </div>
             )}
-              </div>
-            )}
-            
+
             {datas?.display?.design !== "pro" && (
               <div className="px-3">
                 <div
-                  className="mt-10   w-full md:w-[383px]"
+                  className="mt-3 w-full md:w-[383px]"
                   style={{
                     borderLeft:
                       datas?.display?.design === "classic"
@@ -419,10 +472,12 @@ END:VCARD
                           design={datas?.display?.design}
                           item={item}
                         /> */}
-                        <Website  bgColor={datas?.display?.primaryColor}
+                        <Website
+                          bgColor={datas?.display?.primaryColor}
                           color={datas?.display?.primaryAccent}
                           design={datas?.display?.design}
-                          item={item} />
+                          item={item}
+                        />
                       </Link>
                     )}
                     {item?.type === "Email" && (
@@ -450,11 +505,12 @@ END:VCARD
                       //   color={datas?.display?.primaryAccent}
                       //   item={item}
                       // />
-                      <LinkComponent 
-                      bgColor={datas?.display?.primaryColor}
-                      color={datas?.display?.primaryAccent}
-                      design={datas?.display?.design}
-                      item={item}/>
+                      <LinkComponent
+                        bgColor={datas?.display?.primaryColor}
+                        color={datas?.display?.primaryAccent}
+                        design={datas?.display?.design}
+                        item={item}
+                      />
                     )}
                     {item?.type === "WhatsApp" && (
                       <Link href={`whatsapp://send?phone=${item.number}`}>
