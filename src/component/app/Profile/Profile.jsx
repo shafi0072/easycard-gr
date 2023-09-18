@@ -351,11 +351,11 @@ END:VCARD
                       {datas?.profileInfo?.accreditations}
                     </span>
                   </h2>
-                  <p className="font-medium text-[18px]  roboto " style={{lineHeight: '24px'}}>
+                  <p className=" font-medium text-[18px]  roboto " >
                     {datas?.profileInfo?.job_title}
                   </p>
-                  <p className="-my-[3px]">{datas?.profileInfo?.department}</p>
-                  <p className="italic  roboto" style={{lineHeight: '24px'}}>
+                  <p className="-my-3">{datas?.profileInfo?.department}</p>
+                  <p className="italic  roboto" >
                     {datas?.profileInfo?.company}
                   </p>
                 </div>
@@ -567,7 +567,7 @@ END:VCARD
                         style={{
                           backgroundColor: "#1877f2",
                         }}
-                        className=" w-[52px] h-[52px]  items-center justify-center inline-flex rounded-full mr-2  "
+                        className=" w-[52px] h-[52px] mt-1.5 items-center justify-center inline-flex rounded-full mr-2  "
                       >
                         <FacebookIcon
                           style={{ color: "white" }}
@@ -580,7 +580,7 @@ END:VCARD
                           backgroundColor: "#c32aa3",
                         }}
                         href={item?.url}
-                        className="bg-[#EB531C] w-[52px] h-[52px] items-center justify-center inline-flex rounded-full mr-2  "
+                        className="bg-[#EB531C] w-[52px] h-[52px] mt-1.5 items-center justify-center inline-flex rounded-full mr-2  "
                       >
                         <InstagramIcon
                           style={{ color: "white" }}
@@ -593,7 +593,7 @@ END:VCARD
                           backgroundColor: "#1da1f2",
                         }}
                         href={item?.url}
-                        className="bg-[#EB531C] w-[52px] h-[52px] items-center justify-center inline-flex rounded-full mr-2  "
+                        className="bg-[#EB531C] w-[52px] mt-1.5 h-[52px] items-center justify-center inline-flex rounded-full mr-2  "
                       >
                         <TwitterIcon
                           style={{ color: "white" }}
@@ -606,7 +606,7 @@ END:VCARD
                           backgroundColor: "#0a66c2",
                         }}
                         href={item?.url}
-                        className="bg-[#EB531C] w-[52px] h-[52px]  items-center justify-center inline-flex rounded-full mr-2  "
+                        className="bg-[#EB531C] w-[52px] h-[52px] mt-1.5  items-center justify-center inline-flex rounded-full mr-2  "
                       >
                         <LinkedInIcon
                           style={{ color: "white" }}
@@ -619,7 +619,7 @@ END:VCARD
                           backgroundColor: "#bd081c",
                         }}
                         href={item?.url}
-                        className="bg-[#EB531C] w-[52px] h-[52px]  items-center justify-center inline-flex rounded-full mr-2  "
+                        className="bg-[#EB531C] w-[52px] h-[52px] mt-1.5  items-center justify-center inline-flex rounded-full mr-2  "
                       >
                         <PinterestIcon
                           style={{ color: "white" }}
@@ -632,7 +632,7 @@ END:VCARD
                           backgroundColor: "#010101",
                         }}
                         href={item?.url}
-                        className="bg-[#EB531C] w-[52px] h-[52px]  items-center justify-center inline-flex rounded-full mr-2 "
+                        className="bg-[#EB531C] w-[52px] h-[52px] mt-1.5  items-center justify-center inline-flex rounded-full mr-2 "
                       >
                         <FaTiktok
                           className="inline  text-xl"
