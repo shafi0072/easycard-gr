@@ -26,12 +26,12 @@ const DateView = ({ item,bgColor,color,design }) => {
             </svg>
           </div>
           <div>
-            <p className={`${design === "pro" && "text-[18px] roboto"}`}>
+            <p className={`${design === "pro" && "text-[18px] roboto leading-tight"}`}>
               <Moment format="DD/MM/YYYY">
                 {item?.date}
               </Moment>
             </p>
-            <p className={`${design === "pro" && "text-[14px] roboto"}`}>{item?.label}</p>
+            <p className={`${design === "pro" && "text-[14px] roboto leading-tight"}`}>{item?.label}</p>
           </div>
         </div>
       )}

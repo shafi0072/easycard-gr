@@ -4,7 +4,7 @@ import { QRCode } from "react-qrcode-logo";
 
 const QrView = ({ item, logo, value, data }) => {
   const [qrCodeWidth, setQRCodeWidth] = useState(383);
-  console.log(item)
+  console.log(item);
 
   useEffect(() => {
     const breakpoint = 768;
@@ -25,57 +25,93 @@ const QrView = ({ item, logo, value, data }) => {
   }, []);
   return (
     <div>
-      <h1 className="border-b-2 pb-3 border-gray-400 mt-3 font-semibold text-2xl text-black">Get My Details</h1>
+      <h1 className="pb-2 border-gray-400 mt-3 font-semibold text-2xl text-black">
+        Get My Details
+      </h1>
       <div
         // style={{
         //   width: `${item?.width}%`,
         // }}
-        className={`mt-5 flex  ${item?.align === "left"
-          ? "justify-start"
-          : item?.align === "center"
-            ? "justify-center"
-            : "justify-end"
-          }`}
+        // className={`mt-5 flex  ${item?.align === "left"
+        //   ? "justify-start"
+        //   : item?.align === "center"
+        //     ? "justify-center"
+        //     : "justify-end"
+        //   }`}
+        className="mt-5"
       >
-        <QRCode {...{
-          qrStyle: data?.qrStyle,
-          fgColor: data?.fgColor,
-          ecLevel: 'M',
-          value:value,
-          size: data?.QrSize,
-          bgColor: data?.bgColor,
-          logoImage: data?.logo,
-          logoPadding: 5,
-          logoWidth: data?.logoSize,
-          eyeRadius: [
-            {
-              outer: data?.outesEyeShape === 'square' && 0 || data?.outesEyeShape === 'dots' && 50 || data?.outesEyeShape === 'round' && 6 || data?.outesEyeShape === 'flower' && [12, 12, 0, 16] || data?.outesEyeShape === 'leaf' && [50, 0, 50, 0],
-              inner: data?.innerEyeShape === 'square' && 0 || data?.innerEyeShape === 'dots' && 50 || data?.innerEyeShape === 'round' && 6 || data?.innerEyeShape === 'flower' && [12, 12, 0, 16] || data?.innerEyeShape === 'leaf' && [50, 0, 50, 0],
-            },
-            {
-              outer: data?.outesEyeShape === 'square' && 0 || data?.outesEyeShape === 'dots' && 50 || data?.outesEyeShape === 'round' && 6 || data?.outesEyeShape === 'flower' && [12, 12, 0, 16] || data?.outesEyeShape === 'leaf' && [50, 0, 50, 0],
-              inner: data?.innerEyeShape === 'square' && 0 || data?.innerEyeShape === 'dots' && 50 || data?.innerEyeShape === 'round' && 6 || data?.innerEyeShape === 'flower' && [12, 12, 0, 16] || data?.innerEyeShape === 'leaf' && [50, 0, 50, 0],
-            },
-            {
-              outer: data?.outesEyeShape === 'square' && 0 || data?.outesEyeShape === 'dots' && 50 || data?.outesEyeShape === 'round' && 6 || data?.outesEyeShape === 'flower' && [12, 12, 0, 16] || data?.outesEyeShape === 'leaf' && [50, 0, 50, 0],
-              inner: data?.innerEyeShape === 'square' && 0 || data?.innerEyeShape === 'dots' && 50 || data?.innerEyeShape === 'round' && 6 || data?.innerEyeShape === 'flower' && [12, 12, 0, 16] || data?.innerEyeShape === 'leaf' && [50, 0, 50, 0],
-            }
-          ],
-          eyeColor: [ // build eyeColor manually
-            {
-              outer: data?.outerEyeColor,
-              inner: data?.innerEyeColor
-            },
-            {
-              outer: data?.outerEyeColor,
-              inner: data?.innerEyeColor
-            },
-            {
-              outer: data?.outerEyeColor,
-              inner: data?.innerEyeColor
-            },
-          ]
-        }} />
+        <QRCode
+          {...{
+            qrStyle: data?.qrStyle,
+            fgColor: data?.fgColor,
+            ecLevel: "M",
+            value: value,
+            size: data?.QrSize,
+            bgColor: data?.bgColor,
+            logoImage: data?.logo,
+            logoPadding: 5,
+            logoWidth: data?.logoSize,
+            eyeRadius: [
+              {
+                outer:
+                  (data?.outesEyeShape === "square" && 0) ||
+                  (data?.outesEyeShape === "dots" && 50) ||
+                  (data?.outesEyeShape === "round" && 6) ||
+                  (data?.outesEyeShape === "flower" && [12, 12, 0, 16]) ||
+                  (data?.outesEyeShape === "leaf" && [50, 0, 50, 0]),
+                inner:
+                  (data?.innerEyeShape === "square" && 0) ||
+                  (data?.innerEyeShape === "dots" && 50) ||
+                  (data?.innerEyeShape === "round" && 6) ||
+                  (data?.innerEyeShape === "flower" && [12, 12, 0, 16]) ||
+                  (data?.innerEyeShape === "leaf" && [50, 0, 50, 0]),
+              },
+              {
+                outer:
+                  (data?.outesEyeShape === "square" && 0) ||
+                  (data?.outesEyeShape === "dots" && 50) ||
+                  (data?.outesEyeShape === "round" && 6) ||
+                  (data?.outesEyeShape === "flower" && [12, 12, 0, 16]) ||
+                  (data?.outesEyeShape === "leaf" && [50, 0, 50, 0]),
+                inner:
+                  (data?.innerEyeShape === "square" && 0) ||
+                  (data?.innerEyeShape === "dots" && 50) ||
+                  (data?.innerEyeShape === "round" && 6) ||
+                  (data?.innerEyeShape === "flower" && [12, 12, 0, 16]) ||
+                  (data?.innerEyeShape === "leaf" && [50, 0, 50, 0]),
+              },
+              {
+                outer:
+                  (data?.outesEyeShape === "square" && 0) ||
+                  (data?.outesEyeShape === "dots" && 50) ||
+                  (data?.outesEyeShape === "round" && 6) ||
+                  (data?.outesEyeShape === "flower" && [12, 12, 0, 16]) ||
+                  (data?.outesEyeShape === "leaf" && [50, 0, 50, 0]),
+                inner:
+                  (data?.innerEyeShape === "square" && 0) ||
+                  (data?.innerEyeShape === "dots" && 50) ||
+                  (data?.innerEyeShape === "round" && 6) ||
+                  (data?.innerEyeShape === "flower" && [12, 12, 0, 16]) ||
+                  (data?.innerEyeShape === "leaf" && [50, 0, 50, 0]),
+              },
+            ],
+            eyeColor: [
+              // build eyeColor manually
+              {
+                outer: data?.outerEyeColor,
+                inner: data?.innerEyeColor,
+              },
+              {
+                outer: data?.outerEyeColor,
+                inner: data?.innerEyeColor,
+              },
+              {
+                outer: data?.outerEyeColor,
+                inner: data?.innerEyeColor,
+              },
+            ],
+          }}
+        />
         {/* <DottedQRCode value={item?.url} /> */}
 
         {/* <QRCode
@@ -87,7 +123,6 @@ const QrView = ({ item, logo, value, data }) => {
           size={item.width}
           value={value}
         /> */}
-
       </div>
     </div>
   );

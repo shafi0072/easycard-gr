@@ -354,8 +354,8 @@ const Content = ({ item, bgColor, color, design }) => {
         </p> */}
         <p
           className={`${
-            design === "pro" ? "text-[18px] roboto" : "text-[16px]"
-          } w-[230px]  `}
+            design === "pro" ? "text-[18px] roboto leading-tight" : "text-[16px]"
+          } w-[230px] `}
         >
           {/* {item?.type !== "Phone" && item?.number && item?.number}{" "} */}
           {item?.number && !item?.internationalNumber && item?.number}
