@@ -32,12 +32,12 @@ const QrView = ({ item, logo, value, data }) => {
       >
         <QRCode
           {...{
-            qrStyle: data?.qrStyle,
-            fgColor: data?.fgColor,
+            qrStyle: data?.qrStyle || 'dots',
+            fgColor: data?.fgColor || '#0053a2',
             ecLevel: "M",
             value: value,
-            size: data?.QrSize,
-            bgColor: data?.bgColor,
+            size: data?.QrSize || 160,
+            bgColor: data?.bgColor || '#ffffff',
             logoImage: data?.logo,
             logoPadding: 5,
             logoWidth: data?.logoSize,
@@ -48,13 +48,13 @@ const QrView = ({ item, logo, value, data }) => {
                   (data?.outesEyeShape === "dots" && 50) ||
                   (data?.outesEyeShape === "round" && 6) ||
                   (data?.outesEyeShape === "flower" && [12, 12, 0, 16]) ||
-                  (data?.outesEyeShape === "leaf" && [50, 0, 50, 0]),
+                  (data?.outesEyeShape === "leaf" && [50, 0, 50, 0]) || 50,
                 inner:
                   (data?.innerEyeShape === "square" && 0) ||
                   (data?.innerEyeShape === "dots" && 50) ||
                   (data?.innerEyeShape === "round" && 6) ||
                   (data?.innerEyeShape === "flower" && [12, 12, 0, 16]) ||
-                  (data?.innerEyeShape === "leaf" && [50, 0, 50, 0]),
+                  (data?.innerEyeShape === "leaf" && [50, 0, 50, 0]) || 6,
               },
               {
                 outer:
@@ -62,13 +62,13 @@ const QrView = ({ item, logo, value, data }) => {
                   (data?.outesEyeShape === "dots" && 50) ||
                   (data?.outesEyeShape === "round" && 6) ||
                   (data?.outesEyeShape === "flower" && [12, 12, 0, 16]) ||
-                  (data?.outesEyeShape === "leaf" && [50, 0, 50, 0]),
+                  (data?.outesEyeShape === "leaf" && [50, 0, 50, 0]) || 50,
                 inner:
                   (data?.innerEyeShape === "square" && 0) ||
                   (data?.innerEyeShape === "dots" && 50) ||
                   (data?.innerEyeShape === "round" && 6) ||
                   (data?.innerEyeShape === "flower" && [12, 12, 0, 16]) ||
-                  (data?.innerEyeShape === "leaf" && [50, 0, 50, 0]),
+                  (data?.innerEyeShape === "leaf" && [50, 0, 50, 0])|| 6,
               },
               {
                 outer:
@@ -76,29 +76,30 @@ const QrView = ({ item, logo, value, data }) => {
                   (data?.outesEyeShape === "dots" && 50) ||
                   (data?.outesEyeShape === "round" && 6) ||
                   (data?.outesEyeShape === "flower" && [12, 12, 0, 16]) ||
-                  (data?.outesEyeShape === "leaf" && [50, 0, 50, 0]),
+                  (data?.outesEyeShape === "leaf" && [50, 0, 50, 0])|| 50,
                 inner:
                   (data?.innerEyeShape === "square" && 0) ||
                   (data?.innerEyeShape === "dots" && 50) ||
                   (data?.innerEyeShape === "round" && 6) ||
                   (data?.innerEyeShape === "flower" && [12, 12, 0, 16]) ||
-                  (data?.innerEyeShape === "leaf" && [50, 0, 50, 0]),
+                  (data?.innerEyeShape === "leaf" && [50, 0, 50, 0]) || 6,
               },
             ],
             eyeColor: [
               // build eyeColor manually
               {
-                outer: data?.outerEyeColor,
-                inner: data?.innerEyeColor,
+                outer: data?.outerEyeColor || '#0053a2',
+                inner: data?.innerEyeColor || '#D40808'
               },
               {
-                outer: data?.outerEyeColor,
-                inner: data?.innerEyeColor,
+                outer: data?.outerEyeColor || '#0053a2',
+                inner: data?.innerEyeColor || '#D40808'
               },
               {
-                outer: data?.outerEyeColor,
-                inner: data?.innerEyeColor,
+                outer: data?.outerEyeColor || '#0053a2',
+                inner: data?.innerEyeColor || '#D40808'
               },
+              
             ],
           }}
         />
