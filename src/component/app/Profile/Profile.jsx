@@ -413,7 +413,7 @@ END:VCARD
 
             <div className="mx-6 ">
               <div className=" w-full md:w-[383px]">
-                {datas?.profileInfo?.introduction && <p className="mt-2 italic text-[#69727d]">
+                {datas?.profileInfo?.introduction && <p className="italic text-[#69727d]">
                   {datas?.profileInfo?.introduction}
                 </p>}
               </div>
@@ -428,7 +428,7 @@ END:VCARD
                       <div className="w-full h-[2px] bg-gray-400 mt-1 mb-6"></div>
                     )}
                     {item?.type === "Header" && (
-                      <h2 className="pb-2 border-gray-400 mt-3 font-semibold text-2xl text-black roboto">
+                      <h2 className="pb-3 border-gray-400 mt-3 font-semibold text-2xl text-black roboto">
                         {item?.title}
                       </h2>
                     )}
