@@ -738,7 +738,6 @@ END:VCARD
               <PermContactCalendarIcon />ΑΠΟΘΗΚΕΥΣΗ ΕΠΑΦΗΣ
             </button>
           </div>
-          {/* <AddContactButton/> */}
         </div>
       )}
     </>
