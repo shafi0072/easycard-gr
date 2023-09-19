@@ -431,7 +431,7 @@ END:VCARD
                       <div className="w-full h-[2px] bg-gray-400 mt-1 mb-6"></div>
                     )}
                     {item?.type === "Header" && (
-                      <h2 className="pb-3 border-gray-400 mt-[20px] font-semibold text-2xl text-black roboto">
+                      <h2 className="pb-3 border-gray-400 mt-[40px] font-semibold text-2xl text-black roboto">
                         {item?.title}
                       </h2>
                     )}

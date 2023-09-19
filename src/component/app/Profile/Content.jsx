@@ -340,6 +340,12 @@ const Content = ({ item, bgColor, color, design }) => {
             )}-${item?.number.substring(6)}`}  <span className="ms-2" > {item?.ext && `ext: ${item?.ext}`} </span></p>
            
           <p className="" style={{wordWrap: 'break-word'}}>{item?.url && item?.url} {item?.address && item?.address}  </p>
+          {/* {
+            item?.url && <p>{item?.url}</p>
+          }
+          {
+            item?.address && <p>{item?.address}</p>
+          } */}
          
           
           {item?.chooseLabel && !item?.hideLabelCopy && (
