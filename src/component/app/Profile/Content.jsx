@@ -354,9 +354,11 @@ const Content = ({ item, bgColor, color, design }) => {
         </p> */}
         <div
           className={`${
-            design === "pro" ? "text-[18px] roboto leading-tight" : "text-[16px]"
-          } w-[290px]`}
-          style={{ overflowWrap: 'break-word' }}
+            design === "pro"
+              ? "text-[18px] roboto leading-tight"
+              : "text-[16px]"
+          } w-[290px] md:w-[280px]`}
+          style={{ overflowWrap: "break-word" }}
         >
           {/* {item?.type !== "Phone" && item?.number && item?.number}{" "} */}
           {item?.number && !item?.internationalNumber && item?.number}
@@ -378,7 +380,11 @@ const Content = ({ item, bgColor, color, design }) => {
             <span className="block">{item?.displayUrl}</span>
           )}
           {item?.label && (
-            <span className={`${design === "pro" ? "text-[14px] roboto":"text-[16px]"}`}>
+            <span
+              className={`${
+                design === "pro" ? "text-[14px] roboto" : "text-[16px]"
+              }`}
+            >
               {item?.label}
             </span>
           )}
