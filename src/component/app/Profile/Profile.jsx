@@ -674,9 +674,9 @@ END:VCARD
                 ))}
               </div>
             </div>
-            <div className="h-[45vh]"> 
+            <div className="h-[42vh]"> 
             <div className="mx-6  relative  ">
-              <h1 className="pb-2 border-gray-400 mt-3 font-semibold text-2xl text-black roboto">
+              <h1 className="pb-2 border-gray-400 mt-[40px] font-semibold text-2xl text-black roboto">
                 Η ΚΑΡΤΑ ΜΟΥ
               </h1>
               <div className="absolute -left-2 ">
