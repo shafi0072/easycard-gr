@@ -32,8 +32,8 @@ const LinkComponent = ({ item,color,bgColor,design }) => {
 
             </div>
             <div className='' >
-                <p className={`${design === "pro" && "text-[18px] roboto leading-tight"} `} > {item?.displayUrl}  </p>
-                <p className={`${design === "pro" && "text-[14px] roboto leading-tight"} `}>
+                <p className={`${design === "pro" && "text-[18px] roboto leading-tight"} w-[240px] md:w-[270px]`} style={{ overflowWrap: 'break-word' }}> {item?.displayUrl}  </p>
+                <p className={`${design === "pro" && "text-[14px] roboto leading-tight"} w-[240px] md:w-[270px]`} style={{ overflowWrap: 'break-word' }}>
                     {item?.label}
                 </p>
             </div>

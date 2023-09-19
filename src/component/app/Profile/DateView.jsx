@@ -31,7 +31,7 @@ const DateView = ({ item,bgColor,color,design }) => {
                 {item?.date}
               </Moment>
             </p>
-            <p className={`${design === "pro" && "text-[14px] roboto leading-tight"} `} >{item?.label}</p>
+            <p className={`${design === "pro" && "text-[14px] roboto leading-tight"} w-[240px] md:w-[270px]`} style={{ overflowWrap: 'break-word' }}>{item?.label}</p>
           </div>
         </div>
       )}
