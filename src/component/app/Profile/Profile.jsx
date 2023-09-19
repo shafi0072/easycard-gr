@@ -332,28 +332,30 @@ END:VCARD
                   )}
                 </div>
                 <div
-                  className="w-full md:w-[75%] text-white mx-auto text-center flex flex-col gap-y-2  md:rounded-b-2xl py-[20px]"
+                  className="w-full md:w-[75%]  text-white mx-auto text-center  md:rounded-b-2xl py-[20px]"
                   style={{ background: datas?.display?.primaryColor }}
                 >
-                  <h2 className="text-[27px] text-white font-semibold roboto">
+                  <h2 className="text-[27px] text-white font-semibold roboto" style={{lineHeight: '30px'}}>
                     {datas?.profileInfo?.prefix &&
                       datas?.profileInfo?.prefix + "."}{" "}
                     {datas?.profileInfo?.first_name +
                       " " +
                       datas?.profileInfo?.last_name}
-                    <br />
-                    {datas?.profileInfo?.suffix + " "}
+                    
+                    <p className="flex justify-center items-center ">
+                    <span className="block text-[27px]">{datas?.profileInfo?.suffix + " "}</span>
                     <span
-                      className="text-[20px] roboto"
-                      style={{ fontWeight: "300" }}
-                    >
-                      {datas?.profileInfo?.accreditations}
+                      className="  text-[18px] roboto ms-2"
+                      style={{ fontWeight:300, lineHeight: '18px' }} 
+                      >
+                      {datas?.profileInfo?.accreditations && `(${datas?.profileInfo?.accreditations})`}
                     </span>
+                    </p>
                   </h2>
-                  <p className=" font-medium text-[18px]  roboto ">
+                  <p className="mt-[10px] font-medium text-[18px]  roboto " style={{lineHeight: '24px'}}>
                     {datas?.profileInfo?.job_title}
                   </p>
-                  <p className="-my-3">{datas?.profileInfo?.department}</p>
+                  <p className="">{datas?.profileInfo?.department}</p>
                   <p className="italic  roboto">
                     {datas?.profileInfo?.company}
                   </p>
@@ -402,10 +404,10 @@ END:VCARD
                   <h4 className="font-medium italic text-[#585858]">
                     {datas?.profileInfo?.job_title}
                   </h4>
-                  <h3 style={{ color: datas?.display?.primaryColor }}>
+                  <h3  style={{ color: datas?.display?.primaryColor}}>
                     {datas?.profileInfo?.department}
                   </h3>
-                  <h3 className=" mb-2">{datas?.profileInfo?.company}</h3>
+                  <h3 className=" mb-0">{datas?.profileInfo?.company}</h3>
                 </div>
               </div>
             )}
@@ -677,7 +679,7 @@ END:VCARD
               <h1 className="pb-2 border-gray-400 mt-3 font-semibold text-2xl text-black roboto">
                 Η ΚΑΡΤΑ ΜΟΥ
               </h1>
-              <div className="absolute -left-2">
+              <div className="absolute -left-2 ">
                 <QRCode
                   {...{
                     qrStyle: "dots",

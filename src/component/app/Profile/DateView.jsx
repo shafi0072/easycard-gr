@@ -5,7 +5,7 @@ const DateView = ({ item,bgColor,color,design }) => {
   return (
     <div>
       {item?.date && (
-        <div className="my-5 flex gap-4 items-center">
+        <div className="my-5 flex gap-4 items-center ">
           <div    style={{ backgroundColor: bgColor }} className={` ${design === "pro"?"w-[42px] h-[42px]":"w-[50px] h-[50px]"} flex items-center justify-center rounded-full`}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -26,12 +26,12 @@ const DateView = ({ item,bgColor,color,design }) => {
             </svg>
           </div>
           <div>
-            <p className={`${design === "pro" && "text-[18px] roboto leading-tight"}`}>
+            <p className={`${design === "pro" && "text-[18px] roboto leading-tight"} `} >
               <Moment format="DD/MM/YYYY">
                 {item?.date}
               </Moment>
             </p>
-            <p className={`${design === "pro" && "text-[14px] roboto leading-tight"}`}>{item?.label}</p>
+            <p className={`${design === "pro" && "text-[14px] roboto leading-tight"} w-[290px]`} style={{ overflowWrap: 'break-word' }}>{item?.label}</p>
           </div>
         </div>
       )}
