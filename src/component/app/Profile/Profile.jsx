@@ -674,7 +674,7 @@ END:VCARD
                 ))}
               </div>
             </div>
-            <div className="h-[35vh]"> 
+            <div className="h-[50vh]"> 
             <div className="mx-6  relative  ">
               <h1 className="pb-2 border-gray-400 mt-3 font-semibold text-2xl text-black roboto">
                 Η ΚΑΡΤΑ ΜΟΥ
@@ -728,7 +728,7 @@ END:VCARD
             </div>
             <button
               onClick={handleAddContactClick}
-              className=" text-white w-[300px]  h-[50px] md:w-[300px] md:h-[70px] md:px-5 fixed left-[50%] bottom-5 -translate-x-1/2 text-lg md:text-2xl rounded-full transition-all duration-300 hover:scale-125 font-bold"
+              className=" text-white w-[300px]  h-[50px] md:w-[350px] md:h-[70px] md:px-5 fixed left-[50%] bottom-5 -translate-x-1/2 text-lg md:text-2xl rounded-full transition-all duration-300 hover:scale-125 font-bold"
               style={{
                 background: datas?.display?.secondaryColor,
                 color: datas?.display?.secondaryAccent,

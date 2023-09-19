@@ -4,8 +4,8 @@ const Content = ({ item, bgColor, color, design }) => {
   const phoneIcon = (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="17.085"
-      height="19.102"
+      width="15.085"
+      height="15.102"
       viewBox="0 0 17.085 19.102"
     >
       <path
@@ -302,9 +302,9 @@ const Content = ({ item, bgColor, color, design }) => {
     <div className="flex  gap-3 my-5 items-center">
       <div
         className={`${
-          design === "pro" ? "w-[42px] h-[42px]" : "w-[50px] h-[50px]"
-        } rounded-full flex justify-center items-center`}
-        style={{ backgroundColor: bgColor }}
+          design === "pro" ? " w-[42px] h-[42px]" : "w-[50px] h-[50px]"
+        }  rounded-full flex justify-center items-center `}
+        style={{ backgroundColor: bgColor , }}
       >
         {item?.type === "Phone" && phoneIcon}
 
@@ -322,65 +322,38 @@ const Content = ({ item, bgColor, color, design }) => {
         {item?.type === "Slack" && slackIcon}
       </div>
       <div>
-        {/* <p className="w-[230px] roboto">
-          {item?.number && !item?.internationalNumber && item?.number}
-          {item?.number &&
-            item?.internationalNumber &&
-            `+(${item?.number.substring(0, 3)}) ${item?.number.substring(
-              3,
-              6
-            )}-${item?.number.substring(6)}`}
-          {  item?.url && item?.url}
-          {item?.address && item?.address}{" "}
-          <span className="ms-5"> {item?.ext && `ext: ${item?.ext}`} </span>{" "}
-          <br />{" "}
-          {item?.chooseLabel && !item?.hideLabelCopy && (
-            <span className={`${design === "pro" && "text-[14px]"}`}>
-              {item?.chooseLabel}
-            </span>
-          )}{" "}
-          {item?.displayUrl && <div>{item?.displayUrl}</div>}
-          {item?.label && (
-            <span
-              className={`${
-                item?.type !== "Website" &&
-                design === "pro" &&
-                "text-[14px] roboto"
-              }`}
-            >
-              {item?.label}
-            </span>
-          )}
-        </p> */}
+       
         <div
           className={`${
             design === "pro" ? "text-[18px] roboto leading-tight" : "text-[16px]"
-          } w-[290px]`}
-          style={{ overflowWrap: 'break-word' }}
+          } w-[240px]`}
+          
         >
           {/* {item?.type !== "Phone" && item?.number && item?.number}{" "} */}
+          <p >
           {item?.number && !item?.internationalNumber && item?.number}
           {item?.number &&
             item?.internationalNumber &&
             `+(${item?.number.substring(0, 3)}) ${item?.number.substring(
               3,
               6
-            )}-${item?.number.substring(6)}`}
-          {item?.url && item?.url} {item?.address && item?.address}{" "}
-          <span className="ms-5"> {item?.ext && `ext: ${item?.ext}`} </span>{" "}
-          <br />{" "}
+            )}-${item?.number.substring(6)}`}  <span className="ms-2" > {item?.ext && `ext: ${item?.ext}`} </span></p>
+           
+          <p className="" style={{wordWrap: 'break-word'}}>{item?.url && item?.url} {item?.address && item?.address}  </p>
+         
+          
           {item?.chooseLabel && !item?.hideLabelCopy && (
-            <span className={`${design === "pro" && "text-[14px]"}`}>
+            <p className={`${design === "pro" && "text-[14px]"}`}>
               {item?.chooseLabel}
-            </span>
-          )}{" "}
+            </p>
+          )}
           {item?.displayUrl && (
-            <span className="block">{item?.displayUrl}</span>
+            <p className="">{item?.displayUrl}</p>
           )}
           {item?.label && (
-            <span className={`${design === "pro" ? "text-[14px] roboto":"text-[16px]"}`}>
+            <p className={`${design === "pro" ? "text-[14px] roboto":"text-[16px]"} `}>
               {item?.label}
-            </span>
+            </p>
           )}
         </div>
       </div>
