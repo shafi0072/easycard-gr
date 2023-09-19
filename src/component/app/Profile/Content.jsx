@@ -299,7 +299,7 @@ const Content = ({ item, bgColor, color, design }) => {
   );
 
   return (
-    <div className="flex gap-3 my-5 items-center">
+    <div className="flex  gap-3 my-5 items-center">
       <div
         className={`${
           design === "pro" ? "w-[42px] h-[42px]" : "w-[50px] h-[50px]"
@@ -352,10 +352,11 @@ const Content = ({ item, bgColor, color, design }) => {
             </span>
           )}
         </p> */}
-        <p
+        <div
           className={`${
             design === "pro" ? "text-[18px] roboto leading-tight" : "text-[16px]"
-          } w-[230px] `}
+          } w-[290px]`}
+          style={{ overflowWrap: 'break-word' }}
         >
           {/* {item?.type !== "Phone" && item?.number && item?.number}{" "} */}
           {item?.number && !item?.internationalNumber && item?.number}
@@ -381,7 +382,7 @@ const Content = ({ item, bgColor, color, design }) => {
               {item?.label}
             </span>
           )}
-        </p>
+        </div>
       </div>
     </div>
   );

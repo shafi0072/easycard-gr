@@ -27,7 +27,7 @@ const Profile = ({ id }) => {
 
   const [ip, setIp] = useState({});
   const [device, setDevice] = useState({});
-  const [active, setActive] = useState(true)
+  const [active, setActive] = useState(true);
   useEffect(() => {
     fetch(`https://business-card-backend-2.vercel.app/cards/visit/${id}`)
       .then((res) => res.json())
@@ -181,9 +181,9 @@ END:VCARD
 
   useEffect(() => {
     setTimeout(() => {
-      setActive(datas?.setting?.cardStatus)
-    }, 1000)
-  }, [datas])
+      setActive(datas?.setting?.cardStatus);
+    }, 1000);
+  }, [datas]);
   return (
     <>
       {/* {!datas?._id && <MobileLoading />} */}
@@ -233,7 +233,6 @@ END:VCARD
                     )}
                   <div className="">
                     <div className="absolute  top-[72%]  z-10 w-full">
-
                       <svg
                         class="card-wavestyled__Wave-card__sc-4t6hon-0 daNA-Du WaveHeaderstyled__Divider-card__sc-1ootntz-2 BRgwB"
                         preserveAspectRatio="xMinYMax meet"
@@ -314,8 +313,8 @@ END:VCARD
                   style={{ borderColor: color }}
                 >
                   {datas?.display?.ProfileImage !== null &&
-                    datas?.display?.ProfileImage !== "null" &&
-                    datas?.display?.ProfileImage ? (
+                  datas?.display?.ProfileImage !== "null" &&
+                  datas?.display?.ProfileImage ? (
                     <img
                       className=" object-cover  h-full w-full"
                       src={
@@ -351,11 +350,11 @@ END:VCARD
                       {datas?.profileInfo?.accreditations}
                     </span>
                   </h2>
-                  <p className=" font-medium text-[18px]  roboto " >
+                  <p className=" font-medium text-[18px]  roboto ">
                     {datas?.profileInfo?.job_title}
                   </p>
                   <p className="-my-3">{datas?.profileInfo?.department}</p>
-                  <p className="italic  roboto" >
+                  <p className="italic  roboto">
                     {datas?.profileInfo?.company}
                   </p>
                 </div>
@@ -413,22 +412,24 @@ END:VCARD
 
             <div className="mx-6 ">
               <div className=" w-full md:w-[383px]">
-                {datas?.profileInfo?.introduction && <p className="italic text-[#69727d]">
-                  {datas?.profileInfo?.introduction}
-                </p>}
+                {datas?.profileInfo?.introduction && (
+                  <p className="italic text-[#69727d]">
+                    {datas?.profileInfo?.introduction}
+                  </p>
+                )}
               </div>
               <div className="my-5">
                 <FieldData userData={datas} />
               </div>
 
-              <div className="my-5 w-full md:w-[383px] ">
+              <div className="my-5 w-full md:max-w-[383px]">
                 {datas?.fields?.map((item, index) => (
                   <>
                     {item?.type === "Divider" && (
                       <div className="w-full h-[2px] bg-gray-400 mt-1 mb-6"></div>
                     )}
                     {item?.type === "Header" && (
-                      <h2 className="pb-3 border-gray-400 mt-3 font-semibold text-2xl text-black roboto">
+                      <h2 className="pb-3 border-gray-400 mt-[20px] font-semibold text-2xl text-black roboto">
                         {item?.title}
                       </h2>
                     )}
@@ -449,12 +450,11 @@ END:VCARD
                       <Link
                         href={
                           item.url.slice(0, 4) !== "http" &&
-                            item.url.slice(0, 5) !== "https"
+                          item.url.slice(0, 5) !== "https"
                             ? `https://${item.url}`
                             : item.url
                         }
                       >
-
                         <Website
                           bgColor={datas?.display?.primaryColor}
                           color={datas?.display?.primaryAccent}
@@ -482,7 +482,6 @@ END:VCARD
                       />
                     )}
                     {item?.type === "Link" && (
-
                       <LinkComponent
                         bgColor={datas?.display?.primaryColor}
                         color={datas?.display?.primaryAccent}
@@ -569,9 +568,7 @@ END:VCARD
                         }}
                         className=" w-[52px] h-[52px] mt-1.5 items-center justify-center inline-flex rounded-full mr-2  "
                       >
-                        <FacebookIcon
-                          style={{ color: "white" }}
-                        />{" "}
+                        <FacebookIcon style={{ color: "white" }} />{" "}
                       </a>
                     )}
                     {item?.type === "Instagram" && (
@@ -582,9 +579,7 @@ END:VCARD
                         href={item?.url}
                         className="bg-[#EB531C] w-[52px] h-[52px] mt-1.5 items-center justify-center inline-flex rounded-full mr-2  "
                       >
-                        <InstagramIcon
-                          style={{ color: "white" }}
-                        />
+                        <InstagramIcon style={{ color: "white" }} />
                       </a>
                     )}
                     {item?.type === "Twitter" && (
@@ -595,9 +590,7 @@ END:VCARD
                         href={item?.url}
                         className="bg-[#EB531C] w-[52px] mt-1.5 h-[52px] items-center justify-center inline-flex rounded-full mr-2  "
                       >
-                        <TwitterIcon
-                          style={{ color: "white" }}
-                        />
+                        <TwitterIcon style={{ color: "white" }} />
                       </a>
                     )}
                     {item?.type === "LinkedIn" && (
@@ -608,9 +601,7 @@ END:VCARD
                         href={item?.url}
                         className="bg-[#EB531C] w-[52px] h-[52px] mt-1.5  items-center justify-center inline-flex rounded-full mr-2  "
                       >
-                        <LinkedInIcon
-                          style={{ color: "white" }}
-                        />{" "}
+                        <LinkedInIcon style={{ color: "white" }} />{" "}
                       </a>
                     )}
                     {item?.type === "Pinterest" && (
@@ -621,9 +612,7 @@ END:VCARD
                         href={item?.url}
                         className="bg-[#EB531C] w-[52px] h-[52px] mt-1.5  items-center justify-center inline-flex rounded-full mr-2  "
                       >
-                        <PinterestIcon
-                          style={{ color: "white" }}
-                        />
+                        <PinterestIcon style={{ color: "white" }} />
                       </a>
                     )}
                     {item?.type === "Tiktok" && (
@@ -683,68 +672,68 @@ END:VCARD
                 ))}
               </div>
             </div>
-            <div className="mx-6 mb-24 relative ">
+            <div className="h-[35vh]"> 
+            <div className="mx-6  relative  ">
               <h1 className="pb-2 border-gray-400 mt-3 font-semibold text-2xl text-black roboto">
-                Get My Details
+                Η ΚΑΡΤΑ ΜΟΥ
               </h1>
               <div className="absolute -left-2">
                 <QRCode
                   {...{
-                    qrStyle: 'dots',
-                    fgColor: '#0053a2',
+                    qrStyle: "dots",
+                    fgColor: "#0053a2",
                     ecLevel: "M",
                     value: window?.location?.href,
                     size: 160,
-                    bgColor: '#ffffff',
+                    bgColor: "#ffffff",
 
                     logoPadding: 0,
                     eyeRadius: [
                       {
                         outer: 50,
 
-                        inner: 6
-
+                        inner: 6,
                       },
                       {
                         outer: 50,
 
-                        inner: 6
-
+                        inner: 6,
                       },
                       {
                         outer: 50,
-                        inner: 6
+                        inner: 6,
                       },
                     ],
                     eyeColor: [
                       // build eyeColor manually
                       {
-                        outer: '#0053a2',
-                        inner: '#D40808',
+                        outer: "#0053a2",
+                        inner: "#D40808",
                       },
                       {
-                        outer: '#0053a2',
-                        inner: '#D40808',
+                        outer: "#0053a2",
+                        inner: "#D40808",
                       },
                       {
-                        outer: '#0053a2',
-                        inner: '#D40808',
+                        outer: "#0053a2",
+                        inner: "#D40808",
                       },
                     ],
                   }}
                 />
               </div>
             </div>
+            </div>
             <button
               onClick={handleAddContactClick}
-              className=" text-white w-[200px]  h-[50px] md:w-[270px] md:h-[70px] md:px-5 fixed left-[50%] bottom-5 -translate-x-1/2 text-lg md:text-2xl rounded-full transition-all duration-300 hover:scale-125 font-bold"
+              className=" text-white w-[300px]  h-[50px] md:w-[300px] md:h-[70px] md:px-5 fixed left-[50%] bottom-5 -translate-x-1/2 text-lg md:text-2xl rounded-full transition-all duration-300 hover:scale-125 font-bold"
               style={{
                 background: datas?.display?.secondaryColor,
                 color: datas?.display?.secondaryAccent,
               }}
             >
               {" "}
-              <PermContactCalendarIcon /> SAVE CONTACT
+              <PermContactCalendarIcon />ΑΠΟΘΗΚΕΥΣΗ ΕΠΑΦΗΣ
             </button>
           </div>
           {/* <AddContactButton/> */}
