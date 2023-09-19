@@ -299,7 +299,7 @@ const Content = ({ item, bgColor, color, design }) => {
   );
 
   return (
-    <div className="flex  gap-3 my-5 items-center">
+    <div className="flex  gap-3 my-5 items-center ">
       <div
         className={`${
           design === "pro" ? " w-[42px] h-[42px]" : "w-[50px] h-[50px]"
@@ -330,14 +330,14 @@ const Content = ({ item, bgColor, color, design }) => {
           
         >
           {/* {item?.type !== "Phone" && item?.number && item?.number}{" "} */}
-          <p >
+          {item?.number && <p >
           {item?.number && !item?.internationalNumber && item?.number}
           {item?.number &&
             item?.internationalNumber &&
             `+(${item?.number.substring(0, 3)}) ${item?.number.substring(
               3,
               6
-            )}-${item?.number.substring(6)}`}  <span className="ms-2" > {item?.ext && `ext: ${item?.ext}`} </span></p>
+            )}-${item?.number.substring(6)}`}  <span className="ms-2" > {item?.ext && `ext: ${item?.ext}`} </span></p> }
            
           <p className="" style={{wordWrap: 'break-word'}}>{item?.url && item?.url} {item?.address && item?.address}  </p>
           {/* {
