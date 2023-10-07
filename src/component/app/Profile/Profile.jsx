@@ -21,6 +21,7 @@ import Link from "next/link";
 import Website from "./Website";
 import LinkComponent from "./LinkComponent";
 import { QRCode } from "react-qrcode-logo";
+import Text from "./Text";
 
 const Profile = ({ id }) => {
   const [datas, setData] = useState(null);
@@ -559,6 +560,7 @@ END:VCARD
                         item={item}
                       />
                     )}
+                    {item?.type === 'Text' && <Text item={item}/>}
 
                     {/* social media  */}
 
