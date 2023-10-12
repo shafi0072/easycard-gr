@@ -200,15 +200,15 @@ END:VCARD
                   className=" w-full md:w-[381px] h-[400px] border-b-[25px]"
                   style={{ borderColor: datas?.display?.primaryColor }}
                 >
-                  {datas?.display?.ProfileImage !== null &&
-                    datas?.display?.ProfileImage !== "null" &&
-                    datas?.display?.ProfileImage && (
+                  {
                       <img
                         className=" object-cover h-full w-full"
-                        src={datas?.display?.ProfileImage}
+                        src={datas?.display?.ProfileImage !== null &&
+                          datas?.display?.ProfileImage !== "null" &&
+                          datas?.display?.ProfileImage ? datas?.display?.ProfileImage : "/profile-image.png"}
                         alt=""
                       />
-                    )}
+                    }
                 </div>
                 <div className="my-6 px-1 w-full md:w-[80%] flex justify-center">
                   {datas?.display?.Logo !== null &&
@@ -225,15 +225,15 @@ END:VCARD
                   className=" w-full md:w-[381px] h-[300px]  relative rounded"
                   style={{ background: datas?.display?.primaryColor }}
                 >
-                  {datas?.display?.ProfileImage !== null &&
-                    datas?.display?.ProfileImage !== "null" &&
-                    datas?.display?.ProfileImage && (
-                      <img
+                  
+                      {<img
                         className="h-full w-full object-cover rounded"
-                        src={datas?.display?.ProfileImage}
+                        src={datas?.display?.ProfileImage !== null &&
+                          datas?.display?.ProfileImage !== "null" &&
+                          datas?.display?.ProfileImage ? datas?.display?.ProfileImage : "/profile-image.png"}
                         alt=""
                       />
-                    )}
+                    }
                   <div className="">
                     <div className="absolute  top-[72%]  z-10 w-full">
                       <svg
@@ -315,24 +315,15 @@ END:VCARD
                   className=" w-[100%] h-[400px]  rounded-md "
                   style={{ borderColor: color }}
                 >
-                  {datas?.display?.ProfileImage !== null &&
-                  datas?.display?.ProfileImage !== "null" &&
-                  datas?.display?.ProfileImage ? (
+                  {
                     <img
                       className=" object-cover  h-full w-full"
-                      src={
-                        datas?.display?.ProfileImage
-                          ? datas?.display?.ProfileImage
-                          : ""
-                      }
+                      src={datas?.display?.ProfileImage !== null &&
+                        datas?.display?.ProfileImage !== "null" &&
+                        datas?.display?.ProfileImage ? datas?.display?.ProfileImage : "/profile-image.png"}
                       alt=""
                     />
-                  ) : (
-                    <div
-                      className="w-[100%]  h-full"
-                      style={{ background: "#fff" }}
-                    ></div>
-                  )}
+                  }
                 </div>
                 <div
                   className="w-full md:w-[75%]  text-white mx-auto text-center  md:rounded-b-2xl py-[20px]"
@@ -382,12 +373,15 @@ END:VCARD
                 <div
                   className="mt-3 w-full md:w-[383px]"
                   style={{
-                    borderLeft:
-                      datas?.display?.design === "classic"
-                        ? `3px solid ${datas?.display?.primaryColor}`
-                        : "none",
+                    // borderLeft:
+                    //   datas?.display?.design === "classic"
+                    //     ? `3px solid ${datas?.display?.primaryColor}`
+                    //     : `3px dotted ${datas?.display?.secondaryColor}`,
+                    borderWidth: datas?.display?.design === "classic" ? '0 0 0 3px': '3px' ,
+                    borderStyle: datas?.display?.design === "classic" ? 'solid': 'dotted',
+                    borderColor: datas?.display?.secondaryColor,
                     padding:
-                      datas?.display?.design === "classic" ? "12px" : "0px",
+                      datas?.display?.design === "classic" ? "12px" : "12px",
                   }}
                 >
                   {datas?.profileInfo?.first_name && (
