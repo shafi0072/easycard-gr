@@ -379,7 +379,7 @@ END:VCARD
                     //     : `3px dotted ${datas?.display?.secondaryColor}`,
                     borderWidth: datas?.display?.design === "classic" ? '0 0 0 3px': '3px' ,
                     borderStyle: datas?.display?.design === "classic" ? 'solid': 'dotted',
-                    borderColor: datas?.display?.secondaryColor,
+                    borderColor: datas?.display?.primaryColor,
                     padding:
                       datas?.display?.design === "classic" ? "12px" : "12px",
                   }}
