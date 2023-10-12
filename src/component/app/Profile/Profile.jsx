@@ -197,8 +197,8 @@ END:VCARD
             {datas?.display?.design === "flat" && (
               <>
                 <div
-                  className=" w-full md:w-[381px] h-[410px] pb-3 "
-                  style={{ background: datas?.display?.primaryColor }}
+                  className=" w-full md:w-[381px] h-[400px] border-b-[25px]"
+                  style={{ borderColor: datas?.display?.primaryColor }}
                 >
                   {datas?.display?.ProfileImage !== null &&
                     datas?.display?.ProfileImage !== "null" &&
