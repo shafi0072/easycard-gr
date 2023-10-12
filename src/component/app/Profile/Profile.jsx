@@ -21,6 +21,8 @@ import Link from "next/link";
 import Website from "./Website";
 import LinkComponent from "./LinkComponent";
 import { QRCode } from "react-qrcode-logo";
+import Text from "./Text";
+import { data } from "autoprefixer";
 
 const Profile = ({ id }) => {
   const [datas, setData] = useState(null);
@@ -184,6 +186,7 @@ END:VCARD
       setActive(datas?.setting?.cardStatus);
     }, 1000);
   }, [datas]);
+  console.log({datas});
   return (
     <>
       {/* {!datas?._id && <MobileLoading />} */}
@@ -194,7 +197,7 @@ END:VCARD
             {datas?.display?.design === "flat" && (
               <>
                 <div
-                  className=" w-full md:w-[381px] h-[400px] pb-3 rounded-b-md"
+                  className=" w-full md:w-[381px] h-[410px] pb-3 "
                   style={{ background: datas?.display?.primaryColor }}
                 >
                   {datas?.display?.ProfileImage !== null &&
@@ -559,6 +562,7 @@ END:VCARD
                         item={item}
                       />
                     )}
+                    {item?.type === 'Text' && <Text item={item}/>}
 
                     {/* social media  */}
 
