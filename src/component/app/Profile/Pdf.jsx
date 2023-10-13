@@ -20,7 +20,7 @@ const Pdf = ({item,email,bgColor,color,design}) => {
         <div className="mt-5">
          
           <div className="flex gap-3 items-center">
-            <div style={{ backgroundColor: bgColor }} className={`${design === "pro"?
+            <div style={{ backgroundColor: bgColor }} className={`flex justify-center items-center ${design === "pro"?
              "w-[42px] h-[42px]":"w-[50px] h-[50px]"} p-2 rounded-full`}>
               <PictureAsPdfOutlinedIcon sx={{ color: color }} />
             </div>
