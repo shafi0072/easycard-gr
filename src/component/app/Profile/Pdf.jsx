@@ -26,7 +26,7 @@ const Pdf = ({item,email,bgColor,color,design}) => {
             </div>
             <button onClick={downloadPdf} title="click to download pdf">
               {" "}
-              <h2 className="text-xl">See My Experience</h2>
+              <h2 className="text-xl">{item?.label}</h2>
             </button>
           </div>
         </div>
