@@ -371,13 +371,13 @@ END:VCARD
             {datas?.display?.design !== "pro" && (
               <div className="px-3">
                 <div
-                  className="mt-3 w-full md:w-[383px]"
+                  className={`mt-3 w-full md:w-[383px] ${ datas?.display?.design === "classic" ? 'border-l-[3px]': 'border-l-[3px] md:border-[3px]'}`}
                   style={{
                     // borderLeft:
                     //   datas?.display?.design === "classic"
                     //     ? `3px solid ${datas?.display?.primaryColor}`
                     //     : `3px dotted ${datas?.display?.secondaryColor}`,
-                    borderWidth: datas?.display?.design === "classic" ? '0 0 0 3px': '3px' ,
+                    // borderWidth: datas?.display?.design === "classic" ? '0 0 0 3px': '3px' ,
                     borderStyle: datas?.display?.design === "classic" ? 'solid': 'dotted',
                     borderColor: datas?.display?.primaryColor,
                     padding:
