@@ -186,7 +186,7 @@ END:VCARD
       setActive(datas?.setting?.cardStatus);
     }, 1000);
   }, [datas]);
-  console.log({datas});
+  console.log({ datas });
   return (
     <>
       {/* {!datas?._id && <MobileLoading />} */}
@@ -201,14 +201,18 @@ END:VCARD
                   style={{ borderColor: datas?.display?.primaryColor }}
                 >
                   {
-                      <img
-                        className=" object-cover h-full w-full"
-                        src={datas?.display?.ProfileImage !== null &&
-                          datas?.display?.ProfileImage !== "null" &&
-                          datas?.display?.ProfileImage ? datas?.display?.ProfileImage : "/profile-image.png"}
-                        alt=""
-                      />
-                    }
+                    <img
+                      className=" object-cover h-full w-full"
+                      src={
+                        datas?.display?.ProfileImage !== null &&
+                        datas?.display?.ProfileImage !== "null" &&
+                        datas?.display?.ProfileImage
+                          ? datas?.display?.ProfileImage
+                          : "/profile-image.png"
+                      }
+                      alt=""
+                    />
+                  }
                 </div>
                 <div className="my-6 px-1 w-full md:w-[80%] flex justify-center">
                   {datas?.display?.Logo !== null &&
@@ -225,15 +229,19 @@ END:VCARD
                   className=" w-full md:w-[381px] h-[300px]  relative rounded"
                   style={{ background: datas?.display?.primaryColor }}
                 >
-                  
-                      {<img
-                        className="h-full w-full object-cover rounded"
-                        src={datas?.display?.ProfileImage !== null &&
-                          datas?.display?.ProfileImage !== "null" &&
-                          datas?.display?.ProfileImage ? datas?.display?.ProfileImage : "/profile-image.png"}
-                        alt=""
-                      />
-                    }
+                  {
+                    <img
+                      className="h-full w-full object-cover rounded"
+                      src={
+                        datas?.display?.ProfileImage !== null &&
+                        datas?.display?.ProfileImage !== "null" &&
+                        datas?.display?.ProfileImage
+                          ? datas?.display?.ProfileImage
+                          : "/profile-image.png"
+                      }
+                      alt=""
+                    />
+                  }
                   <div className="">
                     <div className="absolute  top-[72%]  z-10 w-full">
                       <svg
@@ -318,9 +326,13 @@ END:VCARD
                   {
                     <img
                       className=" object-cover  h-full w-full"
-                      src={datas?.display?.ProfileImage !== null &&
+                      src={
+                        datas?.display?.ProfileImage !== null &&
                         datas?.display?.ProfileImage !== "null" &&
-                        datas?.display?.ProfileImage ? datas?.display?.ProfileImage : "/profile-image.png"}
+                        datas?.display?.ProfileImage
+                          ? datas?.display?.ProfileImage
+                          : "/profile-image.png"
+                      }
                       alt=""
                     />
                   }
@@ -329,24 +341,32 @@ END:VCARD
                   className="w-full md:w-[75%]  text-white mx-auto text-center  md:rounded-b-2xl py-[20px]"
                   style={{ background: datas?.display?.primaryColor }}
                 >
-                  <h2 className="text-[27px] text-white font-semibold roboto" style={{lineHeight: '30px'}}>
+                  <h2
+                    className="text-[27px] text-white font-semibold roboto"
+                    style={{ lineHeight: "30px" }}
+                  >
                     {datas?.profileInfo?.prefix &&
                       datas?.profileInfo?.prefix + "."}{" "}
                     {datas?.profileInfo?.first_name +
                       " " +
                       datas?.profileInfo?.last_name}
-                    
                     <p className="flex justify-center items-center ">
-                    <span className="block text-[27px]">{datas?.profileInfo?.suffix + " "}</span>
-                    <span
-                      className="  text-[18px] roboto ms-2"
-                      style={{ fontWeight:300, lineHeight: '18px' }} 
+                      <span className="block text-[27px]">
+                        {datas?.profileInfo?.suffix + " "}
+                      </span>
+                      <span
+                        className="  text-[18px] roboto ms-2"
+                        style={{ fontWeight: 300, lineHeight: "18px" }}
                       >
-                      {datas?.profileInfo?.accreditations && `(${datas?.profileInfo?.accreditations})`}
-                    </span>
+                        {datas?.profileInfo?.accreditations &&
+                          `(${datas?.profileInfo?.accreditations})`}
+                      </span>
                     </p>
                   </h2>
-                  <p className="mt-[10px] font-medium text-[18px]  roboto " style={{lineHeight: '24px'}}>
+                  <p
+                    className="mt-[10px] font-medium text-[18px]  roboto "
+                    style={{ lineHeight: "24px" }}
+                  >
                     {datas?.profileInfo?.job_title}
                   </p>
                   <p className="">{datas?.profileInfo?.department}</p>
@@ -371,21 +391,19 @@ END:VCARD
             {datas?.display?.design !== "pro" && (
               <div className="px-3">
                 <div
-                  className={`mt-3 w-full md:w-[383px] ${ datas?.display?.design === "classic" ? 'border-l-[3px]': 'border-l-[3px] md:border-[3px]'}`}
+                  className={`mt-3 w-full md:w-[383px] ${
+                    datas?.display?.design === "classic"
+                      ? "border-l-[3px] p-[12px]"
+                      : "border-l-[2px]  md:border-[3px] pl-[6px] md:p-[12px] ml-4"
+                  }`}
                   style={{
-                    // borderLeft:
-                    //   datas?.display?.design === "classic"
-                    //     ? `3px solid ${datas?.display?.primaryColor}`
-                    //     : `3px dotted ${datas?.display?.secondaryColor}`,
-                    // borderWidth: datas?.display?.design === "classic" ? '0 0 0 3px': '3px' ,
-                    borderStyle: datas?.display?.design === "classic" ? 'solid': 'dotted',
+                    borderStyle:
+                      datas?.display?.design === "classic" ? "solid" : "dotted",
                     borderColor: datas?.display?.primaryColor,
-                    padding:
-                      datas?.display?.design === "classic" ? "12px" : "12px",
                   }}
                 >
                   {datas?.profileInfo?.first_name && (
-                    <h2 className="text-3xl font-bold">
+                    <h2 className="text-3xl font-bold pl-1 mb-3">
                       {datas?.profileInfo?.prefix &&
                         datas?.profileInfo?.prefix + "."}{" "}
                       {datas?.profileInfo?.first_name +
@@ -393,24 +411,24 @@ END:VCARD
                         datas?.profileInfo?.last_name}
                       <br />
                       {datas?.profileInfo?.suffix + " "}
-                      <span className="font-semibold">
+                      <span className="font-semibold ">
                         {datas?.profileInfo?.accreditations}
                       </span>
                     </h2>
-                  )}
-                  <h4 className="font-medium italic text-[#585858]">
+                  )} 
+                  <h4 className="font-medium italic text-[#585858] pl-1">
                     {datas?.profileInfo?.job_title}
                   </h4>
-                  <h3  style={{ color: datas?.display?.primaryColor}}>
+                  <h3 className="pl-1" style={{ color: datas?.display?.primaryColor }}>
                     {datas?.profileInfo?.department}
                   </h3>
-                  <h3 className=" mb-0">{datas?.profileInfo?.company}</h3>
+                  <h3 className=" mb-0 pl-1">{datas?.profileInfo?.company}</h3>
                 </div>
               </div>
             )}
 
-            <div className="mx-6 ">
-              <div className=" w-full md:w-[383px]">
+            <div className="mx-6  ">
+              <div className=" w-full md:w-[383px] pl-1 mt-4">
                 {datas?.profileInfo?.introduction && (
                   <p className="italic text-[#69727d]">
                     {datas?.profileInfo?.introduction}
@@ -556,7 +574,7 @@ END:VCARD
                         item={item}
                       />
                     )}
-                    {item?.type === 'Text' && <Text item={item}/>}
+                    {item?.type === "Text" && <Text item={item} />}
 
                     {/* social media  */}
 
@@ -672,57 +690,57 @@ END:VCARD
                 ))}
               </div>
             </div>
-            <div className="h-[42vh]"> 
-            <div className="mx-6  relative  ">
-              <h1 className="pb-2 border-gray-400 mt-[40px] font-semibold text-2xl text-black roboto">
-                Η ΚΑΡΤΑ ΜΟΥ
-              </h1>
-              <div className="absolute -left-2 ">
-                <QRCode
-                  {...{
-                    qrStyle: "dots",
-                    fgColor: "#0053a2",
-                    ecLevel: "M",
-                    value: window?.location?.href,
-                    size: 160,
-                    bgColor: "#ffffff",
+            <div className="h-[42vh]">
+              <div className="mx-6  relative  ">
+                <h1 className="pb-2 border-gray-400 mt-[40px] font-semibold text-2xl text-black roboto">
+                  Η ΚΑΡΤΑ ΜΟΥ
+                </h1>
+                <div className="absolute -left-2 ">
+                  <QRCode
+                    {...{
+                      qrStyle: "dots",
+                      fgColor: "#0053a2",
+                      ecLevel: "M",
+                      value: window?.location?.href,
+                      size: 160,
+                      bgColor: "#ffffff",
 
-                    logoPadding: 0,
-                    eyeRadius: [
-                      {
-                        outer: 50,
+                      logoPadding: 0,
+                      eyeRadius: [
+                        {
+                          outer: 50,
 
-                        inner: 6,
-                      },
-                      {
-                        outer: 50,
+                          inner: 6,
+                        },
+                        {
+                          outer: 50,
 
-                        inner: 6,
-                      },
-                      {
-                        outer: 50,
-                        inner: 6,
-                      },
-                    ],
-                    eyeColor: [
-                      // build eyeColor manually
-                      {
-                        outer: "#0053a2",
-                        inner: "#D40808",
-                      },
-                      {
-                        outer: "#0053a2",
-                        inner: "#D40808",
-                      },
-                      {
-                        outer: "#0053a2",
-                        inner: "#D40808",
-                      },
-                    ],
-                  }}
-                />
+                          inner: 6,
+                        },
+                        {
+                          outer: 50,
+                          inner: 6,
+                        },
+                      ],
+                      eyeColor: [
+                        // build eyeColor manually
+                        {
+                          outer: "#0053a2",
+                          inner: "#D40808",
+                        },
+                        {
+                          outer: "#0053a2",
+                          inner: "#D40808",
+                        },
+                        {
+                          outer: "#0053a2",
+                          inner: "#D40808",
+                        },
+                      ],
+                    }}
+                  />
+                </div>
               </div>
-            </div>
             </div>
             <button
               onClick={handleAddContactClick}
@@ -733,7 +751,8 @@ END:VCARD
               }}
             >
               {" "}
-              <PermContactCalendarIcon />ΑΠΟΘΗΚΕΥΣΗ ΕΠΑΦΗΣ
+              <PermContactCalendarIcon />
+              ΑΠΟΘΗΚΕΥΣΗ ΕΠΑΦΗΣ
             </button>
           </div>
         </div>
