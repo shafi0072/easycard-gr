@@ -23,17 +23,24 @@ import LinkComponent from "./LinkComponent";
 import { QRCode } from "react-qrcode-logo";
 import Text from "./Text";
 import { data } from "autoprefixer";
-
+import { useRouter } from "next/router";
 const Profile = ({ id }) => {
   const [datas, setData] = useState(null);
 
   const [ip, setIp] = useState({});
   const [device, setDevice] = useState({});
   const [active, setActive] = useState(true);
+  const router = useRouter();
   useEffect(() => {
     fetch(`https://business-card-backend-2.vercel.app/cards/visit/${id}`)
       .then((res) => res.json())
-      .then((data) => setData(data))
+      .then((data) => {
+        if(id === data?.setting?.url){
+        setData(data)
+      }else{
+        router.push(`/${data?.setting?.url}`)
+      }
+      })
       .catch((err) => console.log(err));
   }, [id, datas]);
   const color = "#000";
