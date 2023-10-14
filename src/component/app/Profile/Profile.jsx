@@ -114,11 +114,13 @@ const Profile = ({ id }) => {
     const prefix = profileInfo.prefix;
 
     let mobile = "";
+    
     let officeNumber = "";
     let faxNumber = "";
     let address = "";
     let email = "";
     let website = "";
+    let facebook = ""
 
     for (const field of fields) {
       if (field.type === "Phone" && field?.chooseLabel === "Mobile") {
@@ -139,6 +141,9 @@ const Profile = ({ id }) => {
       if (field.type === "Email") {
         email = field.url;
       }
+      if (field.type === "Facebook") {
+        facebook = field.url;
+      }
     }
 
     const contactData = {
@@ -151,22 +156,23 @@ const Profile = ({ id }) => {
 
     const contactString = `BEGIN:VCARD
 VERSION:3.0
+
 FN:${contactData.name}
 
 N:${lastName};${firstName};${prefix};${profileInfo?.suffix}
 NICKNAME:${lastName}
-EMAIL;type=HOME,INTERNET:${email}
-EMAIL;type=WORK,INTERNET:${email}
-TEL;TYPE=CELL:${mobile}
-TEL;TYPE=Mobile,VOICE:${mobile}
-TEL;TYPE=Fax:${faxNumber}
-TEL;TYPE=WORK:${officeNumber}
+TEL;TYPE=HOME,VOICE: ${mobile}
+EL;TYPE=WORK,VOICE:${officeNumber}
+TEL;TYPE=WORK,FAX:${faxNumber}
+MAIL;CHARSET=UTF-8;type=WORK,INTERNET:${email}
+URL;type=WORK;CHARSET=UTF-8:${website}
+X-SOCIALPROFILE;TYPE=facebook:${facebook}
+
 LABEL:Home address
-ADR:;;${address}
+ADR;CHARSET=UTF-8;TYPE=WORK:${address}
 TITLE:${profileInfo?.department}
 ROLE:${profileInfo?.job_title}
 ORG:${profileInfo?.company}
-URL;type=WORK:${profileInfo?.website}
 END:VCARD
 `;
 
