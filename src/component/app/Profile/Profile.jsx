@@ -192,7 +192,7 @@ const Profile = ({ id }) => {
 const handleAddContactClick = async () => {
   try {
     // Send a GET request to the API route
-    const response = await fetch(`http://localhost:5050/cards/vcard/${id}`);
+    const response = await fetch(`https://business-card-backend-2.vercel.app/cards/vcard/${id}`);
     const vCardData = await response.text();
 
     // Create a Blob with the vCard data
