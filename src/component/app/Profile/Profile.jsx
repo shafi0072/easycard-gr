@@ -20,6 +20,7 @@ import QrView from "./QrView";
 import Text from "./Text";
 import Video from "./Video";
 import Website from "./Website";
+import { saveAs } from 'file-saver'; 
 const Profile = ({ id }) => {
   const [datas, setData] = useState(null);
 
@@ -192,25 +193,14 @@ const Profile = ({ id }) => {
 const handleAddContactClick = async () => {
   try {
     // Send a GET request to the API route
-    const response = await fetch(`http://localhost:5050/cards/vcard/${id}`);
+    const response = await fetch(`https://business-card-backend-2.vercel.app/cards/vcard/${id}`);
     const vCardData = await response.text();
 
     // Create a Blob with the vCard data
     const blob = new Blob([vCardData], { type: 'text/vcard' });
 
-    // Create a URL for the Blob
-    const blobUrl = URL.createObjectURL(blob);
-
-    // Create a link element to trigger the download
-    const a = document.createElement('a');
-    a.href = blobUrl;
-    a.download = 'contact.vcf';
-
-    // Trigger the download
-    a.click();
-
-    // Clean up
-    URL.revokeObjectURL(blobUrl);
+    // Use the saveAs function to trigger the download
+    saveAs(blob, 'contact.vcf');
   } catch (error) {
     console.error('Error downloading vCard:', error);
   }
