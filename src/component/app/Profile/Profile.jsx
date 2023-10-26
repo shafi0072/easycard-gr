@@ -393,7 +393,7 @@ END:VCARD
                 <div
                   className={`mt-3 w-full md:w-[383px] ${
                     datas?.display?.design === "classic"
-                      ? "border-l-[3px] p-[12px]"
+                      ? "border-l-[3px] p-[12px] "
                       : "border-l-[2px]  md:border-[3px] pl-[6px] md:p-[12px] ml-4"
                   }`}
                   style={{
@@ -415,11 +415,14 @@ END:VCARD
                         {datas?.profileInfo?.accreditations}
                       </span>
                     </h2>
-                  )} 
+                  )}
                   <h4 className="font-medium italic text-[#585858] pl-1">
                     {datas?.profileInfo?.job_title}
                   </h4>
-                  <h3 className="pl-1" style={{ color: datas?.display?.primaryColor }}>
+                  <h3
+                    className="pl-1"
+                    style={{ color: datas?.display?.primaryColor }}
+                  >
                     {datas?.profileInfo?.department}
                   </h3>
                   <h3 className=" mb-0 pl-1">{datas?.profileInfo?.company}</h3>
@@ -427,7 +430,7 @@ END:VCARD
               </div>
             )}
 
-            <div className="mx-6  ">
+            <div className="mx-6 ">
               <div className=" w-full md:w-[383px] pl-1 mt-4">
                 {datas?.profileInfo?.introduction && (
                   <p className="italic text-[#69727d]">
