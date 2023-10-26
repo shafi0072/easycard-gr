@@ -1,39 +1,42 @@
-import React, { useEffect, useState } from "react";
-import MobileLoading from "../../core/MobileLoading";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
-import TwitterIcon from "@mui/icons-material/Twitter";
-import PinterestIcon from "@mui/icons-material/Pinterest";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import { FaTiktok } from "react-icons/fa";
-import FieldData from "./FieldData";
-import DottedQRCode from "./DottedQr";
-import Content from "./Content";
-import Image from "./Image";
-import GalleryImage from "./GalleryImage";
-import YouTube from "./Video";
-import Pdf from "./Pdf";
-import DateView from "./DateView";
-import QrView from "./QrView";
-import Video from "./Video";
 import PermContactCalendarIcon from "@mui/icons-material/PermContactCalendar";
+import PinterestIcon from "@mui/icons-material/Pinterest";
+import TwitterIcon from "@mui/icons-material/Twitter";
 import Link from "next/link";
-import Website from "./Website";
-import LinkComponent from "./LinkComponent";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import { FaTiktok } from "react-icons/fa";
 import { QRCode } from "react-qrcode-logo";
+import Content from "./Content";
+import DateView from "./DateView";
+import FieldData from "./FieldData";
+import GalleryImage from "./GalleryImage";
+import Image from "./Image";
+import LinkComponent from "./LinkComponent";
+import Pdf from "./Pdf";
+import QrView from "./QrView";
 import Text from "./Text";
-import { data } from "autoprefixer";
-
+import Video from "./Video";
+import Website from "./Website";
 const Profile = ({ id }) => {
   const [datas, setData] = useState(null);
 
   const [ip, setIp] = useState({});
   const [device, setDevice] = useState({});
   const [active, setActive] = useState(true);
+  const router = useRouter();
   useEffect(() => {
     fetch(`https://business-card-backend-2.vercel.app/cards/visit/${id}`)
       .then((res) => res.json())
-      .then((data) => setData(data))
+      .then((data) => {
+        if(id === data?.setting?.url){
+        setData(data)
+      }else{
+        router.push(`/${data?.setting?.url}`)
+      }
+      })
       .catch((err) => console.log(err));
   }, [id, datas]);
   const color = "#000";
@@ -100,87 +103,118 @@ const Profile = ({ id }) => {
     }
   }, []);
 
-  const handleAddContactClick = () => {
-    const { profileInfo, fields, display } = datas;
-    const firstName = profileInfo.first_name;
-    const lastName = profileInfo.last_name;
-    const prefix = profileInfo.prefix;
+//   const handleAddContactClick = () => {
+//     const { profileInfo, fields, display } = datas;
+//     const firstName = profileInfo.first_name;
+//     const lastName = profileInfo.last_name;
+//     const prefix = profileInfo.prefix;
 
-    let mobile = "";
-    let officeNumber = "";
-    let faxNumber = "";
-    let address = "";
-    let email = "";
-    let website = "";
+//     let mobile = "";
+    
+//     let officeNumber = "";
+//     let faxNumber = "";
+//     let address = "";
+//     let email = "";
+//     let website = "";
+//     let facebook = ""
 
-    for (const field of fields) {
-      if (field.type === "Phone" && field?.chooseLabel === "Mobile") {
-        mobile = field.number;
-      }
-      if (field.type === "Address") {
-        address = field.address;
-      }
-      if (field.type === "Website") {
-        website = field.url;
-      }
-      if (field.type === "Phone" && field?.chooseLabel === "Office") {
-        officeNumber = field.number;
-      }
-      if (field.type === "Phone" && field?.chooseLabel === "Fax") {
-        faxNumber = field.number;
-      }
-      if (field.type === "Email") {
-        email = field.url;
-      }
-    }
+//     for (const field of fields) {
+//       if (field.type === "Phone" && field?.chooseLabel === "Mobile") {
+//         mobile = field.number;
+//       }
+//       if (field.type === "Address") {
+//         address = field.address;
+//       }
+//       if (field.type === "Website") {
+//         website = field.url;
+//       }
+//       if (field.type === "Phone" && field?.chooseLabel === "Office") {
+//         officeNumber = field.number;
+//       }
+//       if (field.type === "Phone" && field?.chooseLabel === "Fax") {
+//         faxNumber = field.number;
+//       }
+//       if (field.type === "Email") {
+//         email = field.url;
+//       }
+//       if (field.type === "Facebook") {
+//         facebook = field.url;
+//       }
+//     }
 
-    const contactData = {
-      name: firstName + " " + lastName,
-    };
+//     const contactData = {
+//       name: firstName + " " + lastName,
+//     };
 
-    // Decode the base64 image
+//     // Decode the base64 image
 
-    debugger;
+//     debugger;
 
-    const contactString = `BEGIN:VCARD
-VERSION:3.0
-FN:${contactData.name}
+//     const contactString = `BEGIN:VCARD
+// VERSION:3.0
 
-N:${lastName};${firstName};${prefix};${profileInfo?.suffix}
-NICKNAME:${lastName}
-EMAIL;type=HOME,INTERNET:${email}
-EMAIL;type=WORK,INTERNET:${email}
-TEL;TYPE=CELL:${mobile}
-TEL;TYPE=Mobile,VOICE:${mobile}
-TEL;TYPE=Fax:${faxNumber}
-TEL;TYPE=WORK:${officeNumber}
-LABEL:Home address
-ADR:;;${address}
-TITLE:${profileInfo?.department}
-ROLE:${profileInfo?.job_title}
-ORG:${profileInfo?.company}
-URL;type=WORK:${profileInfo?.website}
-END:VCARD
-`;
+// FN:${contactData.name}
 
-    const uri = `data:text/vcard;charset=utf-8,${encodeURIComponent(
-      contactString
-    )}`;
+// N:${lastName};${firstName};${prefix};${profileInfo?.suffix}
+// NICKNAME:${lastName}
+// TEL;TYPE=HOME,VOICE: ${mobile}
+// EL;TYPE=WORK,VOICE:${officeNumber}
+// TEL;TYPE=WORK,FAX:${faxNumber}
+// MAIL;CHARSET=UTF-8;type=WORK,INTERNET:${email}
+// URL;type=WORK;CHARSET=UTF-8:${website}
+// X-SOCIALPROFILE;TYPE=facebook:${facebook}
 
-    // Check if it's a mobile device
-    if (
-      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-        navigator.userAgent
-      )
-    ) {
-      // Open a new window with the URI, this may trigger the contact save on some devices
-      window.open(uri, "_blank");
-    } else {
-      // Provide a message to users on non-mobile devices
-      alert("This feature is available on mobile devices only.");
-    }
-  };
+// LABEL:Home address
+// ADR;CHARSET=UTF-8;TYPE=WORK:${address}
+// TITLE:${profileInfo?.department}
+// ROLE:${profileInfo?.job_title}
+// ORG:${profileInfo?.company}
+// END:VCARD
+// `;
 
+//     const uri = `data:text/vcard;charset=utf-8,${encodeURIComponent(
+//       contactString
+//     )}`;
+
+//     // Check if it's a mobile device
+//     if (
+//       /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+//         navigator.userAgent
+//       )
+//     ) {
+//       // Open a new window with the URI, this may trigger the contact save on some devices
+//       window.open(uri, "_blank");
+//     } else {
+//       // Provide a message to users on non-mobile devices
+//       alert("This feature is available on mobile devices only.");
+//     }
+//   };
+const handleAddContactClick = async () => {
+  try {
+    // Send a GET request to the API route
+    const response = await fetch(`https://business-card-backend-2.vercel.app/cards/vcard/${id}`);
+    const vCardData = await response.text();
+
+    // Create a Blob with the vCard data
+    const blob = new Blob([vCardData], { type: 'text/vcard' });
+
+    // Create a URL for the Blob
+    const blobUrl = URL.createObjectURL(blob);
+
+    // Create a link element to trigger the download
+    const a = document.createElement('a');
+    a.href = blobUrl;
+    a.download = 'contact.vcf';
+
+    // Trigger the download
+    a.click();
+
+    // Clean up
+    URL.revokeObjectURL(blobUrl);
+  } catch (error) {
+    console.error('Error downloading vCard:', error);
+  }
+};
   useEffect(() => {
     setTimeout(() => {
       setActive(datas?.setting?.cardStatus);
