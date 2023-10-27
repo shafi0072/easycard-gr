@@ -771,7 +771,7 @@ const handleAddContactClick = async () => {
             </div>
             <button
               onClick={handleAddContactClick}
-              className=" text-white w-[300px]  h-[50px] md:w-[350px] md:h-[70px] md:px-5 fixed left-[50%] bottom-5 -translate-x-1/2 text-lg md:text-2xl rounded-full transition-all duration-300 hover:scale-125 font-bold"
+              className=" text-white w-[300px]  h-[50px] md:w-[350px] md:h-[70px] md:px-5 fixed left-[50%] bottom-5 -translate-x-1/2 text-lg md:text-2xl rounded-full transition-all duration-300  font-bold"
               style={{
                 background: datas?.display?.secondaryColor,
                 color: datas?.display?.secondaryAccent,
