@@ -417,7 +417,7 @@ const handleAddContactClick = async () => {
                 <div
                   className={`mt-3 w-full md:w-[383px] ${
                     datas?.display?.design === "classic"
-                      ? "border-l-[3px] p-[12px]"
+                      ? "border-l-[3px] p-[12px] "
                       : "border-l-[2px]  md:border-[3px] pl-[6px] md:p-[12px] ml-4"
                   }`}
                   style={{
@@ -439,11 +439,14 @@ const handleAddContactClick = async () => {
                         {datas?.profileInfo?.accreditations}
                       </span>
                     </h2>
-                  )} 
+                  )}
                   <h4 className="font-medium italic text-[#585858] pl-1">
                     {datas?.profileInfo?.job_title}
                   </h4>
-                  <h3 className="pl-1" style={{ color: datas?.display?.primaryColor }}>
+                  <h3
+                    className="pl-1"
+                    style={{ color: datas?.display?.primaryColor }}
+                  >
                     {datas?.profileInfo?.department}
                   </h3>
                   <h3 className=" mb-0 pl-1">{datas?.profileInfo?.company}</h3>
@@ -451,7 +454,7 @@ const handleAddContactClick = async () => {
               </div>
             )}
 
-            <div className="mx-6  ">
+            <div className="mx-6 ">
               <div className=" w-full md:w-[383px] pl-1 mt-4">
                 {datas?.profileInfo?.introduction && (
                   <p className="italic text-[#69727d]">
@@ -768,7 +771,7 @@ const handleAddContactClick = async () => {
             </div>
             <button
               onClick={handleAddContactClick}
-              className=" text-white w-[300px]  h-[50px] md:w-[350px] md:h-[70px] md:px-5 fixed left-[50%] bottom-5 -translate-x-1/2 text-lg md:text-2xl rounded-full transition-all duration-300 hover:scale-125 font-bold"
+              className=" text-white w-[300px]  h-[50px] md:w-[350px] md:h-[70px] md:px-5 fixed left-[50%] bottom-5 -translate-x-1/2 text-lg md:text-2xl rounded-full transition-all duration-300  font-bold"
               style={{
                 background: datas?.display?.secondaryColor,
                 color: datas?.display?.secondaryAccent,
