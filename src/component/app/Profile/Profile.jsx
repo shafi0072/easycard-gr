@@ -192,7 +192,7 @@ const Profile = ({ id }) => {
 const handleAddContactClick = async () => {
   try {
     // Send a GET request to the API route
-    const response = await fetch(`https://business-card-backend-2.vercel.app/cards/vcard/${id}`);
+    const response = await fetch(`http://localhost:5050/cards/vcard/${id}`);
     const vCardData = await response.text();
 
     // Create a Blob with the vCard data
@@ -241,6 +241,9 @@ const handleAddContactClick = async () => {
                         datas?.display?.ProfileImage !== null &&
                         datas?.display?.ProfileImage !== "null" &&
                         datas?.display?.ProfileImage
+                        &&  datas?.display?.ProfileImage !== 'https://suva-trip-exist.s3.amazonaws.com/card-hero.jpg'
+                        &&  datas?.display?.ProfileImage !== 'https://suva-trip-exist.s3.amazonaws.com/man.png'
+                        &&  datas?.display?.ProfileImage !== 'https://suva-trip-exist.s3.amazonaws.com/lady.png'
                           ? datas?.display?.ProfileImage
                           : "/profile-image.png"
                       }
@@ -269,8 +272,14 @@ const handleAddContactClick = async () => {
                       src={
                         datas?.display?.ProfileImage !== null &&
                         datas?.display?.ProfileImage !== "null" &&
-                        datas?.display?.ProfileImage
+                        datas?.display?.ProfileImage 
+                        &&  datas?.display?.ProfileImage !== 'https://suva-trip-exist.s3.amazonaws.com/card-hero.jpg'
+                        &&  datas?.display?.ProfileImage !== 'https://suva-trip-exist.s3.amazonaws.com/man.png'
+                        &&  datas?.display?.ProfileImage !== 'https://suva-trip-exist.s3.amazonaws.com/lady.png'
                           ? datas?.display?.ProfileImage
+                          : datas?.display?.ProfileImage === 'https://suva-trip-exist.s3.amazonaws.com/card-hero.jpg' ? '/pro.jpg'
+                          : datas?.display?.ProfileImage === 'https://suva-trip-exist.s3.amazonaws.com/man.png' ? '/man.jpg'
+                          : datas?.display?.ProfileImage === 'https://suva-trip-exist.s3.amazonaws.com/lady.png' ? '/lady.png'
                           : "/profile-image.png"
                       }
                       alt=""
@@ -363,8 +372,14 @@ const handleAddContactClick = async () => {
                       src={
                         datas?.display?.ProfileImage !== null &&
                         datas?.display?.ProfileImage !== "null" &&
-                        datas?.display?.ProfileImage
-                          ? datas?.display?.ProfileImage
+                        datas?.display?.ProfileImage 
+                        &&  datas?.display?.ProfileImage !== 'https://suva-trip-exist.s3.amazonaws.com/card-hero.jpg'
+                        &&  datas?.display?.ProfileImage !== 'https://suva-trip-exist.s3.amazonaws.com/man.png'
+                        &&  datas?.display?.ProfileImage !== 'https://suva-trip-exist.s3.amazonaws.com/lady.png'
+                          ? datas?.display?.ProfileImage 
+                          : datas?.display?.ProfileImage === 'https://suva-trip-exist.s3.amazonaws.com/card-hero.jpg' ? '/pro.jpg'
+                          : datas?.display?.ProfileImage === 'https://suva-trip-exist.s3.amazonaws.com/man.png' ? '/man.jpg'
+                          : datas?.display?.ProfileImage === 'https://suva-trip-exist.s3.amazonaws.com/lady.png' ? '/lady.png'
                           : "/profile-image.png"
                       }
                       alt=""
