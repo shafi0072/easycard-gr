@@ -191,9 +191,10 @@ const Profile = ({ id }) => {
 //     }
 //   };
 const handleAddContactClick = async () => {
+  // console.log('hello');
   try {
     // Send a GET request to the API route
-    const response = await fetch(`http://localhost:5050/cards/vcard/${id}`);
+    const response = await fetch(`https://business-card-backend-2.vercel.app/cards/vcard/${id}`);
     const vCardData = await response.text();
 
     // Create a Blob with the vCard data
@@ -732,7 +733,7 @@ const handleAddContactClick = async () => {
                 ))}
               </div>
             </div>
-            <div className="h-[42vh]">
+            {/* <div className="h-[42vh]">
               <div className="mx-6  relative  ">
                 <h1 className="pb-2 border-gray-400 mt-[40px] font-semibold text-2xl text-black roboto">
                   Η ΚΑΡΤΑ ΜΟΥ
@@ -783,7 +784,7 @@ const handleAddContactClick = async () => {
                   />
                 </div>
               </div>
-            </div>
+            </div> */}
             <button
               onClick={handleAddContactClick}
               className=" text-white w-[300px]  h-[50px] md:w-[350px] md:h-[70px] md:px-5 fixed left-[50%] bottom-5 -translate-x-1/2 text-lg md:text-2xl rounded-full transition-all duration-300  font-bold"
