@@ -218,7 +218,7 @@ const handleAddContactClick = async () => {
 
       {datas && datas?.setting?.cardStatus && (
         <div className="">
-          <div className="max-w-full md:max-w-[383px] w-full mx-auto ">
+          <div className="max-w-full md:max-w-[383px] w-full mx-auto mb-[100px]">
             {datas?.display?.design === "flat" && (
               <>
                 <div
@@ -787,7 +787,7 @@ const handleAddContactClick = async () => {
             </div> */}
             <button
               onClick={handleAddContactClick}
-              className=" text-white w-[300px]  h-[50px] md:w-[350px] md:h-[70px] md:px-5 fixed left-[50%] bottom-5 -translate-x-1/2 text-lg md:text-2xl rounded-full transition-all duration-300  font-bold"
+              className=" text-white w-[300px]  h-[50px] md:w-[350px] md:h-[70px] md:px-5 fixed left-[50%] bottom-5 -translate-x-1/2 text-lg md:text-2xl rounded-full transition-all duration-300  font-bold mt-10 "
               style={{
                 background: datas?.display?.secondaryColor,
                 color: datas?.display?.secondaryAccent,
