@@ -29,7 +29,7 @@ const Profile = ({ id }) => {
   const [active, setActive] = useState(true);
   const router = useRouter();
   useEffect(() => {
-    fetch(`https://business-card-backend-2.vercel.app/cards/visit/${id}`)
+    fetch(`http://52.6.119.16:5000/cards/visit/${id}`)
       .then((res) => res.json())
       .then((data) => {
         if(id === data?.setting?.url){
