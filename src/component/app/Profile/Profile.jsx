@@ -29,7 +29,7 @@ const Profile = ({ id }) => {
   const [active, setActive] = useState(true);
   const router = useRouter();
   useEffect(() => {
-    fetch(`http://52.6.119.16:5000/cards/visit/${id}`)
+    fetch(`https://easy-8dfcbe39d61b.herokuapp.com/cards/visit/${id}`)
       .then((res) => res.json())
       .then((data) => {
         if(id === data?.setting?.url){
