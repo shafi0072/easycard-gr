@@ -7,7 +7,7 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { FaTiktok } from "react-icons/fa";
+import { FaTiktok, FaViacoin } from "react-icons/fa";
 import { QRCode } from "react-qrcode-logo";
 import Content from "./Content";
 import DateView from "./DateView";
@@ -21,6 +21,7 @@ import Text from "./Text";
 import Video from "./Video";
 import Website from "./Website";
 import { saveAs } from 'file-saver'; 
+import Head from "next/head";
 const Profile = ({ id }) => {
   const [datas, setData] = useState(null);
 
@@ -212,10 +213,29 @@ const handleAddContactClick = async () => {
     }, 1000);
   }, [datas]);
   console.log({ datas });
+ const faviconUrl =  datas?.display?.ProfileImage ||  datas?.display?.logo
+  useEffect(() => {
+    const faviconElement = document.getElementById('dynamic-favicon');
+    if (faviconElement) {
+      faviconElement.href = faviconUrl;
+    } else {
+      const link = document.createElement('link');
+      link.id = 'dynamic-favicon';
+      link.rel = 'icon';
+      link.href = faviconUrl;
+      document.head.appendChild(link);
+    }
+  }, [faviconUrl]);
+
   return (
     <>
       {/* {!datas?._id && <MobileLoading />} */}
+         <Head> 
+          <title>{datas?.profileInfo?.first_name}</title>
+          <link id="dynamic-favicon" rel="icon" href={faviconUrl} />
 
+      
+         </Head>
       {datas && datas?.setting?.cardStatus && (
         <div className="">
           <div className="max-w-full md:max-w-[383px] w-full mx-auto mb-[100px]">
