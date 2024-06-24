@@ -30,7 +30,7 @@ const Profile = ({ id }) => {
   const [active, setActive] = useState(true);
   const router = useRouter();
   useEffect(() => {
-    fetch(`http://52.6.119.16:5000/cards/visit/${id}`,{
+    fetch(`//52.6.119.16:5000/cards/visit/${id}`,{
       mode: 'no-cors',
       method:"GET",
       headers:{"Content-Type":"application/json"}
