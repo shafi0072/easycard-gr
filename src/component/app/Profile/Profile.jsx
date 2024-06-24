@@ -22,6 +22,7 @@ import Video from "./Video";
 import Website from "./Website";
 import { saveAs } from 'file-saver'; 
 import Head from "next/head";
+import fetch from 'node-fetch'
 const Profile = ({ id }) => {
   const [datas, setData] = useState(null);
 
@@ -29,8 +30,11 @@ const Profile = ({ id }) => {
   const [device, setDevice] = useState({});
   const [active, setActive] = useState(true);
   const router = useRouter();
+  const options = {
+    agent: null, // By setting agent to null, it ignores proxy settings
+  };
   useEffect(() => {
-    fetch(`https://easy-8dfcbe39d61b.herokuapp.com/cards/visit/${id}`)
+    fetch(`http://52.6.119.16:5000/cards/visit/${id}`, options)
       .then((res) => res.json())
       .then((data) => {
         if(id === data?.setting?.url){
