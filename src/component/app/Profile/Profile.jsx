@@ -22,9 +22,8 @@ import Video from "./Video";
 import Website from "./Website";
 import { saveAs } from 'file-saver'; 
 import Head from "next/head";
-import fetch from 'node-fetch'
-const Profile = ({ id }) => {
-  const [datas, setData] = useState(null);
+
+const Profile = ({ datas }) => {
 
   const [ip, setIp] = useState({});
   const [device, setDevice] = useState({});
@@ -33,18 +32,18 @@ const Profile = ({ id }) => {
   const options = {
     agent: null, // By setting agent to null, it ignores proxy settings
   };
-  useEffect(() => {
-    fetch(`http://52.6.119.16:5000/cards/visit/${id}`, options)
-      .then((res) => res.json())
-      .then((data) => {
-        if(id === data?.setting?.url){
-        setData(data)
-      }else{
-        router.push(`/${data?.setting?.url}`)
-      }
-      })
-      .catch((err) => console.log(err));
-  }, [id, datas]);
+  // useEffect(() => {
+  //   fetch(`http://52.6.119.16:5000/cards/visit/${id}`, options)
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       if(id === data?.setting?.url){
+  //       setData(data)
+  //     }else{
+  //       router.push(`/${data?.setting?.url}`)
+  //     }
+  //     })
+  //     .catch((err) => console.log(err));
+  // }, [id]);
   const color = "#000";
 
   useEffect(() => {
@@ -68,27 +67,27 @@ const Profile = ({ id }) => {
     });
   }, []);
 
-  useEffect(() => {
-    if (id) {
-      fetch(
-        `https://business-card-backend-2.vercel.app/cards/anylatics/${id}`,
-        {
-          method: "PUT",
-          headers: { "content-type": "application/json" },
-          body: JSON.stringify({
-            view: 1,
-            ipAddress: ip.ip,
-            type: "view",
-            device: device,
-            country: ip.country,
-          }),
-        }
-      )
-        .then((res) => res.json())
-        .then((data) => console.log(data))
-        .catch((err) => console.log(err));
-    }
-  }, [id, ip, device]);
+  // useEffect(() => {
+  //   if (id) {
+  //     fetch(
+  //       `https://business-card-backend-2.vercel.app/cards/anylatics/${id}`,
+  //       {
+  //         method: "PUT",
+  //         headers: { "content-type": "application/json" },
+  //         body: JSON.stringify({
+  //           view: 1,
+  //           ipAddress: ip.ip,
+  //           type: "view",
+  //           device: device,
+  //           country: ip.country,
+  //         }),
+  //       }
+  //     )
+  //       .then((res) => res.json())
+  //       .then((data) => console.log(data))
+  //       .catch((err) => console.log(err));
+  //   }
+  // }, [id, ip, device]);
 
   useEffect(() => {
     if (typeof window === undefined) {
@@ -109,92 +108,6 @@ const Profile = ({ id }) => {
     }
   }, []);
 
-//   const handleAddContactClick = () => {
-//     const { profileInfo, fields, display } = datas;
-//     const firstName = profileInfo.first_name;
-//     const lastName = profileInfo.last_name;
-//     const prefix = profileInfo.prefix;
-
-//     let mobile = "";
-    
-//     let officeNumber = "";
-//     let faxNumber = "";
-//     let address = "";
-//     let email = "";
-//     let website = "";
-//     let facebook = ""
-
-//     for (const field of fields) {
-//       if (field.type === "Phone" && field?.chooseLabel === "Mobile") {
-//         mobile = field.number;
-//       }
-//       if (field.type === "Address") {
-//         address = field.address;
-//       }
-//       if (field.type === "Website") {
-//         website = field.url;
-//       }
-//       if (field.type === "Phone" && field?.chooseLabel === "Office") {
-//         officeNumber = field.number;
-//       }
-//       if (field.type === "Phone" && field?.chooseLabel === "Fax") {
-//         faxNumber = field.number;
-//       }
-//       if (field.type === "Email") {
-//         email = field.url;
-//       }
-//       if (field.type === "Facebook") {
-//         facebook = field.url;
-//       }
-//     }
-
-//     const contactData = {
-//       name: firstName + " " + lastName,
-//     };
-
-//     // Decode the base64 image
-
-//     debugger;
-
-//     const contactString = `BEGIN:VCARD
-// VERSION:3.0
-
-// FN:${contactData.name}
-
-// N:${lastName};${firstName};${prefix};${profileInfo?.suffix}
-// NICKNAME:${lastName}
-// TEL;TYPE=HOME,VOICE: ${mobile}
-// EL;TYPE=WORK,VOICE:${officeNumber}
-// TEL;TYPE=WORK,FAX:${faxNumber}
-// MAIL;CHARSET=UTF-8;type=WORK,INTERNET:${email}
-// URL;type=WORK;CHARSET=UTF-8:${website}
-// X-SOCIALPROFILE;TYPE=facebook:${facebook}
-
-// LABEL:Home address
-// ADR;CHARSET=UTF-8;TYPE=WORK:${address}
-// TITLE:${profileInfo?.department}
-// ROLE:${profileInfo?.job_title}
-// ORG:${profileInfo?.company}
-// END:VCARD
-// `;
-
-//     const uri = `data:text/vcard;charset=utf-8,${encodeURIComponent(
-//       contactString
-//     )}`;
-
-//     // Check if it's a mobile device
-//     if (
-//       /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-//         navigator.userAgent
-//       )
-//     ) {
-//       // Open a new window with the URI, this may trigger the contact save on some devices
-//       window.open(uri, "_blank");
-//     } else {
-//       // Provide a message to users on non-mobile devices
-//       alert("This feature is available on mobile devices only.");
-//     }
-//   };
 const handleAddContactClick = async () => {
   // console.log('hello');
   try {
