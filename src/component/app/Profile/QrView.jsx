@@ -4,7 +4,7 @@ import { QRCode } from "react-qrcode-logo";
 
 const QrView = ({ item, logo, value, data }) => {
   const [qrCodeWidth, setQRCodeWidth] = useState(383);
-  console.log(item);
+  
 
   useEffect(() => {
     const breakpoint = 768;

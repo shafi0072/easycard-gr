@@ -3,7 +3,6 @@ import Data1 from "./Data1";
 
 
 const FieldData = ({ userData }) => {
-  console.log(userData)
   const phoneIcon = (
     <svg
       xmlns="http://www.w3.org/2000/svg"

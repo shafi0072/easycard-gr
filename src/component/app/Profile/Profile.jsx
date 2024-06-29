@@ -26,7 +26,6 @@ import Head from "next/head";
 const Profile = ({ datas }) => {
 
   const [ip, setIp] = useState({});
-  const [device, setDevice] = useState({});
   const [active, setActive] = useState(true);
   const router = useRouter();
   const options = {
@@ -89,30 +88,30 @@ const Profile = ({ datas }) => {
   //   }
   // }, [id, ip, device]);
 
-  useEffect(() => {
-    if (typeof window === undefined) {
-      return null;
-    } else {
-      const userAgent = navigator.userAgent;
+  // useEffect(() => {
+  //   if (typeof window === undefined) {
+  //     return null;
+  //   } else {
+  //     const userAgent = navigator.userAgent;
 
-      // Get the browser's name and version
-      const browserName = navigator.appName;
-      const browserVersion = navigator.appVersion;
+  //     // Get the browser's name and version
+  //     const browserName = navigator.appName;
+  //     const browserVersion = navigator.appVersion;
 
-      // Get the operating system name and version
-      const osName = navigator.platform;
+  //     // Get the operating system name and version
+  //     const osName = navigator.platform;
 
-      // Display the gathered information
+  //     // Display the gathered information
 
-      setDevice(osName);
-    }
-  }, []);
+  //     setDevice(osName);
+  //   }
+  // }, []);
 
 const handleAddContactClick = async () => {
   // console.log('hello');
   try {
     // Send a GET request to the API route
-    const response = await fetch(`https://business-card-backend-2.vercel.app/cards/vcard/${id}`);
+    const response = await fetch(`https://easy-8dfcbe39d61b.herokuapp.com/cards/vcard/${id}`);
     const vCardData = await response.text();
 
     // Create a Blob with the vCard data
@@ -129,8 +128,7 @@ const handleAddContactClick = async () => {
       setActive(datas?.setting?.cardStatus);
     }, 1000);
   }, [datas]);
-  console.log({ datas });
- const faviconUrl =  datas?.display?.ProfileImage ||  datas?.display?.logo
+ const faviconUrl =  datas?.display?.favicon ||  datas?.display?.favicon
   useEffect(() => {
     const faviconElement = document.getElementById('dynamic-favicon');
     if (faviconElement) {
