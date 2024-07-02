@@ -29,7 +29,7 @@ const Profile = ({ id }) => {
   const [active, setActive] = useState(true);
   const router = useRouter();
   useEffect(() => {
-    fetch(`https://easy-8dfcbe39d61b.herokuapp.com/cards/visit/${id}`)
+    fetch(`https://business-card-backend-2.vercel.app/cards/visit/${id}`)
       .then((res) => res.json())
       .then((data) => {
         if(id === data?.setting?.url){
